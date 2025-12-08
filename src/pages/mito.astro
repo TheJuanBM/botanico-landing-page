@@ -1,0 +1,1129 @@
+---
+import Footer from '../components/Footer.astro';
+import Navbar from '../components/Navbar.astro';
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="MITO Rooftop - El Mejor Rooftop de Caucasia | Hotel Botánico"
+  description="Descubre MITO, el rooftop más exclusivo del Bajo Cauca. Coctelería de autor, gastronomía premium y vistas panorámicas espectaculares. Ideal para eventos y celebraciones."
+  keywords="rooftop Caucasia, MITO rooftop, bar Caucasia, eventos Caucasia, coctelería Bajo Cauca"
+>
+  <!-- Preload de imagen hero crítica para mejorar LCP -->
+  <Fragment slot="head">
+    <link
+      rel="preload"
+      as="image"
+      href="https://scontent.cdninstagram.com/v/t39.30808-6/490681095_122148535676386366_614500551221153921_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=105&ig_cache_key=MzYyNDYwMDAzODYxNTE4MDU2MQ%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjE2Mzl4MjA0OC5zZHIuQzMifQ%3D%3D&_nc_ohc=Izan2UpwRzwQ7kNvwE_wf_l&_nc_oc=AdkwBzitfqDYY2mAmI_y5_cOwsBWDu79jWaBAevhAt3MYyAG7n8mJx1jPZhHvMIQ5NI&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&_nc_gid=_U-IaI_3Z03GDciLduDZuw&oh=00_AfllebQW8pFIHzNSggEMZGV9TzYQW_xAMrobjJYW5X7R3Q&oe=6937DBD6"
+      fetchpriority="high"
+    />
+  </Fragment>
+
+  <Navbar />
+
+  <main id="main-content">
+    <!-- Hero Section - Inmersivo y Elegante -->
+    <section
+      class="relative h-screen flex items-center justify-center overflow-hidden bg-negro-suave"
+    >
+      <!-- Video/Image Background con efecto parallax -->
+      <div class="absolute inset-0">
+        <!-- Overlay principal más oscuro para mejor contraste -->
+        <div class="absolute inset-0 bg-negro-suave/60 z-10"></div>
+        <div
+          class="absolute inset-0 bg-gradient-to-b from-negro-suave via-negro-suave/40 to-negro-suave z-10"
+        >
+        </div>
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-negro-suave/70 via-transparent to-negro-suave/70 z-10"
+        >
+        </div>
+        <img
+          src="https://scontent.cdninstagram.com/v/t39.30808-6/490681095_122148535676386366_614500551221153921_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=105&ig_cache_key=MzYyNDYwMDAzODYxNTE4MDU2MQ%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjE2Mzl4MjA0OC5zZHIuQzMifQ%3D%3D&_nc_ohc=Izan2UpwRzwQ7kNvwE_wf_l&_nc_oc=AdkwBzitfqDYY2mAmI_y5_cOwsBWDu79jWaBAevhAt3MYyAG7n8mJx1jPZhHvMIQ5NI&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&_nc_gid=_U-IaI_3Z03GDciLduDZuw&oh=00_AfllebQW8pFIHzNSggEMZGV9TzYQW_xAMrobjJYW5X7R3Q&oe=6937DBD6"
+          alt="MITO Rooftop - Vista nocturna"
+          class="w-full h-full object-cover scale-110 hero-parallax"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+          width="1639"
+          height="2048"
+        />
+      </div>
+
+      <!-- Partículas decorativas -->
+      <div class="absolute inset-0 z-15 pointer-events-none overflow-hidden">
+        <div class="particle particle-1"></div>
+        <div class="particle particle-2"></div>
+        <div class="particle particle-3"></div>
+        <div class="particle particle-4"></div>
+      </div>
+
+      <!-- Contenido Hero -->
+      <div class="relative z-20 text-center px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+        <!-- Badge -->
+        <div
+          class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-5 py-2 mb-8 hero-animate hero-delay-1"
+        >
+          <span class="w-2 h-2 bg-amber-400 rounded-full animate-pulse"></span>
+          <span class="text-beige-premium text-sm tracking-wider uppercase font-medium"
+            >Abierto hoy hasta las 2:00 AM</span
+          >
+        </div>
+
+        <!-- Logo/Nombre -->
+        <h1
+          class="font-serif text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold text-white mb-4 tracking-tight hero-animate hero-delay-2 hero-title"
+        >
+          MITO
+        </h1>
+
+        <p
+          class="text-xl sm:text-2xl md:text-3xl text-beige-premium mb-2 font-light tracking-[0.3em] uppercase hero-animate hero-delay-3 hero-subtitle"
+        >
+          Rooftop
+        </p>
+
+        <p
+          class="text-lg md:text-xl text-white/90 max-w-2xl mx-auto leading-relaxed mb-12 hero-animate hero-delay-4 hero-description"
+        >
+          Donde el cielo se encuentra con la gastronomía de autor
+        </p>
+
+        <!-- CTAs Principales -->
+        <div
+          class="flex flex-col sm:flex-row gap-4 justify-center items-center hero-animate hero-delay-5"
+        >
+          <!-- CTA Primario: Ver Carta -->
+          <a
+            href="#carta"
+            class="group relative inline-flex items-center gap-3 bg-white text-negro-suave px-10 py-5 rounded-full font-semibold text-lg transition-all duration-500 hover:bg-amber-50 hover:scale-105 hover:shadow-[0_0_40px_rgba(255,255,255,0.3)]"
+          >
+            <svg
+              class="w-6 h-6 transition-transform duration-300 group-hover:rotate-12"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+              ></path>
+            </svg>
+            <span>Ver Carta</span>
+            <span
+              class="absolute -top-2 -right-2 bg-amber-400 text-negro-suave text-xs px-2 py-1 rounded-full font-bold animate-bounce"
+              >Nuevo</span
+            >
+          </a>
+
+          <!-- CTA Secundario: Reservar -->
+          <a
+            href="https://hotels.cloudbeds.com/es/reservation/QZE4hg?currency=cop"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group inline-flex items-center gap-3 bg-transparent border-2 border-white/40 text-white px-10 py-5 rounded-full font-medium text-lg transition-all duration-500 hover:bg-white/10 hover:border-white/80 backdrop-blur-sm"
+          >
+            <span>Reservar Mesa</span>
+            <svg
+              class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Scroll Indicator -->
+      <div
+        class="absolute bottom-8 inset-x-0 z-20 flex flex-col items-center gap-2 hero-animate hero-delay-6"
+      >
+        <span class="text-white/50 text-xs tracking-widest uppercase">Descubre más</span>
+        <div class="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center pt-2">
+          <div class="w-1.5 h-3 bg-white/60 rounded-full animate-scroll-down"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick Info Bar -->
+    <section class="bg-negro-suave py-6 border-y border-white/10">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-wrap justify-center gap-8 md:gap-16 text-center">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-amber-400/20 flex items-center justify-center">
+              <svg
+                class="w-5 h-5 text-amber-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                ></path>
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+              </svg>
+            </div>
+            <div class="text-left">
+              <p class="text-white/50 text-xs uppercase tracking-wider">Ubicación</p>
+              <p class="text-white font-medium">Piso 7, Hotel Botánico</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-amber-400/20 flex items-center justify-center">
+              <svg
+                class="w-5 h-5 text-amber-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <div class="text-left">
+              <p class="text-white/50 text-xs uppercase tracking-wider">Horario</p>
+              <p class="text-white font-medium">5PM - 2AM</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-amber-400/20 flex items-center justify-center">
+              <svg
+                class="w-5 h-5 text-amber-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                ></path>
+              </svg>
+            </div>
+            <div class="text-left">
+              <p class="text-white/50 text-xs uppercase tracking-wider">Reservas</p>
+              <p class="text-white font-medium">+57 312 209 4960</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección Carta/Menú - Prioridad Visual -->
+    <section
+      id="carta"
+      class="relative py-32 bg-gradient-to-b from-negro-suave via-[#1a1a1a] to-negro-suave overflow-hidden"
+    >
+      <!-- Decoración de fondo -->
+      <div class="absolute inset-0 opacity-30">
+        <div class="absolute top-20 left-10 w-72 h-72 bg-amber-400/10 rounded-full blur-[100px]">
+        </div>
+        <div
+          class="absolute bottom-20 right-10 w-96 h-96 bg-verde-oliva/10 rounded-full blur-[120px]"
+        >
+        </div>
+      </div>
+
+      <div class="container mx-auto px-4 relative z-10">
+        <!-- Header de sección -->
+        <div class="text-center mb-20">
+          <span
+            class="inline-block text-amber-400 text-sm tracking-[0.3em] uppercase mb-4 font-medium"
+            >Experiencia Gastronómica</span
+          >
+          <h2 class="font-serif text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
+            Nuestra Carta
+          </h2>
+          <p class="text-white/60 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+            Una selección curada de platos y cócteles que fusionan lo mejor de la cocina
+            internacional con sabores locales
+          </p>
+        </div>
+
+        <!-- Grid de categorías del menú -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto mb-16">
+          <!-- Cócteles -->
+          <div
+            class="group relative bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-sm border border-white/10 rounded-3xl p-8 transition-all duration-500 hover:border-amber-400/50 hover:shadow-[0_0_50px_rgba(251,191,36,0.1)] overflow-hidden"
+          >
+            <div
+              class="absolute top-0 right-0 w-32 h-32 bg-amber-400/10 rounded-full blur-3xl transition-all duration-500 group-hover:w-40 group-hover:h-40"
+            >
+            </div>
+            <div class="relative z-10">
+              <div
+                class="w-16 h-16 bg-gradient-to-br from-amber-400 to-amber-600 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-amber-400/20 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3"
+              >
+                <svg
+                  class="w-8 h-8 text-negro-suave"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  ></path>
+                </svg>
+              </div>
+              <h3 class="font-serif text-2xl font-bold text-white mb-3">Coctelería de Autor</h3>
+              <p class="text-white/60 mb-6 leading-relaxed">
+                Creaciones únicas de nuestros mixólogos con ingredientes locales premium
+              </p>
+              <div class="flex items-center justify-between">
+                <span class="text-amber-400 font-semibold">12 Cócteles</span>
+                <span class="text-white/40 text-sm">Desde $28.000</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Platos Principales -->
+          <div
+            class="group relative bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-sm border border-white/10 rounded-3xl p-8 transition-all duration-500 hover:border-verde-oliva/50 hover:shadow-[0_0_50px_rgba(97,90,64,0.2)] overflow-hidden"
+          >
+            <div
+              class="absolute top-0 right-0 w-32 h-32 bg-verde-oliva/20 rounded-full blur-3xl transition-all duration-500 group-hover:w-40 group-hover:h-40"
+            >
+            </div>
+            <div class="relative z-10">
+              <div
+                class="w-16 h-16 bg-gradient-to-br from-verde-oliva to-[#4a4530] rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-verde-oliva/20 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3"
+              >
+                <svg
+                  class="w-8 h-8 text-beige-premium"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                  ></path>
+                </svg>
+              </div>
+              <h3 class="font-serif text-2xl font-bold text-white mb-3">Platos Principales</h3>
+              <p class="text-white/60 mb-6 leading-relaxed">
+                Gastronomía premium con los mejores cortes y productos del mar
+              </p>
+              <div class="flex items-center justify-between">
+                <span class="text-verde-oliva font-semibold">18 Platos</span>
+                <span class="text-white/40 text-sm">Desde $45.000</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tapas & Picadas -->
+          <div
+            class="group relative bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-sm border border-white/10 rounded-3xl p-8 transition-all duration-500 hover:border-cafe-claro/50 hover:shadow-[0_0_50px_rgba(164,141,117,0.15)] overflow-hidden md:col-span-2 lg:col-span-1"
+          >
+            <div
+              class="absolute top-0 right-0 w-32 h-32 bg-cafe-claro/20 rounded-full blur-3xl transition-all duration-500 group-hover:w-40 group-hover:h-40"
+            >
+            </div>
+            <div class="relative z-10">
+              <div
+                class="w-16 h-16 bg-gradient-to-br from-cafe-claro to-[#8a7560] rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-cafe-claro/20 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3"
+              >
+                <svg
+                  class="w-8 h-8 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.701 2.701 0 00-1.5-.454M9 6v2m3-2v2m3-2v2M9 3h.01M12 3h.01M15 3h.01M21 21v-7a2 2 0 00-2-2H5a2 2 0 00-2 2v7h18zm-3-9v-2a2 2 0 00-2-2H8a2 2 0 00-2 2v2h12z"
+                  ></path>
+                </svg>
+              </div>
+              <h3 class="font-serif text-2xl font-bold text-white mb-3">Tapas & Picadas</h3>
+              <p class="text-white/60 mb-6 leading-relaxed">
+                Perfectas para compartir mientras disfrutas de la vista panorámica
+              </p>
+              <div class="flex items-center justify-between">
+                <span class="text-cafe-claro font-semibold">15 Opciones</span>
+                <span class="text-white/40 text-sm">Desde $22.000</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA Ver Carta Completa -->
+        <div class="text-center">
+          <a
+            href="#"
+            class="group inline-flex items-center gap-4 bg-gradient-to-r from-amber-400 to-amber-500 text-negro-suave px-12 py-5 rounded-full font-bold text-lg transition-all duration-500 hover:shadow-[0_0_50px_rgba(251,191,36,0.4)] hover:scale-105"
+          >
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+              ></path>
+            </svg>
+            <span>Ver Carta Completa</span>
+            <svg
+              class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-2"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección Experiencia -->
+    <section class="relative py-32 bg-beige-premium overflow-hidden">
+      <!-- Patrón decorativo -->
+      <div class="absolute inset-0 opacity-5">
+        <div
+          class="absolute inset-0"
+          style='background-image: url(&apos;data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23111111" fill-opacity="1"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E&apos;);'
+        >
+        </div>
+      </div>
+
+      <div class="container mx-auto px-4 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center max-w-7xl mx-auto">
+          <!-- Imagen/Visual -->
+          <div class="relative">
+            <div class="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl">
+              <img
+                src="/mito.webp"
+                alt="Experiencia MITO Rooftop"
+                class="w-full h-full object-cover"
+                loading="lazy"
+                decoding="async"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-negro-suave/60 via-transparent to-transparent"
+              >
+              </div>
+            </div>
+            <!-- Badge flotante -->
+            <div
+              class="absolute -bottom-6 -right-6 bg-negro-suave text-white p-6 rounded-2xl shadow-xl"
+            >
+              <p class="text-4xl font-serif font-bold text-amber-400">360°</p>
+              <p class="text-sm text-white/70">Vista panorámica</p>
+            </div>
+            <!-- Elemento decorativo -->
+            <div
+              class="absolute -top-8 -left-8 w-24 h-24 border-2 border-verde-oliva/30 rounded-full"
+            >
+            </div>
+          </div>
+
+          <!-- Contenido -->
+          <div class="lg:pl-8">
+            <span
+              class="inline-block text-verde-oliva text-sm tracking-[0.3em] uppercase mb-4 font-medium"
+              >La Experiencia</span
+            >
+            <h2
+              class="font-serif text-4xl md:text-5xl font-bold text-negro-suave mb-6 leading-tight"
+            >
+              Un refugio sobre<br />las nubes
+            </h2>
+            <p class="text-gray-600 text-lg leading-relaxed mb-8">
+              MITO no es solo un rooftop, es una experiencia sensorial completa. Desde el momento en
+              que el ascensor se abre en el piso 7, te transportas a un mundo donde el cielo del
+              Bajo Cauca se convierte en tu techo y cada atardecer es un espectáculo único.
+            </p>
+
+            <!-- Features -->
+            <div class="grid grid-cols-2 gap-6 mb-10">
+              <div class="flex items-start gap-4">
+                <div
+                  class="w-12 h-12 bg-verde-oliva/10 rounded-xl flex items-center justify-center flex-shrink-0"
+                >
+                  <svg
+                    class="w-6 h-6 text-verde-oliva"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"
+                    ></path>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="font-semibold text-negro-suave mb-1">Ambiente Premium</h3>
+                  <p class="text-gray-500 text-sm">Diseño sofisticado y exclusivo</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <div
+                  class="w-12 h-12 bg-verde-oliva/10 rounded-xl flex items-center justify-center flex-shrink-0"
+                >
+                  <svg
+                    class="w-6 h-6 text-verde-oliva"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"
+                    ></path>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="font-semibold text-negro-suave mb-1">Música en Vivo</h3>
+                  <p class="text-gray-500 text-sm">Viernes y sábados</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <div
+                  class="w-12 h-12 bg-verde-oliva/10 rounded-xl flex items-center justify-center flex-shrink-0"
+                >
+                  <svg
+                    class="w-6 h-6 text-verde-oliva"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+                    ></path>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="font-semibold text-negro-suave mb-1">Cielo Abierto</h3>
+                  <p class="text-gray-500 text-sm">Terraza al aire libre</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <div
+                  class="w-12 h-12 bg-verde-oliva/10 rounded-xl flex items-center justify-center flex-shrink-0"
+                >
+                  <svg
+                    class="w-6 h-6 text-verde-oliva"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                    ></path>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="font-semibold text-negro-suave mb-1">Eventos Privados</h3>
+                  <p class="text-gray-500 text-sm">Espacios exclusivos</p>
+                </div>
+              </div>
+            </div>
+
+            <a
+              href="#eventos"
+              class="inline-flex items-center gap-3 text-negro-suave font-semibold group"
+            >
+              <span
+                class="border-b-2 border-verde-oliva pb-1 transition-all duration-300 group-hover:border-amber-400"
+                >Conoce nuestros eventos</span
+              >
+              <svg
+                class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección Eventos -->
+    <section id="eventos" class="relative py-32 bg-negro-suave overflow-hidden">
+      <!-- Fondo con gradiente -->
+      <div class="absolute inset-0">
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-verde-oliva/20 rounded-full blur-[150px]">
+        </div>
+        <div
+          class="absolute bottom-0 right-1/4 w-96 h-96 bg-amber-400/10 rounded-full blur-[150px]"
+        >
+        </div>
+      </div>
+
+      <div class="container mx-auto px-4 relative z-10">
+        <div class="text-center mb-20">
+          <span
+            class="inline-block text-amber-400 text-sm tracking-[0.3em] uppercase mb-4 font-medium"
+            >Celebraciones</span
+          >
+          <h2 class="font-serif text-5xl md:text-6xl font-bold text-white mb-6">
+            Eventos Privados
+          </h2>
+          <p class="text-white/60 text-lg max-w-2xl mx-auto">
+            El escenario perfecto para momentos inolvidables. Desde reuniones íntimas hasta grandes
+            celebraciones.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <!-- Corporativos -->
+          <div
+            class="group relative bg-gradient-to-b from-white/5 to-transparent border border-white/10 rounded-3xl p-10 text-center transition-all duration-500 hover:border-white/30 hover:-translate-y-2"
+          >
+            <div
+              class="w-20 h-20 mx-auto bg-gradient-to-br from-amber-400/20 to-amber-400/5 rounded-full flex items-center justify-center mb-8 transition-transform duration-500 group-hover:scale-110"
+            >
+              <svg
+                class="w-10 h-10 text-amber-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="font-serif text-2xl font-bold text-white mb-4">Corporativos</h3>
+            <p class="text-white/50 leading-relaxed mb-6">
+              Impresiona a tus clientes y colaboradores con eventos empresariales en un ambiente
+              exclusivo
+            </p>
+            <div class="flex items-center justify-center gap-2 text-amber-400 text-sm">
+              <span>Capacidad: 50 personas</span>
+            </div>
+          </div>
+
+          <!-- Celebraciones -->
+          <div
+            class="group relative bg-gradient-to-b from-white/5 to-transparent border border-white/10 rounded-3xl p-10 text-center transition-all duration-500 hover:border-white/30 hover:-translate-y-2 md:-mt-8"
+          >
+            <div
+              class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-amber-400 text-negro-suave text-xs font-bold px-4 py-1 rounded-full"
+            >
+              Popular
+            </div>
+            <div
+              class="w-20 h-20 mx-auto bg-gradient-to-br from-amber-400/20 to-amber-400/5 rounded-full flex items-center justify-center mb-8 transition-transform duration-500 group-hover:scale-110"
+            >
+              <svg
+                class="w-10 h-10 text-amber-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="font-serif text-2xl font-bold text-white mb-4">Celebraciones</h3>
+            <p class="text-white/50 leading-relaxed mb-6">
+              Cumpleaños, aniversarios y ocasiones especiales bajo el cielo estrellado del Bajo
+              Cauca
+            </p>
+            <div class="flex items-center justify-center gap-2 text-amber-400 text-sm">
+              <span>Capacidad: 80 personas</span>
+            </div>
+          </div>
+
+          <!-- Cenas Privadas -->
+          <div
+            class="group relative bg-gradient-to-b from-white/5 to-transparent border border-white/10 rounded-3xl p-10 text-center transition-all duration-500 hover:border-white/30 hover:-translate-y-2"
+          >
+            <div
+              class="w-20 h-20 mx-auto bg-gradient-to-br from-amber-400/20 to-amber-400/5 rounded-full flex items-center justify-center mb-8 transition-transform duration-500 group-hover:scale-110"
+            >
+              <svg
+                class="w-10 h-10 text-amber-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="font-serif text-2xl font-bold text-white mb-4">Cenas Íntimas</h3>
+            <p class="text-white/50 leading-relaxed mb-6">
+              Momentos románticos y reuniones íntimas con servicio personalizado
+            </p>
+            <div class="flex items-center justify-center gap-2 text-amber-400 text-sm">
+              <span>Capacidad: 12 personas</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mt-16">
+          <a
+            href="https://wa.me/573214567890?text=Hola,%20me%20gustar%C3%ADa%20información%20sobre%20eventos%20privados%20en%20MITO%20Rooftop"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group inline-flex items-center gap-4 bg-white text-negro-suave px-10 py-5 rounded-full font-bold text-lg transition-all duration-500 hover:bg-amber-50 hover:shadow-[0_0_50px_rgba(255,255,255,0.2)] hover:scale-105"
+          >
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+              ></path>
+            </svg>
+            <span>Cotizar Evento</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Horarios e Info -->
+    <section class="py-24 bg-gradient-to-b from-beige-premium to-white">
+      <div class="container mx-auto px-4">
+        <div class="max-w-5xl mx-auto">
+          <div class="text-center mb-16">
+            <span
+              class="inline-block text-verde-oliva text-sm tracking-[0.3em] uppercase mb-4 font-medium"
+              >Información</span
+            >
+            <h2 class="font-serif text-4xl md:text-5xl font-bold text-negro-suave">
+              Horarios & Contacto
+            </h2>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Horarios -->
+            <div
+              class="bg-white rounded-3xl p-10 shadow-xl shadow-negro-suave/5 border border-gray-100"
+            >
+              <div class="flex items-center gap-4 mb-8">
+                <div
+                  class="w-14 h-14 bg-verde-oliva/10 rounded-2xl flex items-center justify-center"
+                >
+                  <svg
+                    class="w-7 h-7 text-verde-oliva"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                </div>
+                <h3 class="font-serif text-2xl font-bold text-negro-suave">Horarios</h3>
+              </div>
+              <div class="space-y-4">
+                <div class="flex justify-between items-center py-4 border-b border-gray-100">
+                  <div class="flex items-center gap-3">
+                    <div class="w-3 h-3 bg-verde-oliva rounded-full"></div>
+                    <span class="text-negro-suave font-medium">Lunes - Jueves</span>
+                  </div>
+                  <span class="text-verde-oliva font-semibold">5:00 PM - 12:00 AM</span>
+                </div>
+                <div class="flex justify-between items-center py-4 border-b border-gray-100">
+                  <div class="flex items-center gap-3">
+                    <div class="w-3 h-3 bg-amber-400 rounded-full"></div>
+                    <span class="text-negro-suave font-medium">Viernes - Sábado</span>
+                  </div>
+                  <span class="text-amber-700 font-semibold">5:00 PM - 2:00 AM</span>
+                </div>
+                <div class="flex justify-between items-center py-4">
+                  <div class="flex items-center gap-3">
+                    <div class="w-3 h-3 bg-cafe-claro rounded-full"></div>
+                    <span class="text-negro-suave font-medium">Domingo</span>
+                  </div>
+                  <span class="text-verde-oliva font-semibold">12:00 PM - 10:00 PM</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Contacto -->
+            <div class="bg-negro-suave rounded-3xl p-10 text-white">
+              <div class="flex items-center gap-4 mb-8">
+                <div class="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center">
+                  <svg
+                    class="w-7 h-7 text-amber-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                    ></path>
+                  </svg>
+                </div>
+                <h3 class="font-serif text-2xl font-bold">Reservaciones</h3>
+              </div>
+              <p class="text-white/60 mb-8">
+                Para grupos de más de 8 personas, recomendamos hacer reservación previa.
+              </p>
+              <div class="space-y-5">
+                <a href="tel:+573122094960" class="flex items-center gap-4 group">
+                  <div
+                    class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:bg-amber-400/20"
+                  >
+                    <svg
+                      class="w-5 h-5 text-amber-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <p class="text-white/50 text-xs uppercase tracking-wider mb-1">Teléfono</p>
+                    <p
+                      class="text-white font-medium transition-colors duration-300 group-hover:text-amber-400"
+                    >
+                      +57 312 209 4960
+                    </p>
+                  </div>
+                </a>
+                <a href="mailto:mito@hotelbotanico.com" class="flex items-center gap-4 group">
+                  <div
+                    class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:bg-amber-400/20"
+                  >
+                    <svg
+                      class="w-5 h-5 text-amber-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <p class="text-white/50 text-xs uppercase tracking-wider mb-1">Email</p>
+                    <p
+                      class="text-white font-medium transition-colors duration-300 group-hover:text-amber-400"
+                    >
+                      mito@hotelbotanico.com
+                    </p>
+                  </div>
+                </a>
+                <a
+                  href="https://www.instagram.com/mitorooftop"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex items-center gap-4 group"
+                >
+                  <div
+                    class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:bg-amber-400/20"
+                  >
+                    <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 24 24">
+                      <path
+                        d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <p class="text-white/50 text-xs uppercase tracking-wider mb-1">Instagram</p>
+                    <p
+                      class="text-white font-medium transition-colors duration-300 group-hover:text-amber-400"
+                    >
+                      @mitorooftop
+                    </p>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Final -->
+    <section id="cta-final" class="relative py-32 overflow-hidden">
+      <div class="absolute inset-0">
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-negro-suave via-negro-suave/90 to-negro-suave"
+        >
+        </div>
+      </div>
+
+      <div class="container mx-auto px-4 relative z-10">
+        <div class="max-w-3xl mx-auto text-center">
+          <h2 class="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+            ¿Listo para elevar tu noche?
+          </h2>
+          <p class="text-white/60 text-lg md:text-xl mb-10">
+            Reserva tu mesa ahora y vive una experiencia inolvidable en el mejor rooftop del Bajo
+            Cauca
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="#carta"
+              class="inline-flex items-center justify-center gap-3 bg-white text-negro-suave px-10 py-5 rounded-full font-bold text-lg transition-all duration-500 hover:bg-amber-50 hover:scale-105"
+            >
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                ></path>
+              </svg>
+              <span>Ver Carta</span>
+            </a>
+            <a
+              href="https://hotels.cloudbeds.com/es/reservation/QZE4hg?currency=cop"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center justify-center gap-3 bg-verde-oliva text-white px-10 py-5 rounded-full font-bold text-lg transition-all duration-500 hover:bg-verde-oliva/80 hover:scale-105"
+            >
+              <span>Reservar Mesa</span>
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  /* Text shadows para mayor legibilidad */
+  .hero-title {
+    text-shadow:
+      0 4px 30px rgba(0, 0, 0, 0.8),
+      0 2px 10px rgba(0, 0, 0, 0.9),
+      0 0 60px rgba(0, 0, 0, 0.5);
+  }
+
+  .hero-subtitle {
+    text-shadow:
+      0 2px 20px rgba(0, 0, 0, 0.7),
+      0 1px 5px rgba(0, 0, 0, 0.8);
+  }
+
+  .hero-description {
+    text-shadow:
+      0 2px 15px rgba(0, 0, 0, 0.6),
+      0 1px 3px rgba(0, 0, 0, 0.7);
+  }
+
+  /* Animaciones del Hero */
+  @keyframes hero-fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .hero-animate {
+    opacity: 0;
+    animation: hero-fade-in 1s ease-out forwards;
+  }
+
+  .hero-delay-1 {
+    animation-delay: 0.2s;
+  }
+  .hero-delay-2 {
+    animation-delay: 0.4s;
+  }
+  .hero-delay-3 {
+    animation-delay: 0.6s;
+  }
+  .hero-delay-4 {
+    animation-delay: 0.8s;
+  }
+  .hero-delay-5 {
+    animation-delay: 1s;
+  }
+  .hero-delay-6 {
+    animation-delay: 1.2s;
+  }
+
+  /* Scroll indicator animation */
+  @keyframes scroll-down {
+    0% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+  }
+
+  .animate-scroll-down {
+    animation: scroll-down 1.5s ease-in-out infinite;
+  }
+
+  /* Partículas flotantes - Optimizado */
+  .particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: rgba(251, 191, 36, 0.6);
+    border-radius: 50%;
+    animation: float 15s infinite ease-in-out;
+    will-change: transform, opacity;
+    contain: layout style paint;
+  }
+
+  .particle-1 {
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+  }
+
+  .particle-2 {
+    top: 60%;
+    left: 80%;
+    animation-delay: 3s;
+  }
+
+  .particle-3 {
+    top: 40%;
+    left: 30%;
+    animation-delay: 6s;
+    width: 6px;
+    height: 6px;
+  }
+
+  .particle-4 {
+    top: 80%;
+    left: 60%;
+    animation-delay: 9s;
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translate(0, 0) scale(1);
+      opacity: 0.6;
+    }
+    25% {
+      transform: translate(20px, -30px) scale(1.2);
+      opacity: 0.8;
+    }
+    50% {
+      transform: translate(-10px, -60px) scale(0.8);
+      opacity: 0.4;
+    }
+    75% {
+      transform: translate(30px, -30px) scale(1.1);
+      opacity: 0.7;
+    }
+  }
+
+  /* Efecto parallax suave en scroll - Optimizado */
+  .hero-parallax {
+    transition: transform 0.1s ease-out;
+    will-change: transform;
+    contain: layout style paint;
+  }
+
+  /* Smooth scroll */
+  html {
+    scroll-behavior: smooth;
+  }
+</style>
+
+<script>
+  // Parallax effect on scroll - Optimizado con throttling
+  const heroImage = document.querySelector('.hero-parallax') as HTMLElement;
+
+  if (heroImage) {
+    let ticking = false;
+
+    const updateParallax = () => {
+      const scrolled = window.scrollY;
+      const rate = scrolled * 0.3;
+      heroImage.style.transform = `scale(1.1) translateY(${rate}px)`;
+      ticking = false;
+    };
+
+    const requestTick = () => {
+      if (!ticking) {
+        requestAnimationFrame(updateParallax);
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', requestTick, { passive: true });
+  }
+</script>

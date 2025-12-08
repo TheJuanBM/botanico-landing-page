@@ -1,0 +1,1249 @@
+---
+import Footer from '../components/Footer.astro';
+import GuestSelector from '../components/GuestSelector';
+import Navbar from '../components/Navbar.astro';
+import RoomCard from '../components/RoomCard.astro';
+import StayDatePicker from '../components/StayDatePicker';
+import Layout from '../layouts/Layout.astro';
+import { rooms } from '../services/rooms';
+---
+
+<Layout
+  title="Reserva tu Habitación - Hotel Botánico | Mejor Tarifa Garantizada"
+  description="Reserva directamente en el único hotel 4 estrellas de Caucasia. Mejor tarifa garantizada, cancelación flexible y servicios premium incluidos."
+>
+  <!-- Preload solo de la primera imagen del carrusel (LCP) -->
+  <Fragment slot="head">
+    <link
+      rel="preload"
+      as="image"
+      href="https://scontent.cdninstagram.com/v/t39.30808-6/487480717_122147258090386366_6292999101889151232_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=109&ig_cache_key=MzYwNzk3NTQwMzAzMTEwNjg5OA%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjIwNDh4MTYzOS5zZHIuQzMifQ%3D%3D&_nc_ohc=VxGgsonX8SUQ7kNvwHOLp3U&_nc_oc=Adm3TOtpixM54nZDPs4gUxfwmdGKua_EWrpWXBdoM-7SzWQBdXWzstNOO_9dAksFwlA&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&_nc_gid=NwLx-GJIZkADRd8TBzIBDw&oh=00_Afmm_6Cpk7mZB5msGmB4FKYDq39JV0Gbydu8OQBlT5eMRw&oe=6939213E"
+      fetchpriority="high"
+    />
+  </Fragment>
+
+  <Navbar />
+
+  <main id="main-content">
+    <!-- Hero Section con Formulario Integrado -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <!-- Background Image Carousel with Overlay -->
+      <div class="absolute inset-0 bg-negro-suave">
+        <div
+          class="absolute inset-0 bg-gradient-to-b from-negro-suave/80 via-negro-suave/40 to-negro-suave/90 z-10"
+        >
+        </div>
+        <!-- Carrusel automático -->
+        <div class="hero-carousel absolute inset-0">
+          <img
+            src="https://scontent.cdninstagram.com/v/t39.30808-6/487480717_122147258090386366_6292999101889151232_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=109&ig_cache_key=MzYwNzk3NTQwMzAzMTEwNjg5OA%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjIwNDh4MTYzOS5zZHIuQzMifQ%3D%3D&_nc_ohc=VxGgsonX8SUQ7kNvwHOLp3U&_nc_oc=Adm3TOtpixM54nZDPs4gUxfwmdGKua_EWrpWXBdoM-7SzWQBdXWzstNOO_9dAksFwlA&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&_nc_gid=NwLx-GJIZkADRd8TBzIBDw&oh=00_Afmm_6Cpk7mZB5msGmB4FKYDq39JV0Gbydu8OQBlT5eMRw&oe=6939213E"
+            alt="Hotel Botánico - Interior"
+            class="carousel-slide w-full h-full object-cover absolute inset-0"
+            loading="lazy"
+            decoding="async"
+          />
+          <img
+            src="https://scontent.cdninstagram.com/v/t39.30808-6/502567688_122156490464386366_7873594920150156204_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=108&ig_cache_key=MzY3NTg3ODI4ODgzNDIxMjA1Mw%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjEwODB4MTM1MC5zZHIuQzMifQ%3D%3D&_nc_ohc=Xyd9qAnTeMoQ7kNvwEZOnNH&_nc_oc=AdlDjZ6YKKGS5pUXq82ISrfONte2c3l0JG4Sw8rJ9xRE67nkV5cJgkLZJ163J-NIQkE&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&_nc_gid=_GJSg7rHIEl-SdPgW1U1Sg&oh=00_AfkFNg6z6PAqQklj8nmcWMPRa7vyqbtbszxG3Xx2hZJzXw&oe=693902F0"
+            alt="Hotel Botánico - Fachada"
+            class="carousel-slide w-full h-full object-cover absolute inset-0"
+            loading="eager"
+            decoding="async"
+            fetchpriority="high"
+          />
+          <img
+            src="https://scontent.cdninstagram.com/v/t39.30808-6/488154980_122147255624386366_7124607771213799024_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=107&ig_cache_key=MzYwMjIyMjUyMDk3NjAzMTk5MQ%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjE2Mzl4MjA0OC5zZHIuQzMifQ%3D%3D&_nc_ohc=TIwe5TUdKAEQ7kNvwGCzNqM&_nc_oc=AdmGDC7BSRnqGNUQvuS-HzlaqjiKEFVtCyrOxwk4GB-0y8apufK0-vaXoFPAhOqREOY&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&_nc_gid=NwLx-GJIZkADRd8TBzIBDw&oh=00_AfmgsSlRgwAti4WfvzY7T4f0AH2ATN1r2f-DOA7Sj8Ka6w&oe=693901C8"
+            alt="Hotel Botánico - Piscina"
+            class="carousel-slide w-full h-full object-cover absolute inset-0"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </div>
+
+      <!-- Content -->
+      <div class="relative z-20 w-full px-5 sm:px-6 lg:px-8 py-24 md:py-20">
+        <div class="max-w-5xl mx-auto">
+          <!-- Título - Versión premium -->
+          <div class="text-center mb-10 md:mb-12">
+            <!-- Decorative line -->
+            <div
+              class="flex items-center justify-center gap-4 md:gap-6 mb-6 md:mb-8 animate-fade-in"
+            >
+              <div class="h-px w-12 md:w-20 bg-gradient-to-r from-transparent to-cafe-claro/60">
+              </div>
+              <span
+                class="text-cafe-claro/80 text-xs md:text-sm tracking-[0.3em] uppercase font-light"
+                >Caucasia, Antioquia</span
+              >
+              <div class="h-px w-12 md:w-20 bg-gradient-to-l from-transparent to-cafe-claro/60">
+              </div>
+            </div>
+
+            <h1
+              class="font-serif text-[2.75rem] sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 md:mb-6 leading-[1.1] tracking-tight animate-fade-in"
+            >
+              Hotel Botánico
+            </h1>
+
+            <!-- Badge de estrellas -->
+            <div
+              class="flex items-center justify-center gap-1 md:gap-1.5 mb-5 md:mb-6 animate-fade-in-delay"
+            >
+              <svg
+                class="w-4 h-4 md:w-5 md:h-5 text-cafe-claro"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                aria-hidden="true"
+              >
+                <path
+                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                ></path>
+              </svg>
+              <svg
+                class="w-4 h-4 md:w-5 md:h-5 text-cafe-claro"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                aria-hidden="true"
+              >
+                <path
+                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                ></path>
+              </svg>
+              <svg
+                class="w-4 h-4 md:w-5 md:h-5 text-cafe-claro"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                aria-hidden="true"
+              >
+                <path
+                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                ></path>
+              </svg>
+              <svg
+                class="w-4 h-4 md:w-5 md:h-5 text-cafe-claro"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                aria-hidden="true"
+              >
+                <path
+                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                ></path>
+              </svg>
+            </div>
+
+            <p
+              class="text-base sm:text-xl md:text-2xl text-white/90 mb-6 md:mb-8 max-w-3xl mx-auto leading-relaxed animate-fade-in-delay font-light tracking-wide"
+              style="text-shadow: 0 2px 12px rgba(0,0,0,0.5);"
+            >
+              <span class="hidden md:inline">Reserva tu estadía en el mejor hotel de la zona</span>
+              <span class="md:hidden"
+                >Una experiencia de lujo <br class="sm:hidden" />en el corazón del Bajo Cauca</span
+              >
+            </p>
+          </div>
+
+          <!-- Formulario de Reserva - Versión móvil premium -->
+          <div
+            class="bg-black/50 backdrop-blur-sm rounded-3xl md:rounded-2xl shadow-2xl p-5 sm:p-6 md:p-8 animate-fade-in-delay-2"
+          >
+            <!-- Encabezado del formulario móvil -->
+            <div class="md:hidden mb-5 text-center">
+              <p class="text-white text-sm font-medium tracking-wide uppercase">Reserva Directa</p>
+            </div>
+
+            <form id="reservationForm" action="/reservar" method="get">
+              <div class="grid grid-cols-1 md:grid-cols-12 gap-5 md:gap-6 items-end">
+                <!-- Date Range Picker para estadía -->
+                <div class="md:col-span-5">
+                  <StayDatePicker client:load />
+                </div>
+
+                <!-- Personas -->
+                <div class="md:col-span-5">
+                  <GuestSelector client:load />
+                </div>
+
+                <!-- Botón -->
+                <div class="md:col-span-2 mt-2 md:mt-0">
+                  <button
+                    type="submit"
+                    class="w-full flex items-center justify-center gap-2 bg-verde-oliva text-white font-semibold px-6 py-4 md:py-3 rounded-xl md:rounded-lg hover:bg-negro-suave transition-all duration-300 shadow-lg hover:shadow-xl h-auto md:h-[46px] text-base md:text-sm tracking-wide"
+                  >
+                    <span>Reservar</span>
+                    <svg
+                      class="w-5 h-5 md:hidden"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Indicador de noches -->
+              <div id="nightsIndicator" class="hidden mt-4 text-center">
+                <p class="text-lg font-semibold text-negro-suave">
+                  <span id="nightsCount">0</span>
+                  <span id="nightsText">noches</span>
+                </p>
+              </div>
+
+              <!-- Garantías - Versión móvil mejorada -->
+              <div
+                class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 text-xs text-negro-suave/70 mt-5 md:mt-4 pt-4 md:pt-0 border-t md:border-t-0 border-negro-suave/10"
+              >
+                <div class="flex items-center gap-2">
+                  <svg
+                    class="w-4 h-4 text-verde-oliva"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                    ></path>
+                  </svg>
+                  <span class="tracking-wide text-white">Mejor precio garantizado</span>
+                </div>
+                <div class="hidden sm:block w-1 h-1 rounded-full bg-white"></div>
+                <div class="flex items-center gap-2">
+                  <svg
+                    class="w-4 h-4 text-verde-oliva"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                  <span class="tracking-wide text-white">Cancelación gratuita</span>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll Indicator - Mejorado para móvil -->
+      <div
+        class="absolute bottom-6 md:bottom-8 left-1/2 transform -translate-x-1/2 z-20 animate-bounce"
+      >
+        <div class="flex flex-col items-center gap-2">
+          <span class="text-white/60 text-[10px] tracking-[0.2em] uppercase hidden md:block"
+            >Descubre más</span
+          >
+          <div
+            class="w-6 h-10 md:w-auto md:h-auto rounded-full border-2 border-white/40 flex items-start justify-center p-1.5 md:border-0 md:p-0"
+          >
+            <div class="w-1.5 h-3 bg-white/70 rounded-full animate-scroll-down md:hidden"></div>
+            <svg
+              class="hidden md:block w-6 h-6 text-white"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Beneficios de Reservar Directo -->
+    <section class="py-14 md:py-16 bg-beige-premium relative overflow-hidden">
+      <!-- Decoración sutil de fondo -->
+      <div class="absolute inset-0 opacity-[0.03]">
+        <div
+          class="absolute top-0 right-0 w-96 h-96 bg-verde-oliva rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2"
+        >
+        </div>
+        <div
+          class="absolute bottom-0 left-0 w-96 h-96 bg-cafe-claro rounded-full blur-3xl transform -translate-x-1/2 translate-y-1/2"
+        >
+        </div>
+      </div>
+
+      <div class="container mx-auto px-5 sm:px-6 lg:px-8 relative z-10">
+        <div class="max-w-6xl mx-auto">
+          <!-- Título con decoración móvil -->
+          <div class="text-center mb-10 md:mb-10">
+            <span
+              class="text-verde-oliva text-xs tracking-[0.25em] uppercase font-medium block mb-3 md:hidden"
+              >Exclusivo Online</span
+            >
+            <h2 class="font-serif text-2xl md:text-3xl font-bold text-negro-suave">
+              ¿Por qué reservar con nosotros?
+            </h2>
+          </div>
+
+          <!-- Grid de beneficios - Diseño móvil premium -->
+          <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
+            <div
+              class="benefit-card text-center p-5 md:p-0 bg-white/60 md:bg-transparent rounded-2xl md:rounded-none"
+            >
+              <div
+                class="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-verde-oliva to-verde-oliva/80 rounded-2xl md:rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4 shadow-lg shadow-verde-oliva/20"
+              >
+                <svg
+                  class="w-7 h-7 md:w-8 md:h-8 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"
+                  ></path>
+                </svg>
+              </div>
+              <h3 class="font-semibold text-negro-suave mb-1 md:mb-2 text-sm md:text-base">
+                Mejor Precio
+              </h3>
+              <p class="text-negro-suave/70 text-xs md:text-sm leading-relaxed">
+                Tarifa garantizada
+              </p>
+            </div>
+
+            <div
+              class="benefit-card text-center p-5 md:p-0 bg-white/60 md:bg-transparent rounded-2xl md:rounded-none"
+            >
+              <div
+                class="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-verde-oliva to-verde-oliva/80 rounded-2xl md:rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4 shadow-lg shadow-verde-oliva/20"
+              >
+                <svg
+                  class="w-7 h-7 md:w-8 md:h-8 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+              <h3 class="font-semibold text-negro-suave mb-1 md:mb-2 text-sm md:text-base">
+                Cancelación Flexible
+              </h3>
+              <p class="text-negro-suave/70 text-xs md:text-sm leading-relaxed">
+                Gratis hasta 48h antes
+              </p>
+            </div>
+
+            <div
+              class="benefit-card text-center p-5 md:p-0 bg-white/60 md:bg-transparent rounded-2xl md:rounded-none"
+            >
+              <div
+                class="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-verde-oliva to-verde-oliva/80 rounded-2xl md:rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4 shadow-lg shadow-verde-oliva/20"
+              >
+                <svg
+                  class="w-7 h-7 md:w-8 md:h-8 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"
+                  ></path>
+                </svg>
+              </div>
+              <h3 class="font-semibold text-negro-suave mb-1 md:mb-2 text-sm md:text-base">
+                Beneficios Extra
+              </h3>
+              <p class="text-negro-suave/70 text-xs md:text-sm leading-relaxed">
+                Upgrade disponible
+              </p>
+            </div>
+
+            <div
+              class="benefit-card text-center p-5 md:p-0 bg-white/60 md:bg-transparent rounded-2xl md:rounded-none"
+            >
+              <div
+                class="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-verde-oliva to-verde-oliva/80 rounded-2xl md:rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4 shadow-lg shadow-verde-oliva/20"
+              >
+                <svg
+                  class="w-7 h-7 md:w-8 md:h-8 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  ></path>
+                </svg>
+              </div>
+              <h3 class="font-semibold text-negro-suave mb-1 md:mb-2 text-sm md:text-base">
+                Confirmación Rápida
+              </h3>
+              <p class="text-negro-suave/70 text-xs md:text-sm leading-relaxed">
+                Inmediata por email
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Habitaciones Disponibles -->
+    <section class="py-16 md:py-20 bg-white relative">
+      <div class="container mx-auto px-5 sm:px-6 lg:px-8">
+        <!-- Encabezado móvil premium -->
+        <div class="text-center mb-10 md:mb-16">
+          <span
+            class="text-verde-oliva text-xs tracking-[0.25em] uppercase font-medium block mb-3 md:hidden"
+            >Alojamiento</span
+          >
+          <h2 class="font-serif text-3xl md:text-4xl font-bold text-negro-suave mb-4">
+            Nuestras Habitaciones
+          </h2>
+          <p class="text-negro-suave/70 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+            <span class="hidden md:inline"
+              >Espacios diseñados para tu comodidad, con desayuno buffet y acceso completo a todas
+              nuestras instalaciones</span
+            >
+            <span class="md:hidden">Comodidad y elegancia con todos los servicios incluidos</span>
+          </p>
+        </div>
+
+        <!-- Grid de habitaciones con scroll horizontal en móvil opcional -->
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8 max-w-7xl mx-auto mb-10 md:mb-12"
+        >
+          {rooms.map((room) => <RoomCard {...room} />)}
+        </div>
+
+        <div class="text-center">
+          <a
+            href="/habitaciones"
+            class="inline-flex items-center gap-2 bg-cafe-claro text-white font-semibold px-8 py-4 rounded-full hover:bg-negro-suave transition-all duration-300 shadow-lg hover:shadow-xl"
+          >
+            <span>Ver Todas las Habitaciones</span>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Servicios Incluidos -->
+    <section class="py-14 md:py-16 bg-beige-premium relative overflow-hidden">
+      <!-- Patrón decorativo sutil -->
+      <div class="absolute inset-0 opacity-[0.02]">
+        <div class="absolute -top-24 -right-24 w-96 h-96 border border-verde-oliva rounded-full">
+        </div>
+        <div class="absolute -bottom-24 -left-24 w-96 h-96 border border-cafe-claro rounded-full">
+        </div>
+      </div>
+
+      <div class="container mx-auto px-5 sm:px-6 lg:px-8 relative z-10">
+        <div class="max-w-5xl mx-auto">
+          <!-- Encabezado premium móvil -->
+          <div class="text-center mb-8 md:mb-12">
+            <span
+              class="text-verde-oliva text-xs tracking-[0.25em] uppercase font-medium block mb-3 md:hidden"
+              >Servicios Premium</span
+            >
+            <h2 class="font-serif text-2xl md:text-3xl font-bold text-negro-suave">
+              Todo incluido en tu estadía
+            </h2>
+          </div>
+
+          <!-- Grid de servicios - Versión móvil compacta y elegante -->
+          <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6">
+            <div
+              class="service-card flex flex-col md:flex-row items-center md:items-center gap-3 md:gap-4 bg-white p-4 md:p-6 rounded-2xl md:rounded-xl shadow-sm border border-negro-suave/5 text-center md:text-left"
+            >
+              <div
+                class="w-11 h-11 md:w-12 md:h-12 bg-gradient-to-br from-verde-oliva/15 to-verde-oliva/5 rounded-xl flex items-center justify-center flex-shrink-0"
+              >
+                <svg
+                  class="w-5 h-5 md:w-6 md:h-6 text-verde-oliva"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                    d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  ></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-semibold text-negro-suave text-sm md:text-base">Desayuno Buffet</h3>
+                <p class="text-negro-suave/70 text-xs md:text-sm">Premium incluido</p>
+              </div>
+            </div>
+
+            <div
+              class="service-card flex flex-col md:flex-row items-center md:items-center gap-3 md:gap-4 bg-white p-4 md:p-6 rounded-2xl md:rounded-xl shadow-sm border border-negro-suave/5 text-center md:text-left"
+            >
+              <div
+                class="w-11 h-11 md:w-12 md:h-12 bg-gradient-to-br from-verde-oliva/15 to-verde-oliva/5 rounded-xl flex items-center justify-center flex-shrink-0"
+              >
+                <svg
+                  class="w-5 h-5 md:w-6 md:h-6 text-verde-oliva"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                    d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.14 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"
+                  ></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-semibold text-negro-suave text-sm md:text-base">Wi-Fi Gratis</h3>
+                <p class="text-negro-suave/70 text-xs md:text-sm">Alta velocidad</p>
+              </div>
+            </div>
+
+            <div
+              class="service-card flex flex-col md:flex-row items-center md:items-center gap-3 md:gap-4 bg-white p-4 md:p-6 rounded-2xl md:rounded-xl shadow-sm border border-negro-suave/5 text-center md:text-left"
+            >
+              <div
+                class="w-11 h-11 md:w-12 md:h-12 bg-gradient-to-br from-verde-oliva/15 to-verde-oliva/5 rounded-xl flex items-center justify-center flex-shrink-0"
+              >
+                <svg
+                  class="w-5 h-5 md:w-6 md:h-6 text-verde-oliva"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                  ></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-semibold text-negro-suave text-sm md:text-base">Piscina</h3>
+                <p class="text-negro-suave/70 text-xs md:text-sm">Acceso ilimitado</p>
+              </div>
+            </div>
+
+            <div
+              class="service-card flex flex-col md:flex-row items-center md:items-center gap-3 md:gap-4 bg-white p-4 md:p-6 rounded-2xl md:rounded-xl shadow-sm border border-negro-suave/5 text-center md:text-left"
+            >
+              <div
+                class="w-11 h-11 md:w-12 md:h-12 bg-gradient-to-br from-verde-oliva/15 to-verde-oliva/5 rounded-xl flex items-center justify-center flex-shrink-0"
+              >
+                <svg
+                  class="w-5 h-5 md:w-6 md:h-6 text-verde-oliva"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                    d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                  ></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-semibold text-negro-suave text-sm md:text-base">Parqueadero</h3>
+                <p class="text-negro-suave/70 text-xs md:text-sm">Vigilancia 24/7</p>
+              </div>
+            </div>
+
+            <div
+              class="service-card flex flex-col md:flex-row items-center md:items-center gap-3 md:gap-4 bg-white p-4 md:p-6 rounded-2xl md:rounded-xl shadow-sm border border-negro-suave/5 text-center md:text-left"
+            >
+              <div
+                class="w-11 h-11 md:w-12 md:h-12 bg-gradient-to-br from-verde-oliva/15 to-verde-oliva/5 rounded-xl flex items-center justify-center flex-shrink-0"
+              >
+                <svg
+                  class="w-5 h-5 md:w-6 md:h-6 text-verde-oliva"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-semibold text-negro-suave text-sm md:text-base">Room Service</h3>
+                <p class="text-negro-suave/70 text-xs md:text-sm">Disponible 24/7</p>
+              </div>
+            </div>
+
+            <div
+              class="service-card flex flex-col md:flex-row items-center md:items-center gap-3 md:gap-4 bg-white p-4 md:p-6 rounded-2xl md:rounded-xl shadow-sm border border-negro-suave/5 text-center md:text-left"
+            >
+              <div
+                class="w-11 h-11 md:w-12 md:h-12 bg-gradient-to-br from-cafe-claro/20 to-cafe-claro/5 rounded-xl flex items-center justify-center flex-shrink-0"
+              >
+                <svg
+                  class="w-5 h-5 md:w-6 md:h-6 text-cafe-claro"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                    d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"
+                  ></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-semibold text-negro-suave text-sm md:text-base">MITO Rooftop</h3>
+                <p class="text-negro-suave/70 text-xs md:text-sm">Acceso exclusivo</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Servicios de la Propiedad -->
+    <section class="py-14 md:py-16 bg-white">
+      <div class="container mx-auto px-5 sm:px-6 lg:px-8">
+        <div class="max-w-5xl mx-auto">
+          <!-- Encabezado -->
+          <div class="text-center mb-8 md:mb-12">
+            <span
+              class="text-verde-oliva text-xs tracking-[0.25em] uppercase font-medium block mb-3 md:hidden"
+              >Facilidades</span
+            >
+            <h2 class="font-serif text-2xl md:text-3xl font-bold text-negro-suave">
+              Servicios de la Propiedad
+            </h2>
+            <p class="text-negro-suave/70 text-sm md:text-base mt-3 max-w-2xl mx-auto">
+              Todo lo que necesitas para una estadía cómoda y productiva
+            </p>
+          </div>
+
+          <!-- Grid de servicios de la propiedad -->
+          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
+            <div class="flex items-center gap-3 bg-beige-premium/50 p-3 md:p-4 rounded-xl">
+              <svg
+                class="w-5 h-5 text-verde-oliva flex-shrink-0"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-negro-suave text-xs md:text-sm">Recepción 24 horas</span>
+            </div>
+
+            <div class="flex items-center gap-3 bg-beige-premium/50 p-3 md:p-4 rounded-xl">
+              <svg
+                class="w-5 h-5 text-verde-oliva flex-shrink-0"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-negro-suave text-xs md:text-sm">Seguridad 24h</span>
+            </div>
+
+            <div class="flex items-center gap-3 bg-beige-premium/50 p-3 md:p-4 rounded-xl">
+              <svg
+                class="w-5 h-5 text-verde-oliva flex-shrink-0"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-negro-suave text-xs md:text-sm">Conserje</span>
+            </div>
+
+            <div class="flex items-center gap-3 bg-beige-premium/50 p-3 md:p-4 rounded-xl">
+              <svg
+                class="w-5 h-5 text-verde-oliva flex-shrink-0"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-negro-suave text-xs md:text-sm">Ascensor</span>
+            </div>
+
+            <div class="flex items-center gap-3 bg-beige-premium/50 p-3 md:p-4 rounded-xl">
+              <svg
+                class="w-5 h-5 text-verde-oliva flex-shrink-0"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-negro-suave text-xs md:text-sm">Aire acondicionado</span>
+            </div>
+
+            <div class="flex items-center gap-3 bg-beige-premium/50 p-3 md:p-4 rounded-xl">
+              <svg
+                class="w-5 h-5 text-verde-oliva flex-shrink-0"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-negro-suave text-xs md:text-sm">Salas de reuniones</span>
+            </div>
+
+            <div class="flex items-center gap-3 bg-beige-premium/50 p-3 md:p-4 rounded-xl">
+              <svg
+                class="w-5 h-5 text-verde-oliva flex-shrink-0"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-negro-suave text-xs md:text-sm">Salones de banquetes</span>
+            </div>
+
+            <div class="flex items-center gap-3 bg-beige-premium/50 p-3 md:p-4 rounded-xl">
+              <svg
+                class="w-5 h-5 text-verde-oliva flex-shrink-0"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-negro-suave text-xs md:text-sm">Transporte al aeropuerto</span>
+            </div>
+
+            <div class="flex items-center gap-3 bg-beige-premium/50 p-3 md:p-4 rounded-xl">
+              <svg
+                class="w-5 h-5 text-verde-oliva flex-shrink-0"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-negro-suave text-xs md:text-sm">Estacionamiento accesible</span>
+            </div>
+
+            <div class="flex items-center gap-3 bg-beige-premium/50 p-3 md:p-4 rounded-xl">
+              <svg
+                class="w-5 h-5 text-verde-oliva flex-shrink-0"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-negro-suave text-xs md:text-sm">Almacenamiento de equipaje</span>
+            </div>
+
+            <div class="flex items-center gap-3 bg-beige-premium/50 p-3 md:p-4 rounded-xl">
+              <svg
+                class="w-5 h-5 text-verde-oliva flex-shrink-0"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-negro-suave text-xs md:text-sm">Equipo audiovisual</span>
+            </div>
+
+            <div class="flex items-center gap-3 bg-beige-premium/50 p-3 md:p-4 rounded-xl">
+              <svg
+                class="w-5 h-5 text-verde-oliva flex-shrink-0"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-negro-suave text-xs md:text-sm">Fotocopiado e impresora</span>
+            </div>
+
+            <div class="flex items-center gap-3 bg-beige-premium/50 p-3 md:p-4 rounded-xl">
+              <svg
+                class="w-5 h-5 text-verde-oliva flex-shrink-0"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-negro-suave text-xs md:text-sm"
+                >Acceso a profesionales de salud</span
+              >
+            </div>
+
+            <div class="flex items-center gap-3 bg-beige-premium/50 p-3 md:p-4 rounded-xl">
+              <svg
+                class="w-5 h-5 text-verde-oliva flex-shrink-0"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-negro-suave text-xs md:text-sm">Desayuno para llevar</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ayuda -->
+    <section class="py-14 md:py-16 bg-verde-oliva text-white relative overflow-hidden">
+      <!-- Decoración de fondo -->
+      <div class="absolute inset-0 opacity-10">
+        <div
+          class="absolute top-0 left-1/4 w-64 h-64 border border-white rounded-full transform -translate-y-1/2"
+        >
+        </div>
+        <div
+          class="absolute bottom-0 right-1/4 w-48 h-48 border border-white rounded-full transform translate-y-1/2"
+        >
+        </div>
+      </div>
+
+      <div class="container mx-auto px-5 sm:px-6 lg:px-8 text-center relative z-10">
+        <span
+          class="text-white/80 text-xs tracking-[0.25em] uppercase font-medium block mb-3 md:hidden"
+          >Soporte</span
+        >
+        <h2 class="font-serif text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-6">
+          ¿Necesitas Ayuda?
+        </h2>
+        <p class="text-white/85 text-base md:text-lg mb-8 max-w-2xl mx-auto">
+          Estamos disponibles 24/7 para asistirte
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center gap-3 md:gap-4">
+          <a
+            href="https://wa.me/573122094960"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-2 bg-white text-negro-suave font-semibold px-6 md:px-8 py-4 rounded-xl md:rounded-full hover:bg-beige-premium transition-all duration-300 shadow-lg"
+          >
+            <svg class="w-5 h-5 md:w-6 md:h-6" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+              ></path>
+            </svg>
+            <span>Chatea por WhatsApp</span>
+          </a>
+          <a
+            href="/contacto#contact-info"
+            class="inline-flex items-center justify-center gap-2 bg-transparent text-white font-semibold px-6 md:px-8 py-4 rounded-xl md:rounded-full border-2 border-white/40 hover:bg-white hover:text-negro-suave transition-all duration-300"
+          >
+            <span>Formulario de Contacto</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<!-- Toast de validación (fuera del Layout para que el blur funcione) -->
+<div id="validationToast" class="hidden fixed inset-0 z-50 items-center justify-center p-4">
+  <!-- Backdrop con blur -->
+  <div class="absolute inset-0 bg-negro-suave/50 backdrop-blur-md toast-backdrop"></div>
+
+  <!-- Modal -->
+  <div
+    class="relative bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 toast-content border border-cafe-claro/20"
+  >
+    <!-- Icono decorativo -->
+    <div class="flex justify-center mb-6">
+      <div
+        class="w-20 h-20 bg-gradient-to-br from-cafe-claro/20 to-verde-oliva/20 rounded-full flex items-center justify-center"
+      >
+        <svg
+          class="w-10 h-10 text-cafe-claro"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+          ></path>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Contenido -->
+    <div class="text-center">
+      <h3 class="font-serif text-2xl font-bold text-negro-suave mb-3">Selecciona tus fechas</h3>
+      <p class="text-gray-600 mb-8 leading-relaxed">
+        Para continuar con tu reserva, por favor indica las fechas de <span
+          class="font-semibold text-verde-oliva">entrada</span
+        > y <span class="font-semibold text-verde-oliva">salida</span> de tu estadía.
+      </p>
+    </div>
+
+    <!-- Línea decorativa -->
+    <div class="m-6 flex items-center justify-center gap-3">
+      <div class="h-px w-12 bg-gradient-to-r from-transparent to-cafe-claro/30"></div>
+      <svg class="w-4 h-4 text-cafe-claro/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+        ></path>
+      </svg>
+      <div class="h-px w-12 bg-gradient-to-l from-transparent to-cafe-claro/30"></div>
+    </div>
+
+    <!-- Botón -->
+    <button
+      id="closeToast"
+      type="button"
+      class="w-full bg-gradient-to-r from-cafe-claro to-cafe-claro/90 text-white font-semibold py-4 px-6 rounded-xl hover:from-negro-suave hover:to-negro-suave transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+    >
+      Entendido
+    </button>
+  </div>
+</div>
+
+<script>
+  if (window.location.search) {
+    window.history.replaceState({}, '', window.location.pathname);
+  }
+
+  function initReservationForm() {
+    const form = document.getElementById('reservationForm') as HTMLFormElement;
+    if (!form) return;
+
+    const toast = document.getElementById('validationToast');
+    const closeToastBtn = document.getElementById('closeToast');
+    const toastBackdrop = toast?.querySelector('.toast-backdrop');
+
+    const showToast = () => {
+      if (!toast) return;
+      document.body.classList.add('modal-open');
+      toast.classList.remove('hidden');
+      toast.classList.add('flex');
+      requestAnimationFrame(() => {
+        toast.classList.add('toast-visible');
+      });
+    };
+
+    const hideToast = () => {
+      if (!toast) return;
+      toast.classList.remove('toast-visible');
+      document.body.classList.remove('modal-open');
+      setTimeout(() => {
+        toast.classList.add('hidden');
+        toast.classList.remove('flex');
+      }, 300);
+    };
+
+    closeToastBtn?.addEventListener('click', hideToast);
+
+    toastBackdrop?.addEventListener('click', hideToast);
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && toast && !toast.classList.contains('hidden')) {
+        hideToast();
+      }
+    });
+
+    form.addEventListener('submit', (e) => {
+      const checkInInput = document.querySelector('input[name="check_in"]') as HTMLInputElement;
+      const checkOutInput = document.querySelector('input[name="check_out"]') as HTMLInputElement;
+
+      const checkIn = checkInInput?.value || '';
+      const checkOut = checkOutInput?.value || '';
+
+      if (!checkIn || !checkOut) {
+        e.preventDefault();
+        showToast();
+        return false;
+      }
+
+      return true;
+    });
+  }
+
+  document.addEventListener('astro:page-load', initReservationForm);
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initReservationForm);
+  } else {
+    initReservationForm();
+  }
+</script>
+
+<style>
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 1s ease-out;
+  }
+
+  .animate-fade-in-delay {
+    animation: fade-in 1s ease-out 0.3s both;
+  }
+
+  .animate-fade-in-delay-2 {
+    animation: fade-in 1s ease-out 0.6s both;
+  }
+
+  /* Hero Carousel Styles - 3 imágenes, 18s ciclo total (6s por imagen) */
+  /* Animación combinada de fade + zoom suave para evitar saltos */
+  @keyframes carousel-slide-1 {
+    0% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    28% {
+      opacity: 1;
+      transform: scale(1.04);
+    }
+    33% {
+      opacity: 0;
+      transform: scale(1.04);
+    }
+    95% {
+      opacity: 0;
+      transform: scale(1);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes carousel-slide-2 {
+    0% {
+      opacity: 0;
+      transform: scale(1);
+    }
+    28% {
+      opacity: 0;
+      transform: scale(1);
+    }
+    33% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    61% {
+      opacity: 1;
+      transform: scale(1.04);
+    }
+    66% {
+      opacity: 0;
+      transform: scale(1.04);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes carousel-slide-3 {
+    0% {
+      opacity: 0;
+      transform: scale(1.04);
+    }
+    61% {
+      opacity: 0;
+      transform: scale(1);
+    }
+    66% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    95% {
+      opacity: 1;
+      transform: scale(1.04);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(1.04);
+    }
+  }
+
+  .hero-carousel .carousel-slide {
+    will-change: opacity, transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d;
+  }
+
+  .hero-carousel .carousel-slide:nth-child(1) {
+    animation: carousel-slide-1 18s linear infinite;
+  }
+
+  .hero-carousel .carousel-slide:nth-child(2) {
+    animation: carousel-slide-2 18s linear infinite;
+  }
+
+  .hero-carousel .carousel-slide:nth-child(3) {
+    animation: carousel-slide-3 18s linear infinite;
+  }
+
+  /* Scroll indicator animation para móvil */
+  @keyframes scroll-down {
+    0% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+  }
+
+  .animate-scroll-down {
+    animation: scroll-down 1.5s ease-in-out infinite;
+  }
+
+  /* Toast animations */
+  #validationToast {
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
+  }
+
+  #validationToast.toast-visible {
+    opacity: 1;
+  }
+
+  #validationToast .toast-backdrop {
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
+  }
+
+  #validationToast.toast-visible .toast-backdrop {
+    opacity: 1;
+  }
+
+  #validationToast .toast-content {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  #validationToast.toast-visible .toast-content {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+</style>
+
+<style is:global>
+  /* Prevenir scroll cuando el modal está abierto */
+  body.modal-open {
+    overflow: hidden;
+  }
+</style>

@@ -1,0 +1,614 @@
+---
+interface Props {
+  logoOnly?: boolean;
+}
+
+const { logoOnly = false } = Astro.props;
+const currentPath = Astro.url.pathname;
+---
+
+<nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-transparent">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div id="navbar-content" class="flex justify-between items-center h-20">
+      <a href="/" class="flex items-center">
+        <img
+          src="/logo-botanico.svg"
+          alt="Hotel Botánico"
+          class="h-12 w-auto text-white transition-opacity duration-300"
+          id="logo-light"
+          fetchpriority="high"
+        />
+        <img
+          src="/logo-botanico-dark.svg"
+          alt="Hotel Botánico"
+          class="h-12 w-auto hidden transition-opacity duration-300"
+          id="logo-dark"
+        />
+      </a>
+
+      {
+        !logoOnly && (
+          <>
+            <div class="hidden md:flex items-center space-x-8">
+              <a
+                href="/"
+                class="nav-link text-white hover:text-beige-premium transition-colors"
+                class:list={[currentPath === '/' && 'active']}
+              >
+                Inicio
+              </a>
+              <a
+                href="/habitaciones"
+                class="nav-link text-white hover:text-beige-premium transition-colors"
+                class:list={[currentPath === '/habitaciones' && 'active']}
+              >
+                Habitaciones
+              </a>
+              <a
+                href="/galeria"
+                class="nav-link text-white hover:text-beige-premium transition-colors"
+                class:list={[currentPath === '/galeria' && 'active']}
+              >
+                Galería
+              </a>
+              <a
+                href="/contacto"
+                class="nav-link text-white hover:text-beige-premium transition-colors"
+                class:list={[currentPath === '/contacto' && 'active']}
+              >
+                Contacto
+              </a>
+              <a
+                href="/mito"
+                class="nav-link-mito text-white text-center hover:text-beige-premium transition-all duration-300 px-4 py-2 rounded-lg border border-white/30 hover:border-beige-premium/50 hover:bg-white/10 backdrop-blur-sm"
+                class:list={[currentPath === '/mito' && 'active-mito']}
+              >
+                MITO Rooftop
+              </a>
+            </div>
+
+            <button
+              id="mobile-menu-button"
+              class="md:hidden text-white focus:outline-none transition-colors duration-300"
+              aria-label="Abrir menú"
+            >
+              <svg
+                id="menu-icon"
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            </button>
+          </>
+        )
+      }
+    </div>
+  </div>
+
+  {
+    !logoOnly && (
+      <div
+        id="mobile-menu"
+        class="mobile-menu-container md:hidden fixed inset-0 h-[100svh] bg-negro-suave z-[60] opacity-0 invisible"
+      >
+        <div class="flex flex-col h-full">
+          <div class="menu-header flex items-center justify-between px-4 sm:px-6 h-20 border-b border-white/10">
+            <a href="/" class="flex items-center">
+              <img
+                src="/logo-botanico.svg"
+                alt="Hotel Botánico"
+                class="h-12 w-auto"
+                loading="lazy"
+              />
+            </a>
+            <button
+              id="mobile-menu-close"
+              class="text-white/80 hover:text-white transition-colors"
+              aria-label="Cerrar menú"
+            >
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+          </div>
+
+          <nav class="flex-1 px-6 pt-8 pb-6 overflow-y-auto">
+            <ul class="space-y-1">
+              <li class="menu-item" style="--item-index: 0;">
+                <a
+                  href="/"
+                  class="group flex items-center justify-between px-4 py-4 text-white text-lg font-light tracking-wide border-b border-white/10 transition-all duration-300 hover:pl-6 hover:border-cafe-claro/40"
+                >
+                  <span>Inicio</span>
+                  <svg
+                    class="w-5 h-5 text-white/30 group-hover:text-cafe-claro transition-colors"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="1.5"
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </a>
+              </li>
+              <li class="menu-item" style="--item-index: 1;">
+                <a
+                  href="/habitaciones"
+                  class="group flex items-center justify-between px-4 py-4 text-white text-lg font-light tracking-wide border-b border-white/10 transition-all duration-300 hover:pl-6 hover:border-cafe-claro/40"
+                >
+                  <span>Habitaciones</span>
+                  <svg
+                    class="w-5 h-5 text-white/30 group-hover:text-cafe-claro transition-colors"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="1.5"
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </a>
+              </li>
+              <li class="menu-item" style="--item-index: 3;">
+                <a
+                  href="/galeria"
+                  class="group flex items-center justify-between px-4 py-4 text-white text-lg font-light tracking-wide border-b border-white/10 transition-all duration-300 hover:pl-6 hover:border-cafe-claro/40"
+                >
+                  <span>Galería</span>
+                  <svg
+                    class="w-5 h-5 text-white/30 group-hover:text-cafe-claro transition-colors"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="1.5"
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </a>
+              </li>
+              <li class="menu-item" style="--item-index: 4;">
+                <a
+                  href="/contacto"
+                  class="group flex items-center justify-between px-4 py-4 text-white text-lg font-light tracking-wide border-b border-white/10 transition-all duration-300 hover:pl-6 hover:border-cafe-claro/40"
+                >
+                  <span>Contacto</span>
+                  <svg
+                    class="w-5 h-5 text-white/30 group-hover:text-cafe-claro transition-colors"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="1.5"
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </a>
+              </li>
+
+              <li class="menu-item menu-item-mito" style="--item-index: 5;">
+                <a
+                  href="/mito"
+                  class="group flex items-center justify-between px-4 py-4 text-white text-lg font-medium tracking-wide border border-white/30 rounded-lg mx-2 my-2 bg-white/5 backdrop-blur-sm transition-all duration-300 hover:bg-white/10 hover:border-cafe-claro/50 hover:scale-[1.02]"
+                >
+                  <span class="font-semibold">MITO Rooftop</span>
+                  <svg
+                    class="w-5 h-5 text-white/50 group-hover:text-cafe-claro transition-colors"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="1.5"
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </a>
+              </li>
+            </ul>
+          </nav>
+
+          <div class="menu-footer px-6 pb-8">
+            <a
+              href="https://wa.me/573122094960"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center justify-center gap-3 bg-verde-oliva text-white font-medium px-6 py-4 rounded-xl transition-all duration-300 hover:bg-cafe-claro"
+            >
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+              </svg>
+              <span>Reservar por WhatsApp</span>
+            </a>
+
+            <div class="flex items-center justify-center gap-6 mt-6 text-white/50 text-sm">
+              <span class="tracking-wider">4 Estrellas</span>
+              <span class="w-1 h-1 rounded-full bg-cafe-claro/60" />
+              <span class="tracking-wider">Caucasia</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+</nav>
+
+<script>
+  // Función de inicialización del navbar - se ejecuta en cada carga de página
+  function initNavbar() {
+    // Referencias a elementos (se obtienen fresh en cada navegación)
+    const navbar = document.getElementById('navbar');
+    const logoLight = document.getElementById('logo-light');
+    const logoDark = document.getElementById('logo-dark');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuClose = document.getElementById('mobile-menu-close');
+    const mobileMenuItems = document.querySelectorAll('.menu-item a');
+
+    let isMenuOpen = false;
+
+    // Actualizar clase active según la URL actual
+    function updateActiveLink() {
+      const currentPath = window.location.pathname;
+
+      // Actualizar links del menú desktop
+      navLinks.forEach((link) => {
+        const href = link.getAttribute('href');
+        // Comparar normalizando las rutas (con o sin trailing slash)
+        const isActive =
+          href === currentPath ||
+          href === currentPath.replace(/\/$/, '') ||
+          (href !== '/' && currentPath.startsWith(href + '/'));
+
+        if (isActive) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+
+      // Actualizar links del menú móvil
+      mobileMenuItems.forEach((link) => {
+        const href = link.getAttribute('href');
+        const isActive =
+          href === currentPath ||
+          href === currentPath.replace(/\/$/, '') ||
+          (href !== '/' && currentPath.startsWith(href + '/'));
+
+        if (isActive) {
+          link.classList.add('mobile-active');
+        } else {
+          link.classList.remove('mobile-active');
+        }
+      });
+    }
+
+    // Actualizar link activo inmediatamente
+    updateActiveLink();
+
+    // Función para actualizar estilos del navbar según posición del scroll
+    function updateNavbarStyles() {
+      // No cambiar estilos si el menú móvil está abierto
+      if (isMenuOpen) return;
+
+      if (window.scrollY > 50) {
+        navbar?.classList.add(
+          'bg-white/80',
+          'backdrop-blur-lg',
+          'shadow-lg',
+          'border-b',
+          'border-white/20',
+          'navbar-light'
+        );
+        navbar?.classList.remove('bg-transparent');
+
+        // Cambiar logos
+        logoLight?.classList.add('hidden');
+        logoDark?.classList.remove('hidden');
+
+        // Cambiar color de links y botón de menú
+        navLinks.forEach((link) => {
+          if (link.classList.contains('nav-link-mito')) {
+            // Para MITO, cambiar el borde y fondo pero mantener el estilo especial
+            link.classList.remove('text-white', 'border-white/30');
+            link.classList.add('text-negro-suave', 'border-negro-suave/30');
+          } else {
+            link.classList.remove('text-white');
+            link.classList.add('text-negro-suave');
+          }
+        });
+
+        // Cambiar color del icono hamburguesa
+        mobileMenuButton?.classList.remove('text-white');
+        mobileMenuButton?.classList.add('text-negro-suave');
+      } else {
+        navbar?.classList.remove(
+          'bg-white/80',
+          'backdrop-blur-lg',
+          'shadow-lg',
+          'border-b',
+          'border-white/20',
+          'navbar-light'
+        );
+        navbar?.classList.add('bg-transparent');
+
+        // Cambiar logos
+        logoLight?.classList.remove('hidden');
+        logoDark?.classList.add('hidden');
+
+        // Cambiar color de links y botón de menú
+        navLinks.forEach((link) => {
+          if (link.classList.contains('nav-link-mito')) {
+            // Para MITO, restaurar el borde y color original
+            link.classList.add('text-white', 'border-white/30');
+            link.classList.remove('text-negro-suave', 'border-negro-suave/30');
+          } else {
+            link.classList.add('text-white');
+            link.classList.remove('text-negro-suave');
+          }
+        });
+
+        // Cambiar color del icono hamburguesa
+        mobileMenuButton?.classList.add('text-white');
+        mobileMenuButton?.classList.remove('text-negro-suave');
+      }
+    }
+
+    // Mobile menu functions
+    function openMenu() {
+      isMenuOpen = true;
+      mobileMenu?.classList.remove('invisible');
+      mobileMenu?.classList.add('menu-open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+      isMenuOpen = false;
+      mobileMenu?.classList.remove('menu-open');
+      setTimeout(() => {
+        if (!isMenuOpen) {
+          mobileMenu?.classList.add('invisible');
+        }
+      }, 400);
+      document.body.style.overflow = '';
+      updateNavbarStyles();
+    }
+
+    // Limpiar listeners anteriores usando un AbortController
+    const controller = new AbortController();
+    const { signal } = controller;
+
+    // Guardar referencia al controller para limpiar en la próxima navegación
+    if ((window as any).__navbarController) {
+      (window as any).__navbarController.abort();
+    }
+    (window as any).__navbarController = controller;
+
+    // Event listeners con signal para poder limpiarlos
+    window.addEventListener('scroll', updateNavbarStyles, { signal });
+
+    document.addEventListener(
+      'visibilitychange',
+      () => {
+        if (document.visibilityState === 'visible') {
+          updateNavbarStyles();
+        }
+      },
+      { signal }
+    );
+
+    mobileMenuButton?.addEventListener(
+      'click',
+      () => {
+        if (isMenuOpen) {
+          closeMenu();
+        } else {
+          openMenu();
+        }
+      },
+      { signal }
+    );
+
+    mobileMenuClose?.addEventListener('click', closeMenu, { signal });
+
+    const mobileMenuLinks = mobileMenu?.querySelectorAll('a');
+    mobileMenuLinks?.forEach((link) => {
+      link.addEventListener(
+        'click',
+        () => {
+          if (isMenuOpen) {
+            closeMenu();
+          }
+        },
+        { signal }
+      );
+    });
+
+    // Actualizar estilos inmediatamente
+    updateNavbarStyles();
+  }
+
+  // Ejecutar en cada carga de página (inicial y navegaciones con View Transitions)
+  document.addEventListener('astro:page-load', initNavbar);
+</script>
+
+<style>
+  .nav-link.active {
+    font-weight: 600;
+    position: relative;
+  }
+
+  .nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: currentColor;
+  }
+
+  /* Estilos especiales para MITO Rooftop - Desktop */
+  .nav-link-mito {
+    font-weight: 500;
+  }
+
+  .nav-link-mito.active-mito {
+    background-color: rgba(196, 166, 124, 0.15); /* cafe-claro con opacidad */
+    border-color: #c4a67c; /* cafe-claro */
+    color: #c4a67c;
+  }
+
+  .nav-link-mito.active-mito:hover {
+    background-color: rgba(196, 166, 124, 0.25);
+    border-color: #c4a67c;
+  }
+
+  /* Estilos para MITO cuando el navbar está en modo claro */
+  .navbar-light .nav-link-mito {
+    background-color: #c4a67c !important;
+    border-color: #c4a67c !important;
+  }
+
+  .navbar-light .nav-link-mito:hover {
+    background-color: rgba(196, 166, 124, 0.25) !important;
+    border-color: #c4a67c !important;
+  }
+
+  .navbar-light .nav-link-mito.active-mito {
+    background-color: rgba(196, 166, 124, 0.3) !important;
+    border-color: #c4a67c !important;
+    color: #000 !important;
+  }
+
+  .navbar-light .nav-link-mito.active-mito:hover {
+    background-color: rgba(196, 166, 124, 0.4) !important;
+    border-color: #c4a67c !important;
+  }
+
+  /* Mobile Menu - Link activo */
+  .menu-item a.mobile-active {
+    color: #c4a67c !important; /* cafe-claro */
+    border-left: 3px solid #c4a67c;
+    padding-left: calc(1rem - 3px);
+  }
+
+  .menu-item a.mobile-active span {
+    font-weight: 500;
+  }
+
+  /* Estilos especiales para MITO Rooftop - Mobile */
+  .menu-item-mito a.mobile-active {
+    background-color: rgba(196, 166, 124, 0.2) !important;
+    border-color: #c4a67c !important;
+    color: #c4a67c !important;
+  }
+
+  .menu-item-mito a.mobile-active span {
+    font-weight: 600;
+  }
+
+  /* Mobile Menu - Animaciones */
+  .mobile-menu-container {
+    opacity: 0;
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .mobile-menu-container.menu-open {
+    opacity: 1;
+  }
+
+  /* Header del menú - slide down */
+  .menu-header {
+    opacity: 0;
+    transform: translateY(-20px);
+    transition:
+      opacity 0.4s ease,
+      transform 0.4s ease;
+    transition-delay: 0.1s;
+  }
+
+  .mobile-menu-container.menu-open .menu-header {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Items del menú - staggered slide up */
+  .menu-item {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 0.4s ease,
+      transform 0.4s ease;
+    transition-delay: calc(0.15s + var(--item-index) * 0.06s);
+  }
+
+  .mobile-menu-container.menu-open .menu-item {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Footer del menú - fade in */
+  .menu-footer {
+    opacity: 0;
+    transform: translateY(15px);
+    transition:
+      opacity 0.4s ease,
+      transform 0.4s ease;
+    transition-delay: 0.5s;
+  }
+
+  .mobile-menu-container.menu-open .menu-footer {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Reset animaciones al cerrar */
+  .mobile-menu-container:not(.menu-open) .menu-header,
+  .mobile-menu-container:not(.menu-open) .menu-item,
+  .mobile-menu-container:not(.menu-open) .menu-footer {
+    transition-delay: 0s;
+  }
+
+  /* Botón hamburguesa animado */
+  #mobile-menu-button svg {
+    transition: transform 0.3s ease;
+  }
+
+  #mobile-menu-button.menu-open svg {
+    transform: rotate(90deg);
+  }
+</style>

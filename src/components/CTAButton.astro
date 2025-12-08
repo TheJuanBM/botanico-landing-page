@@ -1,0 +1,37 @@
+---
+interface Props {
+  text?: string;
+  href?: string;
+  variant?: 'primary' | 'secondary';
+  size?: 'sm' | 'md' | 'lg';
+  class?: string;
+}
+
+const {
+  text = 'Reservar Ahora',
+  href = 'https://hotels.cloudbeds.com/es/reservation/QZE4hg?currency=cop',
+  variant = 'primary',
+  size = 'md',
+  class: className = '',
+} = Astro.props;
+
+const baseClasses = 'inline-block font-medium rounded-full transition-all duration-300 text-center';
+
+const variantClasses = {
+  primary: 'bg-verde-oliva text-white hover:bg-negro-suave hover:shadow-lg',
+  secondary:
+    'bg-white text-negro-suave border-2 border-verde-oliva hover:bg-verde-oliva hover:text-white',
+};
+
+const sizeClasses = {
+  sm: 'px-4 py-2 text-sm',
+  md: 'px-8 py-3 text-base',
+  lg: 'px-10 py-4 text-lg',
+};
+
+const classes = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`;
+---
+
+<a href={href} target="_blank" rel="noopener noreferrer" class={classes}>
+  {text}
+</a>

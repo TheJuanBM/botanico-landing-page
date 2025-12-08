@@ -1,0 +1,249 @@
+# Proyecto: Sitio Web Premium – Hotel Botánico
+
+# Archivo: init-botanico-v1.mdc
+
+# Stack: AstroJS + TailwindCSS
+
+# Propósito: Guiar a Cursor para producir un sitio web elegante, premium, accesible y optimizado para SEO para el Hotel Botánico y su rooftop MITO.
+
+---
+
+## Identidad del Hotel
+
+- **Nombre:** Hotel Botánico
+- **Rooftop:** MITO
+- **Ubicación:** Caucasia, Bajo Cauca, Antioquia, Colombia
+- **Categoría:** Único hotel 4 estrellas de toda la zona
+
+---
+
+## Colores Corporativos
+
+- Beige premium: `#EBE2DB`
+- Café claro: `#A48D75`
+- Verde oliva oscuro: `#615A40`
+- Blanco puro
+- Negro suave `#111` (solo para tipografía)
+
+---
+
+## Tipografías (Google Fonts)
+
+- Titulares: **Playfair Display** o **DM Serif Display**
+- Cuerpo: **Inter** o **Manrope**
+
+**Reglas para Cursor:**
+
+- Siempre usar titulares serif elegantes para transmitir lujo.
+- Siempre usar fuente sans-serif moderna para párrafos.
+
+---
+
+## Estilo General del Sitio
+
+- Inspiración directa: diseño limpio como _Badrutt’s Palace_.
+- Mucho espacio en blanco (white space para sensación premium).
+- Fotografías grandes y de alta calidad.
+- Animaciones suaves (fade-in, parallax leve).
+- Diseño minimalista, elegante y cálido.
+- Carga rápida → Core Web Vitals optimizados.
+
+---
+
+## Requisitos Técnicos
+
+- Framework: **AstroJS**
+- Estilos: **TailwindCSS**
+- Imágenes optimizadas usando `<Image />` de Astro.
+- SEO integrado:
+  - Metatags
+  - OG tags
+  - Schema JSON-LD para hoteles
+- Accesibilidad AA:
+  - Textos con buen contraste
+  - Alt text obligatorio
+  - Headings estructurados
+  - Botones accesibles
+  - Menú navegable por teclado
+
+---
+
+## Estructura del Sitio (Páginas)
+
+### `/`
+
+Home con:
+
+- Hero premium (foto o video)
+- CTA principal: **Reservar Ahora**
+- Sección “Sobre el Hotel”
+- Sección MITO Rooftop
+- Habitaciones (cards)
+- Servicios
+- Testimonios (Google, Booking)
+- Ubicación (mapa)
+- Footer elegante
+
+### `/habitaciones`
+
+- Listado de habitaciones con cards premium
+- Fotografías optimizadas
+- Descripción clara
+- Botón: “Reservar esta habitación”
+
+### `/mito`
+
+Página dedicada al rooftop:
+
+- Fotos grandes
+- Ambientes y coctelería
+- Sección eventos
+- CTA: Reservar eventos / ver menú
+
+### `/galeria`
+
+- Grid de imágenes en alta calidad
+- Optimización automática WebP
+
+### `/contacto`
+
+- Formulario corporativo
+- Teléfono, dirección, WhatsApp
+- Mapa
+- CTA: Contacto / Reservas
+
+---
+
+## Sistema de Reservas
+
+**Todos los CTAs “Reservar Ahora” van a:**
+https://hotels.cloudbeds.com/es/reservation/QZE4hg?currency=cop
+
+---
+
+## Componentes Reutilizables
+
+Cursor debe crear y reutilizar:
+
+- `Navbar.astro` (pegajoso, cambia color al hacer scroll)
+- `Footer.astro`
+- `Hero.astro`
+- `RoomCard.astro`
+- `TestimonialSection.astro`
+- `ServiceCard.astro`
+- `CTAButton.astro`
+- `Layout.astro` (estructura principal)
+
+Todos con estilo premium.
+
+---
+
+## SEO (Reglas para Cursor)
+
+### Keywords que debe integrar:
+
+- hotel en Caucasia
+- hotel 4 estrellas en Caucasia
+- hotel premium en el Bajo Cauca
+- alojamiento Caucasia
+- rooftop MITO Caucasia
+
+### Instrucciones:
+
+- Un solo `H1` por página
+- Metadescripciones elegantes y claras
+- URLs limpias:
+  - `/habitaciones`
+  - `/mito`
+  - `/contacto`
+  - `/galeria`
+- OG tags con fotos representativas
+- Schema JSON-LD para hotel
+
+---
+
+## Copywriting (Tono)
+
+Cursor debe escribir textos:
+
+- Elegantes
+- Claros
+- Con sensación de lujo accesible
+- Enfatizando naturaleza + sofisticación
+- Evitando saturación de texto
+- Focalizados en conversión (reservas)
+
+Ejemplos de tono:
+
+- “Un oasis natural y sofisticado en el corazón del Bajo Cauca.”
+- “Experiencia boutique, atención personalizada y el rooftop más exclusivo de la región.”
+
+---
+
+## Reglas de Diseño
+
+- Mantener consistencia con la paleta.
+- No saturar de decoraciones.
+- Mucho aire visual.
+- CTA principal siempre visible.
+- Imágenes grandes y limpias.
+- Navegación simple.
+
+---
+
+## Optimización de Rendimiento
+
+Cursor debe:
+
+- Usar imágenes WebP
+- Lazyload
+- Minificar HTML
+- Evitar scripts innecesarios
+- Lighthouse objetivo:
+  - Performance +90
+  - Accesibilidad +95
+  - SEO +95
+
+---
+
+## Animaciones Permitidas
+
+- Fade-in (Tailwind + AOS opcional)
+- Parallax leve
+- Transiciones suaves entre secciones
+
+Evitar animaciones exageradas.
+
+---
+
+## Instrucciones directas para Cursor
+
+Siempre que se soliciten cambios o nuevas secciones:
+
+1. Mantener branding.
+2. Mantener accesibilidad y SEO.
+3. Mantener elegancia premium.
+4. Código modular, limpio y fácilmente mantenible.
+5. Priorizar velocidad sobre efectos visuales pesados.
+
+---
+
+## Notas finales
+
+Este archivo gobierna todas las decisiones del proyecto.
+Cursor debe seguirlo estrictamente para:
+
+- Crear archivos
+- Generar código
+- Ajustar UI
+- Desarrollar componentes
+- Escribir textos
+- Construir la arquitectura
+
+---
+
+## Instalador
+
+Utiliza yarn como gestor de paquetes.
+
+Generar código limpio, buen SEO, rendimiento, accesibilidad, ordenado, modular y fácil de extender.

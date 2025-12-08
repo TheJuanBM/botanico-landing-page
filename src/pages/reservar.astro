@@ -1,0 +1,868 @@
+---
+import Footer from '../components/Footer.astro';
+import Navbar from '../components/Navbar.astro';
+import Layout from '../layouts/Layout.astro';
+import {
+  getAvailableRooms,
+  formatDateDisplay,
+  formatTotalPrice,
+  type AvailabilityParams,
+} from '../services/rooms';
+
+// Obtener query params
+const url = Astro.url;
+
+const checkIn = url.searchParams.get('check_in') || '';
+const checkOut = url.searchParams.get('check_out') || '';
+const guests = parseInt(url.searchParams.get('guests') || '1', 10);
+
+console.log('DEBUG SERVER - URL completa:', url.toString());
+console.log('DEBUG SERVER - Parámetros:', { checkIn, checkOut, guests });
+
+// Validar que los parámetros existan
+const hasParams = checkIn && checkOut;
+
+// TODO: Validar que las fechas sean válidas (Largas estadías)
+
+// Validar que check-out sea posterior a check-in
+const checkInDate = new Date(checkIn);
+const checkOutDate = new Date(checkOut);
+const isValidDateRange = checkOutDate > checkInDate;
+
+// Validar que el número de huéspedes esté entre 1 y 10
+const isValidGuestsCount = guests >= 1 && guests <= 10;
+
+const hasValidParams = hasParams && isValidDateRange && isValidGuestsCount;
+const hasInvalidDates = hasParams && !isValidDateRange && isValidGuestsCount;
+const hasInvalidGuests = hasParams && !isValidGuestsCount;
+
+// Obtener habitaciones disponibles
+let availabilityData = null;
+let error = null;
+
+if (hasValidParams) {
+  const params: AvailabilityParams = { checkIn, checkOut, guests };
+  const response = await getAvailableRooms(params);
+
+  if (response.success) {
+    availabilityData = response.data;
+  } else {
+    error = response.error;
+  }
+}
+
+// Formatear fechas para mostrar
+const checkInFormatted = formatDateDisplay(checkIn);
+const checkOutFormatted = formatDateDisplay(checkOut);
+const nightsText = availabilityData?.totalNights === 1 ? 'noche' : 'noches';
+const guestsText = guests === 1 ? 'huésped' : 'huéspedes';
+---
+
+<Layout
+  title="Reservar Habitación - Hotel Botánico | Disponibilidad en Tiempo Real"
+  description="Selecciona tu habitación ideal en Hotel Botánico. Confirma tu reserva con la mejor tarifa garantizada y cancelación flexible."
+>
+  <Navbar logoOnly />
+
+  <main id="main-content">
+    <section class="relative pt-28 pb-12 bg-gradient-to-b from-negro-suave to-negro-suave/95">
+      <div class="absolute inset-0 opacity-10">
+        <div
+          class="absolute top-0 right-0 w-96 h-96 bg-verde-oliva rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2"
+        >
+        </div>
+        <div
+          class="absolute bottom-0 left-0 w-64 h-64 bg-cafe-claro rounded-full blur-3xl transform -translate-x-1/2 translate-y-1/2"
+        >
+        </div>
+      </div>
+
+      <div class="container mx-auto px-5 sm:px-6 lg:px-8 relative z-10">
+        {
+          hasInvalidGuests && guests > 10 ? (
+            /* Grupo grande - más de 10 huéspedes */ <div class="max-w-2xl mx-auto text-center">
+              <div class="w-20 h-20 bg-cafe-claro/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                <svg
+                  class="w-10 h-10 text-cafe-claro"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                </svg>
+              </div>
+              <h1 class="font-serif text-3xl md:text-4xl font-bold text-white mb-4">
+                ¡Reserva para grupo grande!
+              </h1>
+              <p class="text-white/70 text-lg mb-2 max-w-lg mx-auto">
+                Para grupos de más de <strong class="text-cafe-claro">10 huéspedes</strong>, nuestro
+                equipo te brindará atención personalizada.
+              </p>
+              <p class="text-white/50 text-base mb-6 max-w-md mx-auto">
+                Envíanos un correo y te responderemos en{' '}
+                <strong class="text-verde-oliva">menos de 30 minutos</strong>.
+              </p>
+
+              <div class="bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20 p-6 mb-8 max-w-md mx-auto">
+                <div class="grid grid-cols-3 gap-4 mb-6 text-sm">
+                  <div>
+                    <p class="text-white/50 text-xs uppercase tracking-wider mb-1">Check-in</p>
+                    <p class="text-white font-semibold">{checkInFormatted}</p>
+                  </div>
+                  <div>
+                    <p class="text-white/50 text-xs uppercase tracking-wider mb-1">Check-out</p>
+                    <p class="text-white font-semibold">{checkOutFormatted}</p>
+                  </div>
+                  <div>
+                    <p class="text-white/50 text-xs uppercase tracking-wider mb-1">Huéspedes</p>
+                    <p class="text-cafe-claro font-bold text-xl">{guests}</p>
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-2 text-verde-oliva text-sm mb-4">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                  <span class="font-medium">Respuesta garantizada en menos de 30 min</span>
+                </div>
+              </div>
+
+              <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a
+                  href={`mailto:reservas@hotelbotanico.com?subject=Reserva%20Grupo%20Grande%20-%20${guests}%20huéspedes&body=Hola,%0A%0AMe%20gustaría%20hacer%20una%20reserva%20para%20un%20grupo%20grande:%0A%0A-%20Check-in:%20${checkIn}%0A-%20Check-out:%20${checkOut}%0A-%20Número%20de%20huéspedes:%20${guests}%0A%0APor%20favor,%20contáctenme%20con%20las%20opciones%20disponibles.%0A%0AGracias.`}
+                  class="inline-flex items-center justify-center gap-2 bg-verde-oliva text-white font-semibold px-8 py-4 rounded-xl hover:bg-cafe-claro transition-all duration-300 shadow-lg"
+                >
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                    />
+                  </svg>
+                  <span>Enviar correo</span>
+                </a>
+                <a
+                  href="https://wa.me/573122094960?text=Hola,%20me%20gustaría%20hacer%20una%20reserva%20para%20un%20grupo%20de%20{guests}%20personas.%20Check-in:%20{checkIn},%20Check-out:%20{checkOut}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center justify-center gap-2 border-2 border-verde-oliva text-white font-semibold px-8 py-4 rounded-xl hover:bg-verde-oliva transition-all duration-300"
+                >
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+                  </svg>
+                  <span>WhatsApp</span>
+                </a>
+              </div>
+
+              <p class="text-white/40 text-sm mt-6">
+                ¿Menos de 10 huéspedes?{' '}
+                <a href="/" class="text-cafe-claro hover:underline">
+                  Reserva en línea aquí
+                </a>
+              </p>
+            </div>
+          ) : hasInvalidGuests ? (
+            /* Número de huéspedes menor a 1 */ <div class="max-w-2xl mx-auto text-center">
+              <div class="w-20 h-20 bg-red-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                <svg
+                  class="w-10 h-10 text-red-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                </svg>
+              </div>
+              <h1 class="font-serif text-3xl md:text-4xl font-bold text-white mb-4">
+                Número de huéspedes inválido
+              </h1>
+              <p class="text-white/70 text-lg mb-4 max-w-md mx-auto">
+                El número de huéspedes debe ser al menos <strong class="text-cafe-claro">1</strong>.
+              </p>
+              <div class="bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 p-4 mb-8 max-w-xs mx-auto">
+                <p class="text-white/50 text-xs uppercase tracking-wider mb-1">
+                  Huéspedes solicitados
+                </p>
+                <p class="text-red-400 font-bold text-2xl">{guests}</p>
+              </div>
+              <a
+                href="/"
+                class="inline-flex items-center gap-2 bg-verde-oliva text-white font-semibold px-8 py-4 rounded-xl hover:bg-cafe-claro transition-all duration-300 shadow-lg"
+              >
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                  />
+                </svg>
+                <span>Corregir búsqueda</span>
+              </a>
+            </div>
+          ) : hasInvalidDates ? (
+            <div class="max-w-2xl mx-auto text-center">
+              <div class="w-20 h-20 bg-red-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                <svg
+                  class="w-10 h-10 text-red-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                  />
+                </svg>
+              </div>
+              <h1 class="font-serif text-3xl md:text-4xl font-bold text-white mb-4">
+                Fechas inválidas
+              </h1>
+              <p class="text-white/70 text-lg mb-4 max-w-md mx-auto">
+                La fecha de <strong class="text-red-400">check-out</strong> debe ser posterior a la
+                fecha de <strong class="text-cafe-claro">check-in</strong>.
+              </p>
+              <div class="bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 p-4 mb-8 max-w-sm mx-auto">
+                <div class="flex items-center justify-between gap-4 text-sm">
+                  <div>
+                    <p class="text-white/50 text-xs uppercase tracking-wider mb-1">Check-in</p>
+                    <p class="text-cafe-claro font-semibold">{checkInFormatted}</p>
+                  </div>
+                  <svg
+                    class="w-5 h-5 text-red-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                  <div>
+                    <p class="text-white/50 text-xs uppercase tracking-wider mb-1">Check-out</p>
+                    <p class="text-red-400 font-semibold">{checkOutFormatted}</p>
+                  </div>
+                </div>
+              </div>
+              <a
+                href="/"
+                class="inline-flex items-center gap-2 bg-verde-oliva text-white font-semibold px-8 py-4 rounded-xl hover:bg-cafe-claro transition-all duration-300 shadow-lg"
+              >
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                  />
+                </svg>
+                <span>Corregir fechas</span>
+              </a>
+            </div>
+          ) : hasValidParams ? (
+            <div class="max-w-4xl mx-auto">
+              <div class="text-center mb-8">
+                <div class="flex items-center justify-center gap-4 mb-4">
+                  <div class="h-px w-12 bg-gradient-to-r from-transparent to-cafe-claro/60" />
+                  <span class="text-cafe-claro/80 text-xs tracking-[0.3em] uppercase font-light">
+                    Tu búsqueda
+                  </span>
+                  <div class="h-px w-12 bg-gradient-to-l from-transparent to-cafe-claro/60" />
+                </div>
+                <h1 class="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
+                  Habitaciones Disponibles
+                </h1>
+              </div>
+
+              <div class="bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20 p-6 md:p-8">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6">
+                  <div class="text-center md:text-left">
+                    <p class="text-white/60 text-xs uppercase tracking-wider mb-1">Check-in</p>
+                    <p class="text-white font-semibold text-lg">{checkInFormatted}</p>
+                  </div>
+
+                  <div class="hidden md:flex items-center justify-center">
+                    <div class="w-full h-px bg-gradient-to-r from-transparent via-cafe-claro/40 to-transparent relative">
+                      <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-verde-oliva rounded-full p-1.5">
+                        <svg
+                          class="w-4 h-4 text-white"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M17 8l4 4m0 0l-4 4m4-4H3"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="text-center md:text-left">
+                    <p class="text-white/60 text-xs uppercase tracking-wider mb-1">Check-out</p>
+                    <p class="text-white font-semibold text-lg">{checkOutFormatted}</p>
+                  </div>
+
+                  <div class="text-center md:text-right">
+                    <div class="inline-flex md:flex-col items-center md:items-end gap-2 md:gap-1">
+                      <span class="bg-cafe-claro/20 text-cafe-claro px-3 py-1 rounded-full text-sm font-medium">
+                        {availabilityData?.totalNights} {nightsText}
+                      </span>
+                      <span class="text-white/80 text-sm">
+                        {guests} {guestsText}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mt-6 pt-6 border-t border-white/10 text-center">
+                  <a
+                    href="/"
+                    class="inline-flex items-center gap-2 text-white/70 hover:text-white text-sm transition-colors"
+                  >
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                      />
+                    </svg>
+                    <span>Modificar búsqueda</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div class="max-w-2xl mx-auto text-center">
+              <div class="w-20 h-20 bg-cafe-claro/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                <svg
+                  class="w-10 h-10 text-cafe-claro"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                  />
+                </svg>
+              </div>
+              <h1 class="font-serif text-3xl md:text-4xl font-bold text-white mb-4">
+                Selecciona tus fechas
+              </h1>
+              <p class="text-white/70 text-lg mb-8 max-w-md mx-auto">
+                Para ver las habitaciones disponibles, primero debes seleccionar las fechas de tu
+                estadía.
+              </p>
+              <a
+                href="/"
+                class="inline-flex items-center gap-2 bg-verde-oliva text-white font-semibold px-8 py-4 rounded-xl hover:bg-cafe-claro transition-all duration-300 shadow-lg"
+              >
+                <span>Ir a reservar</span>
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17 8l4 4m0 0l-4 4m4-4H3"
+                  />
+                </svg>
+              </a>
+            </div>
+          )
+        }
+      </div>
+    </section>
+
+    {
+      hasValidParams && availabilityData && (
+        <section class="py-12 md:py-16 bg-beige-premium">
+          <div class="container mx-auto px-5 sm:px-6 lg:px-8">
+            {error ? (
+              <div class="max-w-2xl mx-auto text-center py-12">
+                <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg
+                    class="w-8 h-8 text-red-500"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                    />
+                  </svg>
+                </div>
+                <h2 class="font-serif text-2xl font-bold text-negro-suave mb-2">
+                  Error en la búsqueda
+                </h2>
+                <p class="text-negro-suave/70 mb-6">{error}</p>
+                <a
+                  href="/"
+                  class="inline-flex items-center gap-2 bg-verde-oliva text-white font-semibold px-6 py-3 rounded-lg hover:bg-negro-suave transition-colors"
+                >
+                  Volver a intentar
+                </a>
+              </div>
+            ) : availabilityData.rooms.length === 0 ? (
+              <div class="max-w-2xl mx-auto text-center py-12">
+                <div class="w-20 h-20 bg-cafe-claro/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <svg
+                    class="w-10 h-10 text-cafe-claro"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="1.5"
+                      d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                </div>
+                <h2 class="font-serif text-2xl md:text-3xl font-bold text-negro-suave mb-4">
+                  Sin disponibilidad
+                </h2>
+                <p class="text-negro-suave/70 text-lg mb-8 max-w-md mx-auto">
+                  Lo sentimos, no hay habitaciones disponibles para las fechas y número de huéspedes
+                  seleccionados.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                  <a
+                    href="/"
+                    class="inline-flex items-center justify-center gap-2 bg-verde-oliva text-white font-semibold px-6 py-3 rounded-lg hover:bg-negro-suave transition-colors"
+                  >
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                      />
+                    </svg>
+                    <span>Probar otras fechas</span>
+                  </a>
+                  <a
+                    href="/contacto"
+                    class="inline-flex items-center justify-center gap-2 border-2 border-verde-oliva text-verde-oliva font-semibold px-6 py-3 rounded-lg hover:bg-verde-oliva hover:text-white transition-all"
+                  >
+                    <span>Contactar al hotel</span>
+                  </a>
+                </div>
+              </div>
+            ) : (
+              <div class="max-w-6xl mx-auto">
+                <div class="flex items-center justify-between mb-8">
+                  <div>
+                    <h2 class="font-serif text-2xl md:text-3xl font-bold text-negro-suave">
+                      {availabilityData.rooms.length}{' '}
+                      {availabilityData.rooms.length === 1
+                        ? 'habitación disponible'
+                        : 'habitaciones disponibles'}
+                    </h2>
+                    <p class="text-negro-suave/70 mt-1">
+                      Precio por {availabilityData.totalNights} {nightsText} · Desayuno incluido
+                    </p>
+                  </div>
+                </div>
+
+                {/* Mensaje informativo sobre capacidad - solo si excede el mínimo por habitación (2 personas) */}
+                {guests > 2 && (
+                  <div class="bg-verde-oliva/10 border border-verde-oliva/20 rounded-xl p-4 mb-8 flex items-start gap-3">
+                    <svg
+                      class="w-5 h-5 text-verde-oliva flex-shrink-0 mt-0.5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
+                    </svg>
+                    <p class="text-sm text-verde-oliva">
+                      <strong>
+                        Para {guests} {guestsText}:
+                      </strong>{' '}
+                      Revisa la capacidad máxima de cada habitación. Algunas permiten hasta 4
+                      personas, otras hasta 2.
+                    </p>
+                  </div>
+                )}
+
+                <div class="space-y-6">
+                  {availabilityData.rooms.map((room) => (
+                    <article class="room-availability-card bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border border-negro-suave/5">
+                      <div class="grid grid-cols-1 lg:grid-cols-12 gap-0">
+                        <div class="lg:col-span-4 relative h-64 lg:h-auto">
+                          <img
+                            src={room.images[0]}
+                            alt={room.title}
+                            class="w-full h-full object-cover"
+                            loading="lazy"
+                          />
+                          {/* Badge de capacidad - siempre visible */}
+                          <div class="absolute top-4 right-4 bg-negro-suave/80 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1.5 rounded-full flex items-center gap-1.5">
+                            <svg
+                              class="w-3.5 h-3.5"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                              />
+                            </svg>
+                            Máx. {room.maxGuests} {room.maxGuests === 1 ? 'persona' : 'personas'}
+                          </div>
+                          {room.availableCount <= 3 && (
+                            <div class="absolute top-4 left-4 bg-red-500/90 text-white text-xs font-semibold px-3 py-1.5 rounded-full">
+                              ¡Solo {room.availableCount} disponibles!
+                            </div>
+                          )}
+                        </div>
+
+                        <div class="lg:col-span-8 p-6 lg:p-8 flex flex-col">
+                          <div class="flex-1">
+                            <div class="flex flex-wrap items-start justify-between gap-4 mb-4">
+                              <div>
+                                <h3 class="font-serif text-2xl font-bold text-negro-suave mb-1">
+                                  {room.title}
+                                </h3>
+                                <div class="flex flex-wrap items-center gap-3 text-sm text-negro-suave/60">
+                                  <span class="flex items-center gap-1">
+                                    <svg
+                                      class="w-4 h-4"
+                                      fill="none"
+                                      stroke="currentColor"
+                                      viewBox="0 0 24 24"
+                                    >
+                                      <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"
+                                      />
+                                    </svg>
+                                    {room.size}
+                                  </span>
+                                  <span class="flex items-center gap-1">
+                                    <svg
+                                      class="w-4 h-4"
+                                      fill="none"
+                                      stroke="currentColor"
+                                      viewBox="0 0 24 24"
+                                    >
+                                      <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"
+                                      />
+                                    </svg>
+                                    Hasta {room.maxGuests} personas
+                                  </span>
+                                  <span class="flex items-center gap-1">
+                                    <svg
+                                      class="w-4 h-4"
+                                      fill="none"
+                                      stroke="currentColor"
+                                      viewBox="0 0 24 24"
+                                    >
+                                      <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+                                      />
+                                    </svg>
+                                    {room.bedType}
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+
+                            <p class="text-negro-suave/70 mb-4 line-clamp-2">{room.description}</p>
+
+                            <div class="flex flex-wrap gap-2 mb-6">
+                              {room.features.slice(0, 5).map((feature) => (
+                                <span class="inline-flex items-center gap-1 text-xs bg-verde-oliva/10 text-verde-oliva px-3 py-1.5 rounded-full">
+                                  <svg
+                                    class="w-3.5 h-3.5"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <path
+                                      stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      stroke-width="2"
+                                      d="M5 13l4 4L19 7"
+                                    />
+                                  </svg>
+                                  {feature}
+                                </span>
+                              ))}
+                              {room.features.length > 5 && (
+                                <span class="inline-flex items-center text-xs text-verde-oliva font-medium px-2">
+                                  +{room.features.length - 5} más
+                                </span>
+                              )}
+                            </div>
+                          </div>
+
+                          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-4 border-t border-negro-suave/10">
+                            <div>
+                              <p class="text-negro-suave/60 text-sm">
+                                Total por {availabilityData.totalNights} {nightsText}
+                              </p>
+                              <p class="text-3xl font-bold text-negro-suave">
+                                {formatTotalPrice(room.price, availabilityData.totalNights)}
+                              </p>
+                              <p class="text-verde-oliva text-sm font-medium">
+                                {room.priceFormatted} / noche
+                              </p>
+                            </div>
+                            <button
+                              type="button"
+                              class="select-room-btn w-full sm:w-auto flex items-center justify-center gap-2 bg-verde-oliva text-white font-semibold px-8 py-4 rounded-xl hover:bg-negro-suave transition-all duration-300 shadow-lg hover:shadow-xl"
+                              data-room-id={room.id}
+                              data-room-title={room.title}
+                              data-room-price={room.price}
+                              data-total-nights={availabilityData.totalNights}
+                              data-check-in={checkIn}
+                              data-check-out={checkOut}
+                              data-guests={guests}
+                            >
+                              <span>Seleccionar</span>
+                              <svg
+                                class="w-5 h-5"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M17 8l4 4m0 0l-4 4m4-4H3"
+                                />
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+
+                <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div class="bg-white p-6 rounded-xl border border-negro-suave/10 text-center">
+                    <div class="w-12 h-12 bg-verde-oliva/10 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <svg
+                        class="w-6 h-6 text-verde-oliva"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                        />
+                      </svg>
+                    </div>
+                    <h3 class="font-semibold text-negro-suave mb-1">Mejor Precio Garantizado</h3>
+                    <p class="text-sm text-negro-suave/60">
+                      Si encuentras una tarifa más baja, la igualamos
+                    </p>
+                  </div>
+
+                  <div class="bg-white p-6 rounded-xl border border-negro-suave/10 text-center">
+                    <div class="w-12 h-12 bg-verde-oliva/10 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <svg
+                        class="w-6 h-6 text-verde-oliva"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>
+                    </div>
+                    <h3 class="font-semibold text-negro-suave mb-1">Cancelación Flexible</h3>
+                    <p class="text-sm text-negro-suave/60">Cancela gratis hasta 48 horas antes</p>
+                  </div>
+
+                  <div class="bg-white p-6 rounded-xl border border-negro-suave/10 text-center">
+                    <div class="w-12 h-12 bg-verde-oliva/10 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <svg
+                        class="w-6 h-6 text-verde-oliva"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                        />
+                      </svg>
+                    </div>
+                    <h3 class="font-semibold text-negro-suave mb-1">Confirmación Inmediata</h3>
+                    <p class="text-sm text-negro-suave/60">
+                      Recibe tu confirmación al instante por email
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        </section>
+      )
+    }
+
+    <section class="py-12 bg-white">
+      <div class="container mx-auto px-5 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto text-center">
+          <h2 class="font-serif text-2xl md:text-3xl font-bold text-negro-suave mb-4">
+            ¿Necesitas ayuda con tu reserva?
+          </h2>
+          <p class="text-negro-suave/70 mb-8">Nuestro equipo está disponible 24/7 para asistirte</p>
+          <div class="flex flex-col sm:flex-row justify-center gap-4">
+            <a
+              href="https://wa.me/573122094960"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center justify-center gap-2 bg-verde-oliva text-white font-semibold px-6 py-4 rounded-xl hover:bg-negro-suave transition-all duration-300 shadow-lg"
+            >
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"
+                ></path>
+              </svg>
+              <span>WhatsApp</span>
+            </a>
+            <a
+              href="/contacto"
+              class="inline-flex items-center justify-center gap-2 border-2 border-verde-oliva text-verde-oliva font-semibold px-6 py-4 rounded-xl hover:bg-verde-oliva hover:text-white transition-all duration-300"
+            >
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                ></path>
+              </svg>
+              <span>Contacto</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<script>
+  // Manejar selección de habitación
+  document.addEventListener('astro:page-load', () => {
+    const selectButtons = document.querySelectorAll('.select-room-btn');
+
+    selectButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const roomId = button.getAttribute('data-room-id');
+        const roomTitle = button.getAttribute('data-room-title');
+        const roomPrice = button.getAttribute('data-room-price');
+        const totalNights = button.getAttribute('data-total-nights');
+        const checkIn = button.getAttribute('data-check-in');
+        const checkOut = button.getAttribute('data-check-out');
+        const guests = button.getAttribute('data-guests');
+
+        // Guardar datos de la reserva seleccionada
+        const reservationData = {
+          roomId,
+          roomTitle,
+          roomPrice: parseInt(roomPrice || '0', 10),
+          totalNights: parseInt(totalNights || '0', 10),
+          checkIn,
+          checkOut,
+          guests: parseInt(guests || '1', 10),
+          totalPrice: parseInt(roomPrice || '0', 10) * parseInt(totalNights || '0', 10),
+        };
+
+        console.log('Habitación seleccionada:', reservationData);
+
+        // TODO: Redirigir a la página de checkout/confirmación
+        // Por ahora mostrar un alert de confirmación
+        alert(
+          `Has seleccionado: ${roomTitle}\n\nTotal: $${reservationData.totalPrice.toLocaleString('es-CO')} COP\n\n(Próximamente: Página de checkout)`
+        );
+      });
+    });
+  });
+</script>
+
+<style>
+  .room-availability-card {
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+
+  @media (hover: hover) {
+    .room-availability-card:hover {
+      transform: translateY(-2px);
+    }
+  }
+
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>

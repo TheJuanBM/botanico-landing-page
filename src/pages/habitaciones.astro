@@ -1,0 +1,207 @@
+---
+import Footer from '../components/Footer.astro';
+import Hero from '../components/Hero.astro';
+import Navbar from '../components/Navbar.astro';
+import RoomCard from '../components/RoomCard.astro';
+import Layout from '../layouts/Layout.astro';
+import { rooms } from '../services/rooms';
+---
+
+<Layout
+  title="Habitaciones - Hotel Botánico | Alojamiento Premium en Caucasia"
+  description="Descubre nuestras elegantes habitaciones y suites. Desde habitaciones superiores hasta suites premium con jacuzzi. Reserva tu habitación en el mejor hotel de Caucasia."
+  keywords="habitaciones hotel Caucasia, suites premium Caucasia, alojamiento lujo Bajo Cauca, habitaciones hotel 4 estrellas"
+>
+  <Navbar />
+  <main id="main-content">
+    <Hero
+      backgroundImage="https://scontent.cdninstagram.com/v/t39.30808-6/488154980_122147255624386366_7124607771213799024_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=107&ig_cache_key=MzYwMjIyMjUyMDk3NjAzMTk5MQ%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjE2Mzl4MjA0OC5zZHIuQzMifQ%3D%3D&_nc_ohc=TIwe5TUdKAEQ7kNvwGCzNqM&_nc_oc=AdmGDC7BSRnqGNUQvuS-HzlaqjiKEFVtCyrOxwk4GB-0y8apufK0-vaXoFPAhOqREOY&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&_nc_gid=NwLx-GJIZkADRd8TBzIBDw&oh=00_AfmgsSlRgwAti4WfvzY7T4f0AH2ATN1r2f-DOA7Sj8Ka6w&oe=693901C8"
+      title="Nuestras Habitaciones"
+      subtitle="Espacios diseñados para tu comodidad, donde cada detalle ha sido pensado para tu bienestar"
+      height="large"
+      showCTA={false}
+    />
+
+    <!-- Intro Section -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto text-center">
+          <p class="text-lg text-gray-600 leading-relaxed">
+            Cada una de nuestras habitaciones ha sido cuidadosamente diseñada para ofrecer la máxima
+            comodidad y elegancia. Desde nuestra habitación Superior hasta la exclusiva Suite
+            Premium, encontrarás el espacio perfecto para tu estadía.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Rooms Grid -->
+    <section class="py-16 bg-beige-premium">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+          {rooms.map((room) => <RoomCard {...room} />)}
+        </div>
+      </div>
+    </section>
+
+    <!-- Amenities Included -->
+    <section class="py-20 bg-white">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="font-serif text-3xl md:text-4xl font-bold text-negro-suave mb-8 text-center">
+            Todas nuestras habitaciones incluyen
+          </h2>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="flex items-start gap-3">
+              <svg
+                class="w-6 h-6 text-verde-oliva flex-shrink-0 mt-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"></path>
+              </svg>
+              <div>
+                <h3 class="font-semibold text-negro-suave mb-1">Ropa de cama premium</h3>
+                <p class="text-gray-600 text-sm">
+                  Sábanas de algodón egipcio y almohadas de alta calidad
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3">
+              <svg
+                class="w-6 h-6 text-verde-oliva flex-shrink-0 mt-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"></path>
+              </svg>
+              <div>
+                <h3 class="font-semibold text-negro-suave mb-1">Amenities de baño</h3>
+                <p class="text-gray-600 text-sm">Productos de higiene personal de marcas premium</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3">
+              <svg
+                class="w-6 h-6 text-verde-oliva flex-shrink-0 mt-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"></path>
+              </svg>
+              <div>
+                <h3 class="font-semibold text-negro-suave mb-1">Servicio de limpieza diario</h3>
+                <p class="text-gray-600 text-sm">Housekeeping profesional cada día</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3">
+              <svg
+                class="w-6 h-6 text-verde-oliva flex-shrink-0 mt-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"></path>
+              </svg>
+              <div>
+                <h3 class="font-semibold text-negro-suave mb-1">Servicio a la habitación</h3>
+                <p class="text-gray-600 text-sm">Room service disponible 24/7</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3">
+              <svg
+                class="w-6 h-6 text-verde-oliva flex-shrink-0 mt-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"></path>
+              </svg>
+              <div>
+                <h3 class="font-semibold text-negro-suave mb-1">Desayuno buffet</h3>
+                <p class="text-gray-600 text-sm">Incluido en todas las tarifas</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3">
+              <svg
+                class="w-6 h-6 text-verde-oliva flex-shrink-0 mt-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"></path>
+              </svg>
+              <div>
+                <h3 class="font-semibold text-negro-suave mb-1">
+                  Acceso a todas las instalaciones
+                </h3>
+                <p class="text-gray-600 text-sm">Piscina, MITO Rooftop y más</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-verde-oliva text-white">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="font-serif text-3xl md:text-4xl font-bold mb-6">
+          ¿Encontraste tu habitación ideal?
+        </h2>
+        <p class="text-beige-premium text-lg mb-8 max-w-2xl mx-auto">
+          Reserva ahora con nuestras mejores tarifas garantizadas
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a
+            href="https://hotels.cloudbeds.com/es/reservation/QZE4hg?currency=cop"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-block font-medium rounded-full transition-all duration-300 text-center bg-white text-negro-suave hover:bg-beige-premium px-10 py-4 text-lg"
+          >
+            Reservar Ahora
+          </a>
+          <a
+            href="/contacto"
+            class="inline-block font-medium rounded-full transition-all duration-300 text-center bg-verde-oliva text-white hover:bg-negro-suave px-10 py-4 text-lg border-2 border-white"
+          >
+            Consultar Disponibilidad
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>

@@ -1,0 +1,321 @@
+---
+import { ViewTransitions } from 'astro:transitions';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  keywords?: string;
+}
+
+const {
+  title,
+  description,
+  image = '/og-image.jpg',
+  keywords = 'hotel en Caucasia, hotel 4 estrellas en Caucasia, hotel premium en el Bajo Cauca, alojamiento Caucasia, rooftop MITO Caucasia',
+} = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- DNS Prefetch para recursos externos -->
+    <link rel="dns-prefetch" href="https://scontent-bog2-1.cdninstagram.com" />
+    <link rel="dns-prefetch" href="https://scontent-bog2-2.cdninstagram.com" />
+    <link rel="dns-prefetch" href="https://scontent.cdninstagram.com" />
+
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, Astro.site)} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={new URL(image, Astro.site)} />
+
+    <!-- Google Fonts - Optimizado para rendimiento -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600&display=swap"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+      media="print"
+      onload="this.removeAttribute('media')"
+    />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
+
+    <!-- JSON-LD Schema for Hotel -->
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Hotel',
+        name: 'Hotel Botánico',
+        description: 'Único hotel 4 estrellas en Caucasia, Bajo Cauca, Antioquia',
+        image: new URL(image, Astro.site).toString(),
+        starRating: {
+          '@type': 'Rating',
+          ratingValue: '4',
+        },
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: 'Caucasia',
+          addressRegion: 'Antioquia',
+          addressCountry: 'Colombia',
+        },
+        telephone: '+57 312 209 4960',
+        url: Astro.site?.toString(),
+        priceRange: '$$$$',
+        amenityFeature: [
+          {
+            '@type': 'LocationFeatureSpecification',
+            name: 'MITO Rooftop',
+            value: true,
+          },
+        ],
+      })}
+    />
+
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- View Transitions para navegación fluida -->
+    <ViewTransitions />
+
+    <!-- Slot para contenido adicional del head (preloads, etc) -->
+    <slot name="head" />
+  </head>
+  <body class="font-sans text-negro-suave bg-white">
+    <!-- Skip to content link for accessibility -->
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-verde-oliva focus:text-white focus:rounded-lg focus:font-semibold focus:shadow-lg"
+    >
+      Saltar al contenido principal
+    </a>
+    <div id="page-content">
+      <slot />
+    </div>
+    <style is:global>
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        overflow-x: hidden;
+      }
+
+      html.lenis {
+        height: auto;
+      }
+
+      .lenis.lenis-smooth {
+        scroll-behavior: auto !important;
+      }
+
+      .lenis.lenis-smooth [data-lenis-prevent] {
+        overscroll-behavior: contain;
+      }
+
+      .lenis.lenis-stopped {
+        overflow: hidden;
+      }
+
+      .lenis.lenis-scrolling iframe {
+        pointer-events: none;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      /* Scrollbar moderna y elegante */
+      ::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: linear-gradient(180deg, #ebe2db 0%, #f5f0eb 100%);
+        border-radius: 10px;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: linear-gradient(180deg, #615a40 0%, #4a4530 100%);
+        border-radius: 10px;
+        border: 2px solid #ebe2db;
+        transition: all 0.3s ease;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(180deg, #7a7252 0%, #615a40 100%);
+        border-color: #ddd4cb;
+      }
+
+      ::-webkit-scrollbar-thumb:active {
+        background: linear-gradient(180deg, #4a4530 0%, #3a3525 100%);
+      }
+
+      ::-webkit-scrollbar-corner {
+        background: #ebe2db;
+      }
+
+      /* Firefox */
+      * {
+        scrollbar-width: thin;
+        scrollbar-color: #615a40 #ebe2db;
+      }
+
+      /* Scrollbar para contenedores específicos con overflow */
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        border-width: 1px;
+      }
+
+      /* Skip to content - Screen reader only until focused */
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border-width: 0;
+      }
+
+      .focus\:not-sr-only:focus {
+        position: static;
+        width: auto;
+        height: auto;
+        padding: inherit;
+        margin: inherit;
+        overflow: visible;
+        clip: auto;
+        white-space: normal;
+      }
+
+      /* Focus visible improvements */
+      *:focus-visible {
+        outline: 2px solid #615a40;
+        outline-offset: 2px;
+        border-radius: 4px;
+      }
+
+      button:focus-visible,
+      a:focus-visible {
+        outline: 2px solid #615a40;
+        outline-offset: 2px;
+      }
+
+      /* Estilos del calendario HeroUI - movidos aquí para evitar CSS inline repetido */
+      [data-slot='cell'] button {
+        color: #2d2d2d !important;
+        font-weight: 500;
+      }
+      [data-slot='cell'] button[data-selected='true'],
+      [data-slot='cell'] button[data-selection-start='true'],
+      [data-slot='cell'] button[data-selection-end='true'] {
+        background-color: #5c6b4a !important;
+        color: white !important;
+        font-weight: 600;
+      }
+      [data-slot='cell'] button[data-selection-start='true'] {
+        border-radius: 9999px 0 0 9999px !important;
+      }
+      [data-slot='cell'] button[data-selection-end='true'] {
+        border-radius: 0 9999px 9999px 0 !important;
+      }
+      [data-slot='cell']
+        button[data-range-selection='true']:not([data-selection-start='true']):not(
+          [data-selection-end='true']
+        ) {
+        background-color: #5c6b4a !important;
+        color: white !important;
+        border-radius: 0 !important;
+        opacity: 0.7;
+      }
+      [data-slot='cell'] button[data-today='true'],
+      [data-slot='cell-button'][data-today='true'],
+      button[data-today='true'],
+      td[data-today='true'] button,
+      [data-today='true'] {
+        background-color: #5c6b4a !important;
+        color: white !important;
+        font-weight: 700 !important;
+        border-radius: 50% !important;
+      }
+      [data-slot='cell'] button[data-today='true'][data-selected='true'],
+      [data-slot='cell'] button[data-today='true'][data-range-selection='true'] {
+        background-color: #5c6b4a !important;
+        color: white !important;
+      }
+      [data-slot='cell']
+        button:hover:not([data-selected='true']):not([data-range-selection='true']) {
+        background-color: rgba(92, 107, 74, 0.15) !important;
+      }
+      [data-slot='cell'] button[data-disabled='true'] {
+        color: #d1d5db !important;
+        opacity: 0.5;
+      }
+      [data-slot='cell'] button[data-outside-month='true'] {
+        color: #9ca3af !important;
+      }
+      [data-slot='title'] {
+        color: #2d2d2d !important;
+        font-weight: 600 !important;
+      }
+      [data-slot='grid-header-cell'] {
+        color: #5c6b4a !important;
+        font-weight: 600 !important;
+      }
+      [data-slot='prev-button'],
+      [data-slot='next-button'] {
+        color: #5c6b4a !important;
+      }
+      [data-slot='prev-button']:hover,
+      [data-slot='next-button']:hover {
+        background-color: rgba(92, 107, 74, 0.1) !important;
+      }
+    </style>
+    <script>
+      import '../scripts/lenis';
+    </script>
+  </body>
+</html>
