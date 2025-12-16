@@ -1,4 +1,4 @@
-const { heroui } = require('@heroui/react');
+const { heroui } = require('@heroui/theme');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -15,12 +15,11 @@ module.exports = {
         'negro-suave': '#111111',
       },
       fontFamily: {
-        'serif': ['Playfair Display', 'serif'],
-        'sans': ['Inter', 'sans-serif'],
+        serif: ['Playfair Display', 'serif'],
+        sans: ['Inter', 'sans-serif'],
       },
     },
   },
   darkMode: 'class',
   plugins: [heroui()],
 };
-

@@ -24,24 +24,26 @@ export default defineConfig({
     build: {
       cssMinify: 'lightningcss',
       target: 'esnext',
+      chunkSizeWarningLimit: 600,
       modulePreload: {
         polyfill: false,
       },
       rollupOptions: {
         output: {
           manualChunks: {
-            heroui: ['@heroui/react', '@heroui/date-picker'],
             'react-vendor': ['react', 'react-dom'],
+            'heroui-date': ['@heroui/date-picker', '@heroui/system', '@internationalized/date'],
+            'react-aria': ['@react-aria/i18n', '@react-aria/live-announcer'],
             framer: ['framer-motion'],
           },
         },
       },
     },
     ssr: {
-      noExternal: ['@heroui/react', '@heroui/date-picker'],
+      noExternal: ['@heroui/system', '@heroui/date-picker'],
     },
     optimizeDeps: {
-      include: ['react', 'react-dom', '@heroui/react'],
+      include: ['react', 'react-dom', '@heroui/system', '@heroui/date-picker'],
     },
   },
 });

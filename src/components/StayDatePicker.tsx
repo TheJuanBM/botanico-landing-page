@@ -1,12 +1,13 @@
-import { DateRangePicker } from '@heroui/date-picker';
-import { HeroUIProvider } from '@heroui/react';
-import type { CalendarDate } from '@internationalized/date';
+import { DateRangePicker, type DateRangePickerProps } from '@heroui/date-picker';
+import { HeroUIProvider } from '@heroui/system';
 import { getLocalTimeZone, today } from '@internationalized/date';
 import { I18nProvider } from '@react-aria/i18n';
-import type { RangeValue } from '@react-types/shared';
 import { useEffect, useState } from 'react';
 
-function formatDate(date: CalendarDate | undefined): string {
+type DateRangeValue = DateRangePickerProps['value'];
+type DateValueType = NonNullable<DateRangeValue>['start'];
+
+function formatDate(date: DateValueType | undefined): string {
   if (!date) return '';
 
   const day = date.day.toString().padStart(2, '0');
@@ -16,7 +17,7 @@ function formatDate(date: CalendarDate | undefined): string {
   return `${day}/${month}/${year}`;
 }
 
-function calculateNights(start: CalendarDate | undefined, end: CalendarDate | undefined): number {
+function calculateNights(start: DateValueType | undefined, end: DateValueType | undefined): number {
   if (!start || !end) return 0;
 
   const startDate = new Date(start.year, start.month - 1, start.day);
@@ -41,7 +42,7 @@ function useIsMobile(breakpoint = 595) {
 }
 
 export default function StayDatePicker() {
-  const [value, setValue] = useState<RangeValue<CalendarDate> | null>(null);
+  const [value, setValue] = useState<DateRangeValue>(null);
   const [isOpen, setIsOpen] = useState(false);
   const isMobile = useIsMobile();
 
