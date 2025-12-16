@@ -2,11 +2,15 @@ import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import react from '@astrojs/react';
 import vercel from '@astrojs/vercel/serverless';
+import node from '@astrojs/node';
+
+// Usar adaptador de Node.js para preview, Vercel para producción
+const isPreview = process.env.ASTRO_PREVIEW === 'true';
 
 // https://astro.build/config
 export default defineConfig({
   output: 'server',
-  adapter: vercel(),
+  adapter: isPreview ? node({ mode: 'standalone' }) : vercel(),
   integrations: [tailwind(), react()],
   site: 'https://hotelbotanico.com',
   compressHTML: true,
