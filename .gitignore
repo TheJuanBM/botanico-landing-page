@@ -30,3 +30,4 @@ pnpm-debug.log*
 .yarn/
 .pnp.*
 yarn-error.log
+.vercel
