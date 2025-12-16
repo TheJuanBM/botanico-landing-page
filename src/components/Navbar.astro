@@ -1,4 +1,9 @@
 ---
+import { Picture } from 'astro:assets';
+
+import logoBotanicoDark from '../assets/botanico/logos/logo-botanico-dark.svg';
+import logoBotanico from '../assets/botanico/logos/logo-botanico.svg';
+
 interface Props {
   logoOnly?: boolean;
 }
@@ -11,15 +16,15 @@ const currentPath = Astro.url.pathname;
   <div class="container mx-auto px-4 sm:px-6 lg:px-8">
     <div id="navbar-content" class="flex justify-between items-center h-20">
       <a href="/" class="flex items-center">
-        <img
-          src="/logo-botanico.svg"
+        <Picture
+          src={logoBotanico}
           alt="Hotel Botánico"
           class="h-12 w-auto text-white transition-opacity duration-300"
           id="logo-light"
           fetchpriority="high"
         />
-        <img
-          src="/logo-botanico-dark.svg"
+        <Picture
+          src={logoBotanicoDark}
           alt="Hotel Botánico"
           class="h-12 w-auto hidden transition-opacity duration-300"
           id="logo-dark"
@@ -102,12 +107,7 @@ const currentPath = Astro.url.pathname;
         <div class="flex flex-col h-full">
           <div class="menu-header flex items-center justify-between px-4 sm:px-6 h-20 border-b border-white/10">
             <a href="/" class="flex items-center">
-              <img
-                src="/logo-botanico.svg"
-                alt="Hotel Botánico"
-                class="h-12 w-auto"
-                loading="lazy"
-              />
+              <Picture src={logoBotanico} alt="Hotel Botánico" class="h-12 w-auto" loading="lazy" />
             </a>
             <button
               id="mobile-menu-close"

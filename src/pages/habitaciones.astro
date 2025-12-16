@@ -1,10 +1,15 @@
 ---
+import { getImage } from 'astro:assets';
 import Footer from '../components/Footer.astro';
 import Hero from '../components/Hero.astro';
 import Navbar from '../components/Navbar.astro';
 import RoomCard from '../components/RoomCard.astro';
 import Layout from '../layouts/Layout.astro';
 import { rooms } from '../services/rooms';
+
+import heroImg2 from '../assets/botanico/images/hero-2.webp';
+
+const optimizedHero = await getImage({ src: heroImg2, width: 1920, format: 'webp', quality: 85 });
 ---
 
 <Layout
@@ -15,7 +20,7 @@ import { rooms } from '../services/rooms';
   <Navbar />
   <main id="main-content">
     <Hero
-      backgroundImage="https://scontent.cdninstagram.com/v/t39.30808-6/488154980_122147255624386366_7124607771213799024_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=107&ig_cache_key=MzYwMjIyMjUyMDk3NjAzMTk5MQ%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjE2Mzl4MjA0OC5zZHIuQzMifQ%3D%3D&_nc_ohc=TIwe5TUdKAEQ7kNvwGCzNqM&_nc_oc=AdmGDC7BSRnqGNUQvuS-HzlaqjiKEFVtCyrOxwk4GB-0y8apufK0-vaXoFPAhOqREOY&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&_nc_gid=NwLx-GJIZkADRd8TBzIBDw&oh=00_AfmgsSlRgwAti4WfvzY7T4f0AH2ATN1r2f-DOA7Sj8Ka6w&oe=693901C8"
+      backgroundImage={optimizedHero.src}
       title="Nuestras Habitaciones"
       subtitle="Espacios diseñados para tu comodidad, donde cada detalle ha sido pensado para tu bienestar"
       height="large"

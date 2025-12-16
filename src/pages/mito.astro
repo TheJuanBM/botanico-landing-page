@@ -2,6 +2,7 @@
 import Footer from '../components/Footer.astro';
 import Navbar from '../components/Navbar.astro';
 import Layout from '../layouts/Layout.astro';
+import MITOImg from '../assets/mito/images/mito.webp';
 ---
 
 <Layout
@@ -11,12 +12,7 @@ import Layout from '../layouts/Layout.astro';
 >
   <!-- Preload de imagen hero crítica para mejorar LCP -->
   <Fragment slot="head">
-    <link
-      rel="preload"
-      as="image"
-      href="https://scontent.cdninstagram.com/v/t39.30808-6/490681095_122148535676386366_614500551221153921_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=105&ig_cache_key=MzYyNDYwMDAzODYxNTE4MDU2MQ%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjE2Mzl4MjA0OC5zZHIuQzMifQ%3D%3D&_nc_ohc=Izan2UpwRzwQ7kNvwE_wf_l&_nc_oc=AdkwBzitfqDYY2mAmI_y5_cOwsBWDu79jWaBAevhAt3MYyAG7n8mJx1jPZhHvMIQ5NI&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&_nc_gid=_U-IaI_3Z03GDciLduDZuw&oh=00_AfllebQW8pFIHzNSggEMZGV9TzYQW_xAMrobjJYW5X7R3Q&oe=6937DBD6"
-      fetchpriority="high"
-    />
+    <link rel="preload" as="image" href={MITOImg.src} fetchpriority="high" />
   </Fragment>
 
   <Navbar />
@@ -39,7 +35,7 @@ import Layout from '../layouts/Layout.astro';
         >
         </div>
         <img
-          src="https://scontent.cdninstagram.com/v/t39.30808-6/490681095_122148535676386366_614500551221153921_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=105&ig_cache_key=MzYyNDYwMDAzODYxNTE4MDU2MQ%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjE2Mzl4MjA0OC5zZHIuQzMifQ%3D%3D&_nc_ohc=Izan2UpwRzwQ7kNvwE_wf_l&_nc_oc=AdkwBzitfqDYY2mAmI_y5_cOwsBWDu79jWaBAevhAt3MYyAG7n8mJx1jPZhHvMIQ5NI&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&_nc_gid=_U-IaI_3Z03GDciLduDZuw&oh=00_AfllebQW8pFIHzNSggEMZGV9TzYQW_xAMrobjJYW5X7R3Q&oe=6937DBD6"
+          src={MITOImg.src}
           alt="MITO Rooftop - Vista nocturna"
           class="w-full h-full object-cover scale-110 hero-parallax"
           loading="eager"
@@ -422,7 +418,7 @@ import Layout from '../layouts/Layout.astro';
           <div class="relative">
             <div class="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl">
               <img
-                src="/mito.webp"
+                src={MITOImg.src}
                 alt="Experiencia MITO Rooftop"
                 class="w-full h-full object-cover"
                 loading="lazy"

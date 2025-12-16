@@ -1,4 +1,5 @@
 ---
+import { getImage } from 'astro:assets';
 import Footer from '../components/Footer.astro';
 import GuestSelector from '../components/GuestSelector';
 import Navbar from '../components/Navbar.astro';
@@ -6,6 +7,16 @@ import RoomCard from '../components/RoomCard.astro';
 import StayDatePicker from '../components/StayDatePicker';
 import Layout from '../layouts/Layout.astro';
 import { rooms } from '../services/rooms';
+
+import heroImg1 from '../assets/botanico/images/hero-1.webp';
+import heroImg2 from '../assets/botanico/images/hero-2.webp';
+import heroImg3 from '../assets/botanico/images/hero-3.webp';
+import heroImg4 from '../assets/botanico/images/hero-4.webp';
+
+const optimizedHero1 = await getImage({ src: heroImg1, width: 1920, format: 'webp', quality: 80 });
+const optimizedHero2 = await getImage({ src: heroImg2, width: 1920, format: 'webp', quality: 85 });
+const optimizedHero3 = await getImage({ src: heroImg3, width: 1920, format: 'webp', quality: 80 });
+const optimizedHero4 = await getImage({ src: heroImg4, width: 1920, format: 'webp', quality: 80 });
 ---
 
 <Layout
@@ -14,12 +25,7 @@ import { rooms } from '../services/rooms';
 >
   <!-- Preload solo de la primera imagen del carrusel (LCP) -->
   <Fragment slot="head">
-    <link
-      rel="preload"
-      as="image"
-      href="https://scontent.cdninstagram.com/v/t39.30808-6/487480717_122147258090386366_6292999101889151232_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=109&ig_cache_key=MzYwNzk3NTQwMzAzMTEwNjg5OA%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjIwNDh4MTYzOS5zZHIuQzMifQ%3D%3D&_nc_ohc=VxGgsonX8SUQ7kNvwHOLp3U&_nc_oc=Adm3TOtpixM54nZDPs4gUxfwmdGKua_EWrpWXBdoM-7SzWQBdXWzstNOO_9dAksFwlA&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&_nc_gid=NwLx-GJIZkADRd8TBzIBDw&oh=00_Afmm_6Cpk7mZB5msGmB4FKYDq39JV0Gbydu8OQBlT5eMRw&oe=6939213E"
-      fetchpriority="high"
-    />
+    <link rel="preload" as="image" href={optimizedHero2.src} fetchpriority="high" />
   </Fragment>
 
   <Navbar />
@@ -36,23 +42,38 @@ import { rooms } from '../services/rooms';
         <!-- Carrusel automático -->
         <div class="hero-carousel absolute inset-0">
           <img
-            src="https://scontent.cdninstagram.com/v/t39.30808-6/487480717_122147258090386366_6292999101889151232_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=109&ig_cache_key=MzYwNzk3NTQwMzAzMTEwNjg5OA%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjIwNDh4MTYzOS5zZHIuQzMifQ%3D%3D&_nc_ohc=VxGgsonX8SUQ7kNvwHOLp3U&_nc_oc=Adm3TOtpixM54nZDPs4gUxfwmdGKua_EWrpWXBdoM-7SzWQBdXWzstNOO_9dAksFwlA&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&_nc_gid=NwLx-GJIZkADRd8TBzIBDw&oh=00_Afmm_6Cpk7mZB5msGmB4FKYDq39JV0Gbydu8OQBlT5eMRw&oe=6939213E"
-            alt="Hotel Botánico - Interior"
+            src={optimizedHero1.src}
+            alt="Hotel Botánico - Piscina"
+            width={optimizedHero1.attributes.width}
+            height={optimizedHero1.attributes.height}
             class="carousel-slide w-full h-full object-cover absolute inset-0"
             loading="lazy"
             decoding="async"
           />
           <img
-            src="https://scontent.cdninstagram.com/v/t39.30808-6/502567688_122156490464386366_7873594920150156204_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=108&ig_cache_key=MzY3NTg3ODI4ODgzNDIxMjA1Mw%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjEwODB4MTM1MC5zZHIuQzMifQ%3D%3D&_nc_ohc=Xyd9qAnTeMoQ7kNvwEZOnNH&_nc_oc=AdlDjZ6YKKGS5pUXq82ISrfONte2c3l0JG4Sw8rJ9xRE67nkV5cJgkLZJ163J-NIQkE&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&_nc_gid=_GJSg7rHIEl-SdPgW1U1Sg&oh=00_AfkFNg6z6PAqQklj8nmcWMPRa7vyqbtbszxG3Xx2hZJzXw&oe=693902F0"
-            alt="Hotel Botánico - Fachada"
+            src={optimizedHero2.src}
+            alt="Hotel Botánico - Habitación"
+            width={optimizedHero2.attributes.width}
+            height={optimizedHero2.attributes.height}
             class="carousel-slide w-full h-full object-cover absolute inset-0"
             loading="eager"
             decoding="async"
             fetchpriority="high"
           />
           <img
-            src="https://scontent.cdninstagram.com/v/t39.30808-6/488154980_122147255624386366_7124607771213799024_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=107&ig_cache_key=MzYwMjIyMjUyMDk3NjAzMTk5MQ%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjE2Mzl4MjA0OC5zZHIuQzMifQ%3D%3D&_nc_ohc=TIwe5TUdKAEQ7kNvwGCzNqM&_nc_oc=AdmGDC7BSRnqGNUQvuS-HzlaqjiKEFVtCyrOxwk4GB-0y8apufK0-vaXoFPAhOqREOY&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&_nc_gid=NwLx-GJIZkADRd8TBzIBDw&oh=00_AfmgsSlRgwAti4WfvzY7T4f0AH2ATN1r2f-DOA7Sj8Ka6w&oe=693901C8"
-            alt="Hotel Botánico - Piscina"
+            src={optimizedHero3.src}
+            alt="Hotel Botánico - Entrada"
+            width={optimizedHero3.attributes.width}
+            height={optimizedHero3.attributes.height}
+            class="carousel-slide w-full h-full object-cover absolute inset-0"
+            loading="lazy"
+            decoding="async"
+          />
+          <img
+            src={optimizedHero4.src}
+            alt="Hotel Botánico - Edificio"
+            width={optimizedHero4.attributes.width}
+            height={optimizedHero4.attributes.height}
             class="carousel-slide w-full h-full object-cover absolute inset-0"
             loading="lazy"
             decoding="async"
@@ -1100,18 +1121,18 @@ import { rooms } from '../services/rooms';
     animation: fade-in 1s ease-out 0.6s both;
   }
 
-  /* Hero Carousel Styles - 3 imágenes, 18s ciclo total (6s por imagen) */
+  /* Hero Carousel Styles - 4 imágenes, 24s ciclo total (6s por imagen) */
   /* Animación combinada de fade + zoom suave para evitar saltos */
   @keyframes carousel-slide-1 {
     0% {
       opacity: 1;
       transform: scale(1);
     }
-    28% {
+    20% {
       opacity: 1;
       transform: scale(1.04);
     }
-    33% {
+    25% {
       opacity: 0;
       transform: scale(1.04);
     }
@@ -1130,19 +1151,19 @@ import { rooms } from '../services/rooms';
       opacity: 0;
       transform: scale(1);
     }
-    28% {
+    20% {
       opacity: 0;
       transform: scale(1);
     }
-    33% {
+    25% {
       opacity: 1;
       transform: scale(1);
     }
-    61% {
+    45% {
       opacity: 1;
       transform: scale(1.04);
     }
-    66% {
+    50% {
       opacity: 0;
       transform: scale(1.04);
     }
@@ -1157,11 +1178,38 @@ import { rooms } from '../services/rooms';
       opacity: 0;
       transform: scale(1.04);
     }
-    61% {
+    45% {
       opacity: 0;
       transform: scale(1);
     }
-    66% {
+    50% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    70% {
+      opacity: 1;
+      transform: scale(1.04);
+    }
+    75% {
+      opacity: 0;
+      transform: scale(1.04);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(1.04);
+    }
+  }
+
+  @keyframes carousel-slide-4 {
+    0% {
+      opacity: 0;
+      transform: scale(1.04);
+    }
+    70% {
+      opacity: 0;
+      transform: scale(1);
+    }
+    75% {
       opacity: 1;
       transform: scale(1);
     }
@@ -1183,15 +1231,19 @@ import { rooms } from '../services/rooms';
   }
 
   .hero-carousel .carousel-slide:nth-child(1) {
-    animation: carousel-slide-1 18s linear infinite;
+    animation: carousel-slide-1 24s linear infinite;
   }
 
   .hero-carousel .carousel-slide:nth-child(2) {
-    animation: carousel-slide-2 18s linear infinite;
+    animation: carousel-slide-2 24s linear infinite;
   }
 
   .hero-carousel .carousel-slide:nth-child(3) {
-    animation: carousel-slide-3 18s linear infinite;
+    animation: carousel-slide-3 24s linear infinite;
+  }
+
+  .hero-carousel .carousel-slide:nth-child(4) {
+    animation: carousel-slide-4 24s linear infinite;
   }
 
   /* Scroll indicator animation para móvil */
