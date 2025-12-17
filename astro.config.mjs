@@ -31,6 +31,7 @@ export default defineConfig({
       cssMinify: 'lightningcss',
       target: 'esnext',
       chunkSizeWarningLimit: 600,
+      sourcemap: true,
       modulePreload: {
         polyfill: false,
       },

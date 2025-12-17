@@ -13,19 +13,57 @@ import heroImg2 from '../assets/botanico/images/hero-2.webp';
 import heroImg3 from '../assets/botanico/images/hero-3.webp';
 import heroImg4 from '../assets/botanico/images/hero-4.webp';
 
-const optimizedHero1 = await getImage({ src: heroImg1, width: 1920, format: 'webp', quality: 80 });
-const optimizedHero2 = await getImage({ src: heroImg2, width: 1920, format: 'webp', quality: 85 });
-const optimizedHero3 = await getImage({ src: heroImg3, width: 1920, format: 'webp', quality: 80 });
-const optimizedHero4 = await getImage({ src: heroImg4, width: 1920, format: 'webp', quality: 80 });
+// Optimizar imágenes hero agresivamente - son fondos con overlay oscuro
+const optimizedHero1 = await getImage({ src: heroImg1, width: 1920, format: 'webp', quality: 60 });
+const optimizedHero1Mobile = await getImage({
+  src: heroImg1,
+  width: 768,
+  format: 'webp',
+  quality: 55,
+});
+const optimizedHero2 = await getImage({ src: heroImg2, width: 1920, format: 'webp', quality: 65 });
+const optimizedHero2Mobile = await getImage({
+  src: heroImg2,
+  width: 768,
+  format: 'webp',
+  quality: 55,
+});
+const optimizedHero3 = await getImage({ src: heroImg3, width: 1920, format: 'webp', quality: 60 });
+const optimizedHero3Mobile = await getImage({
+  src: heroImg3,
+  width: 768,
+  format: 'webp',
+  quality: 55,
+});
+const optimizedHero4 = await getImage({ src: heroImg4, width: 1920, format: 'webp', quality: 60 });
+const optimizedHero4Mobile = await getImage({
+  src: heroImg4,
+  width: 768,
+  format: 'webp',
+  quality: 55,
+});
 ---
 
 <Layout
   title="Reserva tu Habitación - Hotel Botánico | Mejor Tarifa Garantizada"
   description="Reserva directamente en el único hotel 4 estrellas de Caucasia. Mejor tarifa garantizada, cancelación flexible y servicios premium incluidos."
 >
-  <!-- Preload solo de la primera imagen del carrusel (LCP) -->
+  <!-- Preload solo de la primera imagen del carrusel (LCP) con responsive -->
   <Fragment slot="head">
-    <link rel="preload" as="image" href={optimizedHero2.src} fetchpriority="high" />
+    <link
+      rel="preload"
+      as="image"
+      href={optimizedHero2Mobile.src}
+      media="(max-width: 767px)"
+      fetchpriority="high"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href={optimizedHero2.src}
+      media="(min-width: 768px)"
+      fetchpriority="high"
+    />
   </Fragment>
 
   <Navbar />
@@ -39,45 +77,64 @@ const optimizedHero4 = await getImage({ src: heroImg4, width: 1920, format: 'web
           class="absolute inset-0 bg-gradient-to-b from-negro-suave/80 via-negro-suave/40 to-negro-suave/90 z-10"
         >
         </div>
-        <!-- Carrusel automático -->
+        <!-- Carrusel automático con responsive images -->
         <div class="hero-carousel absolute inset-0">
-          <img
-            src={optimizedHero1.src}
-            alt="Hotel Botánico - Piscina"
-            width={optimizedHero1.attributes.width}
-            height={optimizedHero1.attributes.height}
-            class="carousel-slide w-full h-full object-cover absolute inset-0"
-            loading="lazy"
-            decoding="async"
-          />
-          <img
-            src={optimizedHero2.src}
-            alt="Hotel Botánico - Habitación"
-            width={optimizedHero2.attributes.width}
-            height={optimizedHero2.attributes.height}
-            class="carousel-slide w-full h-full object-cover absolute inset-0"
-            loading="eager"
-            decoding="async"
-            fetchpriority="high"
-          />
-          <img
-            src={optimizedHero3.src}
-            alt="Hotel Botánico - Entrada"
-            width={optimizedHero3.attributes.width}
-            height={optimizedHero3.attributes.height}
-            class="carousel-slide w-full h-full object-cover absolute inset-0"
-            loading="lazy"
-            decoding="async"
-          />
-          <img
-            src={optimizedHero4.src}
-            alt="Hotel Botánico - Edificio"
-            width={optimizedHero4.attributes.width}
-            height={optimizedHero4.attributes.height}
-            class="carousel-slide w-full h-full object-cover absolute inset-0"
-            loading="lazy"
-            decoding="async"
-          />
+          <!-- Primera imagen (lazy) -->
+          <picture class="carousel-slide w-full h-full absolute inset-0">
+            <source media="(min-width: 768px)" srcset={optimizedHero1.src} />
+            <img
+              src={optimizedHero1Mobile.src}
+              alt="Hotel Botánico - Piscina"
+              width={optimizedHero1Mobile.attributes.width}
+              height={optimizedHero1Mobile.attributes.height}
+              class="w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
+
+          <!-- Segunda imagen (LCP - eager loading) -->
+          <picture class="carousel-slide w-full h-full absolute inset-0">
+            <source media="(min-width: 768px)" srcset={optimizedHero2.src} />
+            <img
+              src={optimizedHero2Mobile.src}
+              alt="Hotel Botánico - Habitación"
+              width={optimizedHero2Mobile.attributes.width}
+              height={optimizedHero2Mobile.attributes.height}
+              class="w-full h-full object-cover"
+              loading="eager"
+              decoding="async"
+              fetchpriority="high"
+            />
+          </picture>
+
+          <!-- Tercera imagen (lazy) -->
+          <picture class="carousel-slide w-full h-full absolute inset-0">
+            <source media="(min-width: 768px)" srcset={optimizedHero3.src} />
+            <img
+              src={optimizedHero3Mobile.src}
+              alt="Hotel Botánico - Entrada"
+              width={optimizedHero3Mobile.attributes.width}
+              height={optimizedHero3Mobile.attributes.height}
+              class="w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
+
+          <!-- Cuarta imagen (lazy) -->
+          <picture class="carousel-slide w-full h-full absolute inset-0">
+            <source media="(min-width: 768px)" srcset={optimizedHero4.src} />
+            <img
+              src={optimizedHero4Mobile.src}
+              alt="Hotel Botánico - Edificio"
+              width={optimizedHero4Mobile.attributes.width}
+              height={optimizedHero4Mobile.attributes.height}
+              class="w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
         </div>
       </div>
 
@@ -176,12 +233,12 @@ const optimizedHero4 = await getImage({ src: heroImg4, width: 1920, format: 'web
               <div class="grid grid-cols-1 md:grid-cols-12 gap-5 md:gap-6 items-end">
                 <!-- Date Range Picker para estadía -->
                 <div class="md:col-span-5">
-                  <StayDatePicker client:idle />
+                  <StayDatePicker client:visible />
                 </div>
 
                 <!-- Personas -->
                 <div class="md:col-span-5">
-                  <GuestSelector client:idle />
+                  <GuestSelector client:visible />
                 </div>
 
                 <!-- Botón -->
