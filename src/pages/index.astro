@@ -1,5 +1,5 @@
 ---
-import { Picture } from 'astro:assets';
+import { Picture, getImage } from 'astro:assets';
 import Footer from '../components/Footer.astro';
 import GuestSelector from '../components/GuestSelector';
 import Navbar from '../components/Navbar.astro';
@@ -8,18 +8,34 @@ import StayDatePicker from '../components/StayDatePicker';
 import Layout from '../layouts/Layout.astro';
 import { rooms } from '../services/rooms';
 
-import heroImg1 from '../assets/botanico/images/hero-1.webp';
-import heroImg2 from '../assets/botanico/images/hero-2.webp';
-import heroImg3 from '../assets/botanico/images/hero-3.webp';
-import heroImg4 from '../assets/botanico/images/hero-4.webp';
+import heroImg1 from '../assets/botanico/images/hero-1.avif';
+import heroImg2 from '../assets/botanico/images/hero-2.avif';
+import heroImg3 from '../assets/botanico/images/hero-3.avif';
+import heroImg4 from '../assets/botanico/images/hero-4.avif';
 
-// No necesitamos preload manual - Picture con loading="eager" y fetchpriority="high" lo maneja automáticamente
+// Generar imagen optimizada para preload (LCP)
+// Usar webp con quality 55 para que coincida con el Picture
+const optimizedHero1 = await getImage({
+  src: heroImg1,
+  width: 1920,
+  format: 'avif',
+  quality: 55,
+});
 ---
 
 <Layout
   title="Reserva tu Habitación - Hotel Botánico | Mejor Tarifa Garantizada"
   description="Reserva directamente en el único hotel 4 estrellas de Caucasia. Mejor tarifa garantizada, cancelación flexible y servicios premium incluidos."
 >
+  <!-- Preload imagen LCP para carga más rápida -->
+  <link
+    slot="head"
+    rel="preload"
+    as="image"
+    href={optimizedHero1.src}
+    type="image/avif"
+    fetchpriority="high"
+  />
   <Navbar />
 
   <main id="main-content">
@@ -33,64 +49,60 @@ import heroImg4 from '../assets/botanico/images/hero-4.webp';
         </div>
         <!-- Carrusel automático con responsive images optimizadas -->
         <div class="hero-carousel absolute inset-0">
-          <!-- Primera imagen (lazy) -->
           <div class="carousel-slide w-full h-full absolute inset-0">
             <Picture
               src={heroImg1}
               alt="Hotel Botánico - Piscina"
-              widths={[640, 1024, 1920]}
-              formats={['webp']}
-              sizes="100vw"
-              class="w-full h-full object-cover"
-              loading="lazy"
-              decoding="async"
-              quality={60}
-            />
-          </div>
-
-          <!-- Segunda imagen (LCP - eager loading) -->
-          <div class="carousel-slide w-full h-full absolute inset-0">
-            <Picture
-              src={heroImg2}
-              alt="Hotel Botánico - Habitación"
-              widths={[640, 1024, 1920]}
-              formats={['webp']}
+              widths={[640, 960, 1280, 1920]}
+              formats={['avif']}
               sizes="100vw"
               class="w-full h-full object-cover"
               loading="eager"
               decoding="async"
               fetchpriority="high"
-              quality={65}
+              quality={55}
             />
           </div>
 
-          <!-- Tercera imagen (lazy) -->
+          <div class="carousel-slide w-full h-full absolute inset-0">
+            <Picture
+              src={heroImg2}
+              alt="Hotel Botánico - Habitación"
+              widths={[640, 960, 1280, 1920]}
+              formats={['avif']}
+              sizes="100vw"
+              class="w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
+              quality={55}
+            />
+          </div>
+
           <div class="carousel-slide w-full h-full absolute inset-0">
             <Picture
               src={heroImg3}
               alt="Hotel Botánico - Entrada"
-              widths={[640, 1024, 1920]}
-              formats={['webp']}
+              widths={[640, 960, 1280, 1920]}
+              formats={['avif']}
               sizes="100vw"
               class="w-full h-full object-cover"
               loading="lazy"
               decoding="async"
-              quality={60}
+              quality={55}
             />
           </div>
 
-          <!-- Cuarta imagen (lazy) -->
           <div class="carousel-slide w-full h-full absolute inset-0">
             <Picture
               src={heroImg4}
               alt="Hotel Botánico - Edificio"
-              widths={[640, 1024, 1920]}
-              formats={['webp']}
+              widths={[640, 960, 1280, 1920]}
+              formats={['avif']}
               sizes="100vw"
               class="w-full h-full object-cover"
               loading="lazy"
               decoding="async"
-              quality={60}
+              quality={55}
             />
           </div>
         </div>
@@ -1137,70 +1149,121 @@ import heroImg4 from '../assets/botanico/images/hero-4.webp';
   }
 
   /* Hero Carousel Styles - 4 imágenes, 24s ciclo total (6s por imagen) */
-  /* Animación solo con opacity para mejor performance - sin scale que causa reflows */
+  /* Animación con crossfade suave y zoom sutil (ken burns effect) */
   @keyframes carousel-slide-1 {
-    0%,
+    0% {
+      opacity: 1;
+      transform: scale(1);
+    }
     20% {
       opacity: 1;
+      transform: scale(1.05);
     }
-    25%,
-    100% {
+    25% {
       opacity: 0;
+      transform: scale(1.05);
+    }
+    95% {
+      opacity: 0;
+      transform: scale(1);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
     }
   }
 
   @keyframes carousel-slide-2 {
-    0%,
+    0% {
+      opacity: 0;
+      transform: scale(1);
+    }
     20% {
       opacity: 0;
+      transform: scale(1);
     }
-    25%,
+    25% {
+      opacity: 1;
+      transform: scale(1);
+    }
     45% {
       opacity: 1;
+      transform: scale(1.05);
     }
-    50%,
+    50% {
+      opacity: 0;
+      transform: scale(1.05);
+    }
     100% {
       opacity: 0;
+      transform: scale(1.05);
     }
   }
 
   @keyframes carousel-slide-3 {
-    0%,
+    0% {
+      opacity: 0;
+      transform: scale(1);
+    }
     45% {
       opacity: 0;
+      transform: scale(1);
     }
-    50%,
+    50% {
+      opacity: 1;
+      transform: scale(1);
+    }
     70% {
       opacity: 1;
+      transform: scale(1.05);
     }
-    75%,
+    75% {
+      opacity: 0;
+      transform: scale(1.05);
+    }
     100% {
       opacity: 0;
+      transform: scale(1.05);
     }
   }
 
   @keyframes carousel-slide-4 {
-    0%,
+    0% {
+      opacity: 0;
+      transform: scale(1);
+    }
     70% {
       opacity: 0;
+      transform: scale(1);
     }
-    75%,
+    75% {
+      opacity: 1;
+      transform: scale(1);
+    }
     95% {
       opacity: 1;
+      transform: scale(1.05);
     }
     100% {
       opacity: 0;
+      transform: scale(1.05);
     }
   }
 
   .hero-carousel .carousel-slide {
     /* Optimizar para GPU con contenido compuesto */
-    will-change: opacity;
+    will-change: opacity, transform;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
-    transform: translateZ(0);
     /* Evitar repaints innecesarios */
     contain: layout style paint;
+  }
+
+  .hero-carousel .carousel-slide picture,
+  .hero-carousel .carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .hero-carousel .carousel-slide:nth-child(1) {

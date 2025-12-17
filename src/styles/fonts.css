@@ -3,7 +3,7 @@
 /* Inter - Fuente crítica para body (carga prioritaria) */
 @font-face {
   font-family: 'Inter';
-  src: url('/fonts/Inter-Regular.ttf') format('truetype');
+  src: url('/fonts/Inter-Regular.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: swap; /* swap para fuentes preloadadas - muestra texto inmediatamente */
@@ -15,7 +15,7 @@
 /* Inter Medium - Carga diferida */
 @font-face {
   font-family: 'Inter';
-  src: url('/fonts/Inter-Medium.ttf') format('truetype');
+  src: url('/fonts/Inter-Medium.woff2') format('woff2');
   font-weight: 500;
   font-style: normal;
   font-display: optional;
@@ -27,7 +27,7 @@
 /* Inter SemiBold - Carga diferida */
 @font-face {
   font-family: 'Inter';
-  src: url('/fonts/Inter-SemiBold.ttf') format('truetype');
+  src: url('/fonts/Inter-SemiBold.woff2') format('woff2');
   font-weight: 600;
   font-style: normal;
   font-display: optional;
@@ -39,7 +39,7 @@
 /* Playfair Display Bold - Fuente crítica para títulos (carga prioritaria) */
 @font-face {
   font-family: 'Playfair Display';
-  src: url('/fonts/PlayfairDisplay-Bold.ttf') format('truetype');
+  src: url('/fonts/PlayfairDisplay-Bold.woff2') format('woff2');
   font-weight: 700;
   font-style: normal;
   font-display: swap; /* swap para fuentes preloadadas - muestra texto inmediatamente */
@@ -51,7 +51,7 @@
 /* Playfair Display Regular - Carga diferida */
 @font-face {
   font-family: 'Playfair Display';
-  src: url('/fonts/PlayfairDisplay-Regular.ttf') format('truetype');
+  src: url('/fonts/PlayfairDisplay-Regular.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: optional;
@@ -63,7 +63,7 @@
 /* Playfair Display SemiBold - Carga diferida */
 @font-face {
   font-family: 'Playfair Display';
-  src: url('/fonts/PlayfairDisplay-SemiBold.ttf') format('truetype');
+  src: url('/fonts/PlayfairDisplay-SemiBold.woff2') format('woff2');
   font-weight: 600;
   font-style: normal;
   font-display: optional;
