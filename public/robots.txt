@@ -1,11 +1,4 @@
-# robots.txt for Hotel Botánico
-
 User-agent: *
 Allow: /
 
-# Sitemap
-Sitemap: https://hotelbotanico.com/sitemap.xml
-
-# Disallow admin or private areas (if any in the future)
-# Disallow: /admin/
-
+Sitemap: https://botanico-landing-page.vercel.app/sitemap.xml
