@@ -29,7 +29,7 @@ function calculateNights(start: DateValueType | undefined, end: DateValueType | 
 }
 
 function useIsMobile(breakpoint = 595) {
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState<boolean | undefined>(undefined);
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < breakpoint);
@@ -45,16 +45,20 @@ export default function StayDatePicker() {
   const [value, setValue] = useState<DateRangeValue>(null);
   const [isOpen, setIsOpen] = useState(false);
   const [minDate, setMinDate] = useState<ReturnType<typeof today> | undefined>(undefined);
+  const [mounted, setMounted] = useState(false);
   const isMobile = useIsMobile();
 
   useEffect(() => {
     setMinDate(today(getLocalTimeZone()));
+    setMounted(true);
   }, []);
 
   const startText = value?.start ? formatDate(value.start) : 'Entrada';
   const endText = value?.end ? formatDate(value.end) : 'Salida';
   const totalNights = calculateNights(value?.start, value?.end);
   const nightsText = totalNights === 1 ? '1 noche' : `${totalNights} noches`;
+
+  const visibleMonths = mounted && isMobile !== undefined ? (isMobile ? 1 : 2) : 2;
 
   return (
     <>
@@ -103,7 +107,7 @@ export default function StayDatePicker() {
               <div className="absolute inset-0 pointer-events-none">
                 <DateRangePicker
                   aria-label="Seleccionar fechas de estadía"
-                  visibleMonths={isMobile ? 1 : 2}
+                  visibleMonths={visibleMonths}
                   pageBehavior="single"
                   minValue={minDate}
                   value={value}
