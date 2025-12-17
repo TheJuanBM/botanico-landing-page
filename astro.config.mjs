@@ -38,20 +38,8 @@ export default defineConfig({
         output: {
           manualChunks(id) {
             if (id.includes('node_modules')) {
-              if (id.includes('framer-motion')) {
-                return 'motion';
-              }
-
               if (id.includes('lenis')) {
                 return 'lenis';
-              }
-
-              if (
-                id.includes('@heroui') ||
-                id.includes('@react-aria') ||
-                id.includes('@internationalized')
-              ) {
-                return 'ui-framework';
               }
 
               return 'vendor';

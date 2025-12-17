@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://botanico-landing-page.vercel.app/sitemap.xml
