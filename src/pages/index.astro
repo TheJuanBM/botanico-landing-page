@@ -13,8 +13,6 @@ import heroImg2 from '../assets/botanico/images/hero-2.avif';
 import heroImg3 from '../assets/botanico/images/hero-3.avif';
 import heroImg4 from '../assets/botanico/images/hero-4.avif';
 
-// Generar imagen optimizada para preload (LCP)
-// Usar webp con quality 55 para que coincida con el Picture
 const optimizedHero1 = await getImage({
   src: heroImg1,
   width: 1920,
@@ -206,12 +204,12 @@ const optimizedHero1 = await getImage({
               <div class="grid grid-cols-1 md:grid-cols-12 gap-5 md:gap-6 items-end">
                 <!-- Date Range Picker para estadía -->
                 <div class="md:col-span-5">
-                  <StayDatePicker client:idle />
+                  <StayDatePicker client:load />
                 </div>
 
                 <!-- Personas -->
                 <div class="md:col-span-5">
-                  <GuestSelector client:idle />
+                  <GuestSelector client:load />
                 </div>
 
                 <!-- Botón -->
@@ -1123,7 +1121,6 @@ const optimizedHero1 = await getImage({
       });
     }
 
-    // Usar requestIdleCallback si está disponible para mejor rendimiento
     if ('requestIdleCallback' in window) {
       requestIdleCallback(initReservationForm, { timeout: 2000 });
     } else if (document.readyState === 'loading') {

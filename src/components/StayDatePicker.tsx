@@ -30,14 +30,17 @@ function calculateNights(start: DateValueType | undefined, end: DateValueType | 
 
 function useIsMobile(breakpoint = 595) {
   const [isMobile, setIsMobile] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     const checkMobile = () => setIsMobile(window.innerWidth < breakpoint);
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, [breakpoint]);
 
+  if (!mounted) return false;
   return isMobile;
 }
 
