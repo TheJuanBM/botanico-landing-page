@@ -1,7 +1,6 @@
 ---
-import { ViewTransitions } from 'astro:transitions';
-import '../styles/fonts.css';
 import LoadingScreen from '../components/LoadingScreen.astro';
+import '../styles/fonts.css';
 
 interface Props {
   title: string;
@@ -106,9 +105,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     />
 
     <meta name="generator" content={Astro.generator} />
-
-    <!-- View Transitions para navegación fluida -->
-    <ViewTransitions />
 
     <!-- Slot para contenido adicional del head (preloads, etc) -->
     <slot name="head" />

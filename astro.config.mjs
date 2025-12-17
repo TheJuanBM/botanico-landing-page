@@ -19,8 +19,8 @@ export default defineConfig({
   site: 'https://botanico-landing-page.vercel.app',
   compressHTML: true,
   prefetch: {
-    prefetchAll: true,
-    defaultStrategy: 'viewport',
+    prefetchAll: false,
+    defaultStrategy: 'load',
   },
   build: {
     inlineStylesheets: 'auto',
@@ -31,7 +31,8 @@ export default defineConfig({
       cssMinify: 'lightningcss',
       target: 'esnext',
       chunkSizeWarningLimit: 600,
-      sourcemap: true,
+      sourcemap: false,
+      minify: 'esbuild',
       modulePreload: {
         polyfill: false,
       },
@@ -39,6 +40,13 @@ export default defineConfig({
         output: {
           manualChunks(id) {
             if (id.includes('node_modules')) {
+              if (id.includes('react') || id.includes('react-dom')) {
+                return 'react-vendor';
+              }
+
+              if (id.includes('@heroui') || id.includes('@internationalized')) {
+                return 'heroui-vendor';
+              }
               return 'vendor';
             }
           },

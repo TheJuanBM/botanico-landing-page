@@ -92,6 +92,7 @@
 
 <script is:inline>
   (function () {
+    'use strict';
     var loadingScreen = document.getElementById('loading-screen');
     if (!loadingScreen) return;
 
@@ -110,17 +111,17 @@
         if (loadingScreen && loadingScreen.parentNode) {
           loadingScreen.remove();
         }
-      }, 500);
+      }, 300);
     }
 
+    // Ocultar más rápido para mejor rendimiento
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', function () {
-        setTimeout(hideLoading, 100);
-      });
+      document.addEventListener('DOMContentLoaded', hideLoading);
     } else {
-      setTimeout(hideLoading, 100);
+      hideLoading();
     }
 
-    setTimeout(hideLoading, 400);
+    // Timeout de seguridad más corto
+    setTimeout(hideLoading, 200);
   })();
 </script>

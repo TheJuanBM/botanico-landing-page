@@ -75,6 +75,7 @@ const optimizedHero1 = await getImage({
               loading="lazy"
               decoding="async"
               quality={55}
+              fetchpriority="low"
             />
           </div>
 
@@ -89,6 +90,7 @@ const optimizedHero1 = await getImage({
               loading="lazy"
               decoding="async"
               quality={55}
+              fetchpriority="low"
             />
           </div>
 
@@ -103,6 +105,7 @@ const optimizedHero1 = await getImage({
               loading="lazy"
               decoding="async"
               quality={55}
+              fetchpriority="low"
             />
           </div>
         </div>
@@ -203,12 +206,12 @@ const optimizedHero1 = await getImage({
               <div class="grid grid-cols-1 md:grid-cols-12 gap-5 md:gap-6 items-end">
                 <!-- Date Range Picker para estadía -->
                 <div class="md:col-span-5">
-                  <StayDatePicker client:only="react" />
+                  <StayDatePicker client:idle />
                 </div>
 
                 <!-- Personas -->
                 <div class="md:col-span-5">
-                  <GuestSelector client:only="react" />
+                  <GuestSelector client:idle />
                 </div>
 
                 <!-- Botón -->
@@ -488,7 +491,7 @@ const optimizedHero1 = await getImage({
         <div class="text-center">
           <a
             href="/habitaciones"
-            class="inline-flex items-center gap-2 bg-cafe-claro text-white font-semibold px-8 py-4 rounded-full hover:bg-negro-suave transition-all duration-300 shadow-lg hover:shadow-xl"
+            class="inline-flex items-center gap-2 bg-verde-oliva text-white font-semibold px-8 py-4 rounded-full hover:bg-negro-suave transition-all duration-300 shadow-lg hover:shadow-xl"
           >
             <span>Ver Todas las Habitaciones</span>
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1056,72 +1059,79 @@ const optimizedHero1 = await getImage({
 </div>
 
 <script>
-  if (window.location.search) {
-    window.history.replaceState({}, '', window.location.pathname);
-  }
+  (function () {
+    'use strict';
+    if (window.location.search) {
+      window.history.replaceState({}, '', window.location.pathname);
+    }
 
-  function initReservationForm() {
-    const form = document.getElementById('reservationForm') as HTMLFormElement;
-    if (!form) return;
+    function initReservationForm() {
+      const form = document.getElementById('reservationForm');
+      if (!form) return;
 
-    const toast = document.getElementById('validationToast');
-    const closeToastBtn = document.getElementById('closeToast');
-    const toastBackdrop = toast?.querySelector('.toast-backdrop');
+      const toast = document.getElementById('validationToast');
+      const closeToastBtn = document.getElementById('closeToast');
+      const toastBackdrop = toast?.querySelector('.toast-backdrop');
 
-    const showToast = () => {
-      if (!toast) return;
-      document.body.classList.add('modal-open');
-      toast.classList.remove('hidden');
-      toast.classList.add('flex');
-      requestAnimationFrame(() => {
-        toast.classList.add('toast-visible');
+      const showToast = () => {
+        if (!toast) return;
+        document.body.classList.add('modal-open');
+        toast.classList.remove('hidden');
+        toast.classList.add('flex');
+        requestAnimationFrame(() => {
+          toast.classList.add('toast-visible');
+        });
+      };
+
+      const hideToast = () => {
+        if (!toast) return;
+        toast.classList.remove('toast-visible');
+        document.body.classList.remove('modal-open');
+        setTimeout(() => {
+          toast.classList.add('hidden');
+          toast.classList.remove('flex');
+        }, 300);
+      };
+
+      closeToastBtn?.addEventListener('click', hideToast);
+      toastBackdrop?.addEventListener('click', hideToast);
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && toast && !toast.classList.contains('hidden')) {
+          hideToast();
+        }
       });
-    };
 
-    const hideToast = () => {
-      if (!toast) return;
-      toast.classList.remove('toast-visible');
-      document.body.classList.remove('modal-open');
-      setTimeout(() => {
-        toast.classList.add('hidden');
-        toast.classList.remove('flex');
-      }, 300);
-    };
+      form.addEventListener('submit', (e) => {
+        const checkInInput = document.querySelector(
+          'input[name="check_in"]'
+        ) as HTMLInputElement | null;
+        const checkOutInput = document.querySelector(
+          'input[name="check_out"]'
+        ) as HTMLInputElement | null;
 
-    closeToastBtn?.addEventListener('click', hideToast);
+        const checkIn = checkInInput?.value || '';
+        const checkOut = checkOutInput?.value || '';
 
-    toastBackdrop?.addEventListener('click', hideToast);
+        if (!checkIn || !checkOut) {
+          e.preventDefault();
+          showToast();
+          return false;
+        }
 
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && toast && !toast.classList.contains('hidden')) {
-        hideToast();
-      }
-    });
+        return true;
+      });
+    }
 
-    form.addEventListener('submit', (e) => {
-      const checkInInput = document.querySelector('input[name="check_in"]') as HTMLInputElement;
-      const checkOutInput = document.querySelector('input[name="check_out"]') as HTMLInputElement;
-
-      const checkIn = checkInInput?.value || '';
-      const checkOut = checkOutInput?.value || '';
-
-      if (!checkIn || !checkOut) {
-        e.preventDefault();
-        showToast();
-        return false;
-      }
-
-      return true;
-    });
-  }
-
-  document.addEventListener('astro:page-load', initReservationForm);
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initReservationForm);
-  } else {
-    initReservationForm();
-  }
+    // Usar requestIdleCallback si está disponible para mejor rendimiento
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(initReservationForm, { timeout: 2000 });
+    } else if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initReservationForm);
+    } else {
+      setTimeout(initReservationForm, 0);
+    }
+  })();
 </script>
 
 <style>
@@ -1136,16 +1146,30 @@ const optimizedHero1 = await getImage({
     }
   }
 
-  .animate-fade-in {
-    animation: fade-in 1s ease-out;
+  /* Optimizar animaciones para mejor rendimiento */
+  @media (prefers-reduced-motion: no-preference) {
+    .animate-fade-in {
+      animation: fade-in 0.8s ease-out;
+    }
+
+    .animate-fade-in-delay {
+      animation: fade-in 0.8s ease-out 0.2s both;
+    }
+
+    .animate-fade-in-delay-2 {
+      animation: fade-in 0.8s ease-out 0.4s both;
+    }
   }
 
-  .animate-fade-in-delay {
-    animation: fade-in 1s ease-out 0.3s both;
-  }
-
-  .animate-fade-in-delay-2 {
-    animation: fade-in 1s ease-out 0.6s both;
+  /* Desactivar animaciones si el usuario prefiere movimiento reducido */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-fade-in,
+    .animate-fade-in-delay,
+    .animate-fade-in-delay-2 {
+      animation: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
   }
 
   /* Hero Carousel Styles - 4 imágenes, 24s ciclo total (6s por imagen) */
@@ -1252,11 +1276,31 @@ const optimizedHero1 = await getImage({
 
   .hero-carousel .carousel-slide {
     /* Optimizar para GPU con contenido compuesto */
-    will-change: opacity, transform;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
-    /* Evitar repaints innecesarios */
+    transform: translateZ(0);
+    /* Evitar repaints innecesarios - usar contain: layout style paint en lugar de strict */
     contain: layout style paint;
+  }
+
+  /* Solo activar will-change cuando la animación está activa */
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-carousel .carousel-slide {
+      will-change: opacity, transform;
+    }
+  }
+
+  /* Desactivar animaciones si el usuario prefiere movimiento reducido */
+  @media (prefers-reduced-motion: reduce) {
+    .hero-carousel .carousel-slide {
+      animation: none !important;
+    }
+    .hero-carousel .carousel-slide:first-child {
+      opacity: 1 !important;
+    }
+    .hero-carousel .carousel-slide:not(:first-child) {
+      opacity: 0 !important;
+    }
   }
 
   .hero-carousel .carousel-slide picture,
