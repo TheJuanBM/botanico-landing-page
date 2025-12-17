@@ -25,10 +25,14 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={canonicalURL} />
 
-    <!-- DNS Prefetch para recursos externos -->
+    <!-- DNS Prefetch y Preconnect para recursos externos -->
     <link rel="dns-prefetch" href="https://scontent-bog2-1.cdninstagram.com" />
     <link rel="dns-prefetch" href="https://scontent-bog2-2.cdninstagram.com" />
     <link rel="dns-prefetch" href="https://scontent.cdninstagram.com" />
+    <link rel="preconnect" href="https://h-img1.cloudbeds.com" crossorigin />
+    <link rel="preconnect" href="https://h-img2.cloudbeds.com" crossorigin />
+    <link rel="dns-prefetch" href="https://cloudbeds.com" />
+    <!-- TODO: Remove these DNS prefetches and preconnects once we have a CDN -->
 
     <!-- Primary Meta Tags -->
     <title>{title}</title>
@@ -110,6 +114,18 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <div id="page-content">
       <slot />
     </div>
+    <script>
+      // Optimización para reducir CLS y forzar rendering antes de cargar scripts pesados
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(() => {
+          import('../scripts/lenis');
+        });
+      } else {
+        setTimeout(() => {
+          import('../scripts/lenis');
+        }, 1);
+      }
+    </script>
     <style is:global>
       * {
         box-sizing: border-box;
@@ -301,8 +317,5 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         background-color: rgba(92, 107, 74, 0.1) !important;
       }
     </style>
-    <script>
-      import '../scripts/lenis';
-    </script>
   </body>
 </html>

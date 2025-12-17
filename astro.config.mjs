@@ -26,6 +26,11 @@ export default defineConfig({
     inlineStylesheets: 'auto',
     assets: '_assets',
   },
+  experimental: {
+    clientPrerender: true,
+    directRenderScript: true,
+    contentCollectionCache: true,
+  },
   vite: {
     build: {
       cssMinify: 'lightningcss',
@@ -33,11 +38,21 @@ export default defineConfig({
       chunkSizeWarningLimit: 600,
       modulePreload: {
         polyfill: false,
+        resolveDependencies: (_, deps) => {
+          return deps.filter((dep) => {
+            return dep.includes('vendor') || dep.includes('react-core');
+          });
+        },
       },
       rollupOptions: {
         output: {
+          experimentalMinChunkSize: 50000,
           manualChunks(id) {
             if (id.includes('node_modules')) {
+              if (id.includes('react/') || id.includes('react-dom/')) {
+                return 'react-core';
+              }
+
               if (id.includes('@react-aria/')) {
                 if (id.includes('@react-aria/i18n')) {
                   return 'react-aria-i18n';

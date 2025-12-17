@@ -1,6 +1,5 @@
 import Lenis from 'lenis';
 
-// Inicializar Lenis cuando el DOM esté listo
 function initLenis() {
   const lenis = new Lenis({
     duration: 1.2,
@@ -11,22 +10,28 @@ function initLenis() {
     wheelMultiplier: 1,
     touchMultiplier: 2,
     infinite: false,
+    syncTouch: true,
+    lerp: 0.1,
   });
 
-  // Función de animación
+  let rafId: number;
   function raf(time: number) {
     lenis.raf(time);
-    requestAnimationFrame(raf);
+    rafId = requestAnimationFrame(raf);
   }
 
-  requestAnimationFrame(raf);
+  rafId = requestAnimationFrame(raf);
 
-  // Integrar con View Transitions de Astro
   document.addEventListener('astro:page-load', () => {
     lenis.scrollTo(0, { immediate: true });
   });
 
-  // Manejar enlaces con hash
+  document.addEventListener('astro:before-swap', () => {
+    if (rafId) {
+      cancelAnimationFrame(rafId);
+    }
+  });
+
   const handleHashLinks = () => {
     document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
       anchor.addEventListener('click', (e) => {
@@ -47,11 +52,9 @@ function initLenis() {
 
   handleHashLinks();
 
-  // Re-aplicar listeners después de transiciones de página
   document.addEventListener('astro:page-load', handleHashLinks);
 }
 
-// Inicializar cuando el DOM esté listo
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', initLenis);
 } else {

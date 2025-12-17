@@ -1,4 +1,13 @@
+# robots.txt
 User-agent: *
 Allow: /
 
-Sitemap: https://botanico-landing-page.vercel.app/sitemap.xml
+# Sitemap
+Sitemap: https://hotelbotanico.com/sitemap.xml
+
+# Crawl-delay para bots pesados
+User-agent: Googlebot
+Crawl-delay: 0
+
+User-agent: Bingbot
+Crawl-delay: 1

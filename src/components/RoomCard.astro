@@ -27,6 +27,7 @@ const { title, description, features, price, img, alt } = Astro.props;
           alt={alt || title}
           class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
           loading="lazy"
+          decoding="async"
         />
       ) : (
         <div class="w-full h-full bg-gradient-to-br from-cafe-claro/30 to-verde-oliva/20 group-hover:scale-110 transition-transform duration-700" />
@@ -111,11 +112,13 @@ const { title, description, features, price, img, alt } = Astro.props;
     transition:
       transform 0.3s ease,
       box-shadow 0.3s ease;
+    will-change: transform;
+    contain: layout style paint;
   }
 
   @media (hover: hover) {
     .room-card:hover {
-      transform: translateY(-4px);
+      transform: translateY(-4px) translateZ(0);
     }
   }
 

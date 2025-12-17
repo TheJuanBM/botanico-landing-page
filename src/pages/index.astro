@@ -176,12 +176,12 @@ const optimizedHero4 = await getImage({ src: heroImg4, width: 1920, format: 'web
               <div class="grid grid-cols-1 md:grid-cols-12 gap-5 md:gap-6 items-end">
                 <!-- Date Range Picker para estadía -->
                 <div class="md:col-span-5">
-                  <StayDatePicker client:only="react" />
+                  <StayDatePicker client:idle />
                 </div>
 
                 <!-- Personas -->
                 <div class="md:col-span-5">
-                  <GuestSelector client:only="react" />
+                  <GuestSelector client:idle />
                 </div>
 
                 <!-- Botón -->
@@ -1122,112 +1122,70 @@ const optimizedHero4 = await getImage({ src: heroImg4, width: 1920, format: 'web
   }
 
   /* Hero Carousel Styles - 4 imágenes, 24s ciclo total (6s por imagen) */
-  /* Animación combinada de fade + zoom suave para evitar saltos */
+  /* Animación solo con opacity para mejor performance - sin scale que causa reflows */
   @keyframes carousel-slide-1 {
-    0% {
-      opacity: 1;
-      transform: scale(1);
-    }
+    0%,
     20% {
       opacity: 1;
-      transform: scale(1.04);
     }
-    25% {
-      opacity: 0;
-      transform: scale(1.04);
-    }
-    95% {
-      opacity: 0;
-      transform: scale(1);
-    }
+    25%,
     100% {
-      opacity: 1;
-      transform: scale(1);
+      opacity: 0;
     }
   }
 
   @keyframes carousel-slide-2 {
-    0% {
-      opacity: 0;
-      transform: scale(1);
-    }
+    0%,
     20% {
       opacity: 0;
-      transform: scale(1);
     }
-    25% {
-      opacity: 1;
-      transform: scale(1);
-    }
+    25%,
     45% {
       opacity: 1;
-      transform: scale(1.04);
     }
-    50% {
-      opacity: 0;
-      transform: scale(1.04);
-    }
+    50%,
     100% {
       opacity: 0;
-      transform: scale(1);
     }
   }
 
   @keyframes carousel-slide-3 {
-    0% {
-      opacity: 0;
-      transform: scale(1.04);
-    }
+    0%,
     45% {
       opacity: 0;
-      transform: scale(1);
     }
-    50% {
-      opacity: 1;
-      transform: scale(1);
-    }
+    50%,
     70% {
       opacity: 1;
-      transform: scale(1.04);
     }
-    75% {
-      opacity: 0;
-      transform: scale(1.04);
-    }
+    75%,
     100% {
       opacity: 0;
-      transform: scale(1.04);
     }
   }
 
   @keyframes carousel-slide-4 {
-    0% {
-      opacity: 0;
-      transform: scale(1.04);
-    }
+    0%,
     70% {
       opacity: 0;
-      transform: scale(1);
     }
-    75% {
-      opacity: 1;
-      transform: scale(1);
-    }
+    75%,
     95% {
       opacity: 1;
-      transform: scale(1.04);
     }
     100% {
       opacity: 0;
-      transform: scale(1.04);
     }
   }
 
   .hero-carousel .carousel-slide {
-    will-change: opacity, transform;
+    /* Optimizar para GPU con contenido compuesto */
+    will-change: opacity;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
-    transform-style: preserve-3d;
+    transform: translateZ(0);
+    /* Evitar repaints innecesarios */
+    contain: layout style paint;
   }
 
   .hero-carousel .carousel-slide:nth-child(1) {
