@@ -2,7 +2,7 @@ import { DateRangePicker, type DateRangePickerProps } from '@heroui/date-picker'
 import { HeroUIProvider } from '@heroui/system';
 import { getLocalTimeZone, today } from '@internationalized/date';
 import { I18nProvider } from '@react-aria/i18n';
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 
 type DateRangeValue = DateRangePickerProps['value'];
 type DateValueType = NonNullable<DateRangeValue>['start'];
@@ -44,7 +44,12 @@ function useIsMobile(breakpoint = 595) {
 export default function StayDatePicker() {
   const [value, setValue] = useState<DateRangeValue>(null);
   const [isOpen, setIsOpen] = useState(false);
+  const [minDate, setMinDate] = useState<ReturnType<typeof today> | undefined>(undefined);
   const isMobile = useIsMobile();
+
+  useEffect(() => {
+    setMinDate(today(getLocalTimeZone()));
+  }, []);
 
   const startText = value?.start ? formatDate(value.start) : 'Entrada';
   const endText = value?.end ? formatDate(value.end) : 'Salida';
@@ -56,20 +61,20 @@ export default function StayDatePicker() {
       <HeroUIProvider locale="es-ES">
         <I18nProvider locale="es-ES">
           <div className="w-full">
-            <span
+            <div
               role="button"
               tabIndex={0}
               className="block text-sm w-fit font-medium text-white mb-2 cursor-pointer"
               onClick={() => setIsOpen(true)}
               onKeyDown={(e) => e.key === 'Enter' && setIsOpen(true)}
             >
-              Estadía&nbsp;
+              <span>Estadía</span>
               {totalNights > 0 && (
-                <span className="text-xs bg-white/10 text-white px-2 py-0.5 rounded-full font-medium">
+                <span className="text-xs bg-white/10 text-white px-2 py-0.5 rounded-full font-medium ml-1">
                   {nightsText}
                 </span>
               )}
-            </span>
+            </div>
             <div className="relative">
               <div
                 className="flex items-center justify-between bg-white border border-gray-300 rounded-lg px-4 py-3 cursor-pointer hover:border-cafe-claro transition-all relative z-10"
@@ -100,7 +105,7 @@ export default function StayDatePicker() {
                   aria-label="Seleccionar fechas de estadía"
                   visibleMonths={isMobile ? 1 : 2}
                   pageBehavior="single"
-                  minValue={today(getLocalTimeZone())}
+                  minValue={minDate}
                   value={value}
                   onChange={setValue}
                   showMonthAndYearPickers
@@ -133,19 +138,21 @@ export default function StayDatePicker() {
                 />
               </div>
             </div>
+            <input
+              type="hidden"
+              id="check_in"
+              name="check_in"
+              value={value?.start?.toString() || ''}
+              suppressHydrationWarning
+            />
+            <input
+              type="hidden"
+              id="check_out"
+              name="check_out"
+              value={value?.end?.toString() || ''}
+              suppressHydrationWarning
+            />
           </div>
-          <input
-            type="hidden"
-            id="check_in"
-            name="check_in"
-            value={value?.start?.toString() || ''}
-          />
-          <input
-            type="hidden"
-            id="check_out"
-            name="check_out"
-            value={value?.end?.toString() || ''}
-          />
         </I18nProvider>
       </HeroUIProvider>
     </>

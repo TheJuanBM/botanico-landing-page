@@ -9,7 +9,13 @@ const isPreview = process.env.ASTRO_PREVIEW === 'true';
 export default defineConfig({
   output: 'server',
   adapter: isPreview ? node({ mode: 'standalone' }) : vercel(),
-  integrations: [tailwind(), react()],
+  integrations: [
+    tailwind(),
+    react({
+      include: ['**/react/**', '**/*.{tsx,jsx}'],
+      experimentalReactChildren: true,
+    }),
+  ],
   site: 'https://hotelbotanico.com',
   compressHTML: true,
   prefetch: {
@@ -32,10 +38,6 @@ export default defineConfig({
         output: {
           manualChunks(id) {
             if (id.includes('node_modules')) {
-              if (id.includes('react/') || id.includes('react-dom/')) {
-                return 'react-vendor';
-              }
-
               if (id.includes('@react-aria/')) {
                 if (id.includes('@react-aria/i18n')) {
                   return 'react-aria-i18n';
@@ -82,6 +84,10 @@ export default defineConfig({
     },
     optimizeDeps: {
       include: ['react', 'react-dom', '@heroui/system', '@heroui/date-picker'],
+      exclude: ['@astrojs/react'],
+    },
+    resolve: {
+      dedupe: ['react', 'react-dom'],
     },
   },
 });
