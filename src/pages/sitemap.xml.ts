@@ -10,7 +10,7 @@ const pages = [
 ];
 
 export const GET: APIRoute = async ({ site }) => {
-  const baseUrl = site?.toString() || 'https://hotelbotanico.com';
+  const baseUrl = site?.toString() || 'https://botanico-landing-page.vercel.app';
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

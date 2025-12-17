@@ -16,7 +16,7 @@ export default defineConfig({
       experimentalReactChildren: true,
     }),
   ],
-  site: 'https://hotelbotanico.com',
+  site: 'https://botanico-landing-page.vercel.app',
   compressHTML: true,
   prefetch: {
     prefetchAll: true,
@@ -26,11 +26,6 @@ export default defineConfig({
     inlineStylesheets: 'auto',
     assets: '_assets',
   },
-  experimental: {
-    clientPrerender: true,
-    directRenderScript: true,
-    contentCollectionCache: true,
-  },
   vite: {
     build: {
       cssMinify: 'lightningcss',
@@ -38,54 +33,25 @@ export default defineConfig({
       chunkSizeWarningLimit: 600,
       modulePreload: {
         polyfill: false,
-        resolveDependencies: (_, deps) => {
-          return deps.filter((dep) => {
-            return dep.includes('vendor') || dep.includes('react-core');
-          });
-        },
       },
       rollupOptions: {
         output: {
-          experimentalMinChunkSize: 50000,
           manualChunks(id) {
             if (id.includes('node_modules')) {
-              if (id.includes('react/') || id.includes('react-dom/')) {
-                return 'react-core';
-              }
-
-              if (id.includes('@react-aria/')) {
-                if (id.includes('@react-aria/i18n')) {
-                  return 'react-aria-i18n';
-                }
-                if (id.includes('@react-aria/live-announcer')) {
-                  return 'react-aria-announcer';
-                }
-                return 'react-aria-other';
-              }
-
-              if (id.includes('@heroui/')) {
-                if (id.includes('@heroui/date-picker')) {
-                  return 'heroui-date-picker';
-                }
-                if (id.includes('@heroui/system')) {
-                  return 'heroui-system';
-                }
-                if (id.includes('@heroui/theme')) {
-                  return 'heroui-theme';
-                }
-                return 'heroui-other';
-              }
-
-              if (id.includes('@internationalized/date')) {
-                return 'intl-date';
-              }
-
               if (id.includes('framer-motion')) {
-                return 'framer-motion';
+                return 'motion';
               }
 
               if (id.includes('lenis')) {
                 return 'lenis';
+              }
+
+              if (
+                id.includes('@heroui') ||
+                id.includes('@react-aria') ||
+                id.includes('@internationalized')
+              ) {
+                return 'ui-framework';
               }
 
               return 'vendor';
