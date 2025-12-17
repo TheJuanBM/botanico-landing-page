@@ -192,7 +192,7 @@ export default function GuestSelector() {
       )}
 
       {/* Hidden input for form */}
-      <input type="hidden" id="guests" name="guests" value={guests} suppressHydrationWarning />
+      <input type="hidden" id="guests" name="guests" value={guests} />
     </div>
   );
 }

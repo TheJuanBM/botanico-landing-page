@@ -233,12 +233,12 @@ const optimizedHero4Mobile = await getImage({
               <div class="grid grid-cols-1 md:grid-cols-12 gap-5 md:gap-6 items-end">
                 <!-- Date Range Picker para estadía -->
                 <div class="md:col-span-5">
-                  <StayDatePicker client:visible />
+                  <StayDatePicker client:only="react" />
                 </div>
 
                 <!-- Personas -->
                 <div class="md:col-span-5">
-                  <GuestSelector client:visible />
+                  <GuestSelector client:only="react" />
                 </div>
 
                 <!-- Botón -->

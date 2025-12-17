@@ -29,7 +29,7 @@ function calculateNights(start: DateValueType | undefined, end: DateValueType | 
 }
 
 function useIsMobile(breakpoint = 595) {
-  const [isMobile, setIsMobile] = useState<boolean | undefined>(undefined);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < breakpoint);
@@ -45,20 +45,17 @@ export default function StayDatePicker() {
   const [value, setValue] = useState<DateRangeValue>(null);
   const [isOpen, setIsOpen] = useState(false);
   const [minDate, setMinDate] = useState<ReturnType<typeof today> | undefined>(undefined);
-  const [mounted, setMounted] = useState(false);
   const isMobile = useIsMobile();
 
   useEffect(() => {
     setMinDate(today(getLocalTimeZone()));
-    setMounted(true);
   }, []);
 
   const startText = value?.start ? formatDate(value.start) : 'Entrada';
   const endText = value?.end ? formatDate(value.end) : 'Salida';
   const totalNights = calculateNights(value?.start, value?.end);
   const nightsText = totalNights === 1 ? '1 noche' : `${totalNights} noches`;
-
-  const visibleMonths = mounted && isMobile !== undefined ? (isMobile ? 1 : 2) : 2;
+  const visibleMonths = isMobile ? 1 : 2;
 
   return (
     <>
@@ -147,14 +144,12 @@ export default function StayDatePicker() {
               id="check_in"
               name="check_in"
               value={value?.start?.toString() || ''}
-              suppressHydrationWarning
             />
             <input
               type="hidden"
               id="check_out"
               name="check_out"
               value={value?.end?.toString() || ''}
-              suppressHydrationWarning
             />
           </div>
         </I18nProvider>
