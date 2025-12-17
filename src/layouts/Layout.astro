@@ -1,5 +1,7 @@
 ---
 import { ViewTransitions } from 'astro:transitions';
+import '../styles/fonts.css';
+import LoadingScreen from '../components/LoadingScreen.astro';
 
 interface Props {
   title: string;
@@ -54,14 +56,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={new URL(image, Astro.site)} />
 
-    <!-- Google Fonts - Optimizado para rendimiento -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600&display=swap"
-    />
-
     <!-- JSON-LD Schema for Hotel -->
     <script
       is:inline
@@ -104,6 +98,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <slot name="head" />
   </head>
   <body class="font-sans text-negro-suave bg-white">
+    <!-- Loading Screen -->
+    <LoadingScreen />
+
     <!-- Skip to content link for accessibility -->
     <a
       href="#main-content"
@@ -114,18 +111,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <div id="page-content">
       <slot />
     </div>
-    <script>
-      // Optimización para reducir CLS y forzar rendering antes de cargar scripts pesados
-      if ('requestIdleCallback' in window) {
-        requestIdleCallback(() => {
-          import('../scripts/lenis');
-        });
-      } else {
-        setTimeout(() => {
-          import('../scripts/lenis');
-        }, 1);
-      }
-    </script>
     <style is:global>
       * {
         box-sizing: border-box;
@@ -133,26 +118,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
       html {
         overflow-x: hidden;
-      }
-
-      html.lenis {
-        height: auto;
-      }
-
-      .lenis.lenis-smooth {
-        scroll-behavior: auto !important;
-      }
-
-      .lenis.lenis-smooth [data-lenis-prevent] {
-        overscroll-behavior: contain;
-      }
-
-      .lenis.lenis-stopped {
-        overflow: hidden;
-      }
-
-      .lenis.lenis-scrolling iframe {
-        pointer-events: none;
       }
 
       body {

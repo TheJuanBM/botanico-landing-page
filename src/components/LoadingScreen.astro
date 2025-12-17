@@ -1,0 +1,183 @@
+---
+// Componente de loading inicial elegante para Hotel Botánico
+// Soporta dark mode basado en preferencia del sistema
+---
+
+<!-- Loading oculto por defecto -->
+<div
+  id="loading-screen"
+  class="loading-screen fixed inset-0 z-[9999] flex items-center justify-center transition-opacity duration-500 ease-out"
+  style="display: none;"
+>
+  <div class="text-center">
+    <!-- Logo o nombre del hotel -->
+    <h1 id="loading-title" class="font-serif text-3xl md:text-4xl font-bold mb-8 animate-fade-in">
+      Hotel Botánico
+    </h1>
+
+    <!-- Spinner elegante -->
+    <div class="flex items-center justify-center mb-6">
+      <div class="relative w-16 h-16 md:w-20 md:h-20">
+        <!-- Círculo exterior -->
+        <div id="spinner-outer" class="spinner-outer absolute inset-0 border-4 rounded-full"></div>
+        <!-- Círculo animado -->
+        <div
+          id="spinner-inner"
+          class="spinner-inner absolute inset-0 border-4 border-transparent rounded-full animate-spin-slow"
+        >
+        </div>
+      </div>
+    </div>
+
+    <!-- Texto de carga -->
+    <p id="loading-text" class="text-sm md:text-base font-light tracking-wide animate-pulse">
+      Cargando...
+    </p>
+  </div>
+</div>
+
+<style>
+  @keyframes spin-slow {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .animate-spin-slow {
+    animation: spin-slow 1.5s linear infinite;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  #loading-screen.fade-out {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* Tema claro (por defecto) */
+  .loading-screen.theme-light {
+    background-color: #ebe2db; /* beige-premium */
+  }
+  .loading-screen.theme-light #loading-title {
+    color: #615a40; /* verde-oliva */
+  }
+  .loading-screen.theme-light #spinner-outer {
+    border-color: rgba(164, 141, 117, 0.2); /* cafe-claro/20 */
+  }
+  .loading-screen.theme-light #spinner-inner {
+    border-top-color: #615a40; /* verde-oliva */
+  }
+  .loading-screen.theme-light #loading-text {
+    color: #a48d75; /* cafe-claro */
+  }
+
+  /* Tema oscuro */
+  .loading-screen.theme-dark {
+    background-color: #111111; /* negro-suave */
+  }
+  .loading-screen.theme-dark #loading-title {
+    color: #ebe2db; /* beige-premium */
+  }
+  .loading-screen.theme-dark #spinner-outer {
+    border-color: rgba(235, 226, 219, 0.2); /* beige-premium/20 */
+  }
+  .loading-screen.theme-dark #spinner-inner {
+    border-top-color: #a48d75; /* cafe-claro */
+  }
+  .loading-screen.theme-dark #loading-text {
+    color: rgba(235, 226, 219, 0.8); /* beige-premium/80 */
+  }
+</style>
+
+<!-- Script inline que se ejecuta inmediatamente -->
+<script is:inline>
+  (function () {
+    var loadingScreen = document.getElementById('loading-screen');
+    if (!loadingScreen) return;
+
+    // Detectar tema del sistema y aplicar clase correspondiente
+    var isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    loadingScreen.classList.add(isDark ? 'theme-dark' : 'theme-light');
+
+    // Mostrar el loading
+    loadingScreen.style.display = 'flex';
+
+    var hidden = false;
+
+    // Función para ocultar el loading
+    function hideLoading() {
+      if (hidden || !loadingScreen) return;
+      hidden = true;
+      loadingScreen.classList.add('fade-out');
+      setTimeout(function () {
+        if (loadingScreen && loadingScreen.parentNode) {
+          loadingScreen.remove();
+        }
+      }, 500);
+    }
+
+    // Esperar a que TODOS los recursos estén cargados (imágenes, fuentes, etc.)
+    function waitForResources() {
+      // Obtener todas las imágenes
+      var images = document.querySelectorAll('img');
+      var pendingImages = [];
+
+      images.forEach(function (img) {
+        if (!img.complete) {
+          pendingImages.push(img);
+        }
+      });
+
+      if (pendingImages.length === 0) {
+        // No hay imágenes pendientes, ocultar después de un breve delay
+        setTimeout(hideLoading, 200);
+        return;
+      }
+
+      var loadedCount = 0;
+      var totalImages = pendingImages.length;
+
+      pendingImages.forEach(function (img) {
+        function onImageReady() {
+          loadedCount++;
+          if (loadedCount >= totalImages) {
+            setTimeout(hideLoading, 200);
+          }
+        }
+        img.addEventListener('load', onImageReady);
+        img.addEventListener('error', onImageReady);
+      });
+    }
+
+    // Cuando el DOM esté listo, verificar las imágenes
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', waitForResources);
+    } else {
+      waitForResources();
+    }
+
+    // También escuchar el evento load (todos los recursos cargados)
+    window.addEventListener('load', function () {
+      setTimeout(hideLoading, 100);
+    });
+
+    // Timeout de seguridad: máximo 5 segundos
+    setTimeout(hideLoading, 5000);
+  })();
+</script>
