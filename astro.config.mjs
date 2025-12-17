@@ -36,18 +36,6 @@ export default defineConfig({
       modulePreload: {
         polyfill: false,
       },
-      rollupOptions: {
-        output: {
-          manualChunks(id) {
-            if (id.includes('node_modules')) {
-              if (id.includes('@heroui') || id.includes('@internationalized')) {
-                return 'heroui-vendor';
-              }
-              return 'vendor';
-            }
-          },
-        },
-      },
     },
     ssr: {
       noExternal: ['@heroui/system', '@heroui/date-picker'],
