@@ -191,12 +191,12 @@ import heroImg4 from '../assets/botanico/images/hero-4.webp';
               <div class="grid grid-cols-1 md:grid-cols-12 gap-5 md:gap-6 items-end">
                 <!-- Date Range Picker para estadía -->
                 <div class="md:col-span-5">
-                  <StayDatePicker client:load />
+                  <StayDatePicker client:only="react" />
                 </div>
 
                 <!-- Personas -->
                 <div class="md:col-span-5">
-                  <GuestSelector client:load />
+                  <GuestSelector client:only="react" />
                 </div>
 
                 <!-- Botón -->
