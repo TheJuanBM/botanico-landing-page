@@ -3,6 +3,13 @@
  * TODO: Conectar con el backend real
  */
 
+// Imágenes locales de habitaciones (optimizadas con caché)
+import suiteEstandarImg from '../assets/botanico/images/rooms/suite-estandar.jpeg';
+import suiteBalconImg from '../assets/botanico/images/rooms/suite-balcon.jpeg';
+import twinEstandarImg from '../assets/botanico/images/rooms/twin-estandar.jpeg';
+import twinBalconImg from '../assets/botanico/images/rooms/twin-balcon.jpeg';
+import masterSuiteImg from '../assets/botanico/images/rooms/master-suite.jpg';
+
 export interface Room {
   id: string;
   title: string;
@@ -39,7 +46,7 @@ export interface AvailabilityResponse {
 export const rooms = [
   {
     title: 'Suite Estandar',
-    img: 'https://h-img2.cloudbeds.com/uploads/315278/suite_estndar_1_featured~~667d8a521bbd4.jpeg',
+    img: suiteEstandarImg.src,
     alt: 'Imagen de la Suite Estandar',
     description:
       'Diseñada para el viajero de negocios exigente, esta amplia suite combina funcionalidad con elegancia. Espacio de trabajo dedicado, vistas panorámicas y todas las comodidades para maximizar su productividad y confort.',
@@ -57,7 +64,7 @@ export const rooms = [
   },
   {
     title: 'Suite con Balcón',
-    img: 'https://h-img1.cloudbeds.com/uploads/315278/whatsapp_image_2024-06-12_at_12.46.33_pm_6_featured~~667d8e237bcd0.jpeg',
+    img: suiteBalconImg.src,
     alt: 'Imagen de la Suite con Balcón',
     description:
       'Perfecta para quienes buscan confort y estilo. Con un diseño contemporáneo que maximiza el espacio y la luz natural, esta habitación ofrece un refugio tranquilo después de un día de exploración.',
@@ -75,7 +82,7 @@ export const rooms = [
   },
   {
     title: 'Twin Estandar',
-    img: 'https://h-img2.cloudbeds.com/uploads/315278/twin_con_balcn_2_featured~~667d99747f524.jpeg',
+    img: twinEstandarImg.src,
     alt: 'Imagen de la Twin Estandar',
     description:
       'La máxima expresión de lujo y exclusividad. Esta suite de dos ambientes ofrece una experiencia incomparable con servicio de mayordomo, jacuzzi privado y las vistas más privilegiadas del hotel.',
@@ -95,7 +102,7 @@ export const rooms = [
   },
   {
     title: 'Twin con Balcón',
-    img: 'https://h-img1.cloudbeds.com/uploads/315278/twin_con_balcn_1_featured~~667d9123b3bd3.jpeg',
+    img: twinBalconImg.src,
     alt: 'Imagen de la Twin con Balcón',
     description:
       'Ideal para estancias prolongadas, esta habitación ofrece un excelente equilibrio entre precio y calidad. Decoración elegante y todas las comodidades esenciales para una estadía placentera.',
@@ -113,7 +120,7 @@ export const rooms = [
   },
   {
     title: 'Master Suite',
-    img: 'https://h-img2.cloudbeds.com/uploads/315278/d2877125-9809-4fdc-a445-c650f688b64b_1_featured~~6852f55c08a84.jpg',
+    img: masterSuiteImg.src,
     alt: 'Imagen de la Master Suite',
     description:
       'Espaciosa y funcional, perfecta para familias o grupos. Con capacidad para hasta 4 personas, ofrece privacidad y confort para todos los huéspedes.',

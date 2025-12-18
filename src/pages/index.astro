@@ -477,7 +477,7 @@ const optimizedHero4 = await getImage({ src: heroImg4, width: 1920, format: 'avi
         <div
           class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8 max-w-7xl mx-auto mb-10 md:mb-12"
         >
-          {rooms.map((room) => <RoomCard {...room} />)}
+          {rooms.slice(0, 2).map((room) => <RoomCard {...room} />)}
         </div>
 
         <div class="text-center">
