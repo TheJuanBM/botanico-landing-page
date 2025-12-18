@@ -18,6 +18,15 @@ export default defineConfig({
   ],
   site: 'https://botanico-landing-page.vercel.app',
   compressHTML: true,
+  image: {
+    service: {
+      entrypoint: 'astro/assets/services/sharp',
+      config: {
+        limitInputPixels: false,
+      },
+    },
+    domains: [],
+  },
   prefetch: {
     prefetchAll: false,
     defaultStrategy: 'load',
