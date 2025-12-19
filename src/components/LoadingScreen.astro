@@ -199,6 +199,15 @@
           return;
         }
 
+        var imgTest = new Image();
+        imgTest.onload = function () {
+          if (heroImage.complete && heroImage.naturalHeight !== 0) {
+            resourcesReady.heroImage = true;
+            checkAllResourcesReady();
+          }
+        };
+        imgTest.src = heroImage.src;
+
         var imageLoaded = false;
         function onImageLoad() {
           if (!imageLoaded) {
@@ -226,7 +235,7 @@
               checkAllResourcesReady();
             }
           }
-        }, 100);
+        }, 50);
 
         setTimeout(function () {
           clearInterval(checkInterval);
@@ -236,7 +245,7 @@
       if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', checkHeroImage);
       } else {
-        setTimeout(checkHeroImage, 100);
+        setTimeout(checkHeroImage, 50);
       }
     }
 

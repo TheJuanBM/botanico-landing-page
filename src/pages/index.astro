@@ -29,7 +29,6 @@ const optimizedHero4 = await getImage({ src: heroImg4, width: 1920, format: 'avi
   title="Reserva tu Habitación - Hotel Botánico | Mejor Tarifa Garantizada"
   description="Reserva directamente en el único hotel 4 estrellas de Caucasia. Mejor tarifa garantizada, cancelación flexible y servicios premium incluidos."
 >
-  <!-- Preload imagen LCP para carga más rápida -->
   <link
     slot="head"
     rel="preload"
@@ -38,6 +37,9 @@ const optimizedHero4 = await getImage({ src: heroImg4, width: 1920, format: 'avi
     type="image/avif"
     fetchpriority="high"
   />
+  <link slot="head" rel="prefetch" as="image" href={optimizedHero2.src} type="image/avif" />
+  <link slot="head" rel="prefetch" as="image" href={optimizedHero3.src} type="image/avif" />
+  <link slot="head" rel="prefetch" as="image" href={optimizedHero4.src} type="image/avif" />
   <Navbar />
 
   <main id="main-content">
@@ -1066,10 +1068,46 @@ const optimizedHero4 = await getImage({ src: heroImg4, width: 1920, format: 'avi
       });
     }
 
+    function preloadHeroImages() {
+      const heroImage1 = document.querySelector(
+        '.carousel-slide img[fetchpriority="high"]'
+      ) as HTMLImageElement;
+      const deferredSlides = document.querySelectorAll('.deferred-image[data-src]');
+
+      const heroImages: string[] = [];
+
+      if (heroImage1 && heroImage1.src) {
+        heroImages.push(heroImage1.src);
+      }
+
+      deferredSlides.forEach((slide) => {
+        const src = slide.getAttribute('data-src');
+        if (src) {
+          heroImages.push(src);
+        }
+      });
+
+      heroImages.forEach((src) => {
+        const img = new Image();
+        img.src = src;
+
+        img.loading = 'eager';
+      });
+    }
+
     if ('requestIdleCallback' in window) {
-      requestIdleCallback(loadDeferredImages, { timeout: 2000 });
+      requestIdleCallback(
+        () => {
+          loadDeferredImages();
+          preloadHeroImages();
+        },
+        { timeout: 2000 }
+      );
     } else {
-      setTimeout(loadDeferredImages, 1000);
+      setTimeout(() => {
+        loadDeferredImages();
+        preloadHeroImages();
+      }, 1000);
     }
 
     function initReservationForm() {
