@@ -20,7 +20,6 @@ const optimizedHero1 = await getImage({
   quality: 40,
 });
 
-// Pre-optimizar imágenes secundarias con menor calidad para carga diferida
 const optimizedHero2 = await getImage({ src: heroImg2, width: 1920, format: 'avif', quality: 35 });
 const optimizedHero3 = await getImage({ src: heroImg3, width: 1920, format: 'avif', quality: 35 });
 const optimizedHero4 = await getImage({ src: heroImg4, width: 1920, format: 'avif', quality: 35 });
@@ -51,7 +50,7 @@ const optimizedHero4 = await getImage({ src: heroImg4, width: 1920, format: 'avi
         >
         </div>
         <!-- Carrusel automático con carga diferida optimizada -->
-        <div class="hero-carousel absolute inset-0 bg-negro-suave">
+        <div class="hero-carousel carousel-paused absolute inset-0 bg-negro-suave">
           <!-- Imagen 1: Carga inmediata con máxima prioridad -->
           <div class="carousel-slide w-full h-full absolute inset-0">
             <img
@@ -477,7 +476,7 @@ const optimizedHero4 = await getImage({ src: heroImg4, width: 1920, format: 'avi
         <div
           class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8 max-w-7xl mx-auto mb-10 md:mb-12"
         >
-          {rooms.slice(0, 2).map((room) => <RoomCard {...room} />)}
+          {rooms.slice(0, 3).map((room) => <RoomCard {...room} />)}
         </div>
 
         <div class="text-center">
@@ -1052,12 +1051,10 @@ const optimizedHero4 = await getImage({ src: heroImg4, width: 1920, format: 'avi
 
 <script>
   (function () {
-    // Limpiar query params de la URL
     if (window.location.search) {
       window.history.replaceState({}, '', window.location.pathname);
     }
 
-    // Cargar imágenes del carrusel de forma diferida
     function loadDeferredImages() {
       const deferredSlides = document.querySelectorAll('.deferred-image');
       deferredSlides.forEach((slide) => {
@@ -1069,7 +1066,6 @@ const optimizedHero4 = await getImage({ src: heroImg4, width: 1920, format: 'avi
       });
     }
 
-    // Cargar imágenes secundarias después de que la primera imagen y la página estén listas
     if ('requestIdleCallback' in window) {
       requestIdleCallback(loadDeferredImages, { timeout: 2000 });
     } else {
@@ -1119,7 +1115,6 @@ const optimizedHero4 = await getImage({ src: heroImg4, width: 1920, format: 'avi
       });
     }
 
-    // Inicializar cuando el navegador esté disponible
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', initReservationForm);
     } else {
@@ -1248,6 +1243,21 @@ const optimizedHero4 = await getImage({ src: heroImg4, width: 1920, format: 'avi
   .hero-carousel .deferred-image img[src] {
     opacity: 1;
   }
+
+  /* Pausar animaciones del carrusel hasta que el loading desaparezca */
+  .hero-carousel.carousel-paused .carousel-slide {
+    animation-play-state: paused !important;
+  }
+
+  /* Asegurar que la primera imagen sea visible cuando está pausado */
+  .hero-carousel.carousel-paused .carousel-slide:nth-child(1) {
+    opacity: 1 !important;
+    transform: scale(1) !important;
+  }
+  .hero-carousel.carousel-paused .carousel-slide:not(:nth-child(1)) {
+    opacity: 0 !important;
+  }
+
   .hero-carousel .carousel-slide:nth-child(1) {
     animation: carousel-1 24s linear infinite;
   }

@@ -16,8 +16,8 @@ const checkIn = url.searchParams.get('check_in') || '';
 const checkOut = url.searchParams.get('check_out') || '';
 const guests = parseInt(url.searchParams.get('guests') || '1', 10);
 
-console.log('DEBUG SERVER - URL completa:', url.toString());
-console.log('DEBUG SERVER - Parámetros:', { checkIn, checkOut, guests });
+// console.log('DEBUG SERVER - URL completa:', url.toString());
+// console.log('DEBUG SERVER - Parámetros:', { checkIn, checkOut, guests });
 
 // Validar que los parámetros existan
 const hasParams = checkIn && checkOut;
@@ -834,7 +834,7 @@ const guestsText = guests === 1 ? 'huésped' : 'huéspedes';
           totalPrice: parseInt(roomPrice || '0', 10) * parseInt(totalNights || '0', 10),
         };
 
-        console.log('Habitación seleccionada:', reservationData);
+        // console.log('Habitación seleccionada:', reservationData);
 
         // TODO: Redirigir a la página de checkout/confirmación
         // Por ahora mostrar un alert de confirmación

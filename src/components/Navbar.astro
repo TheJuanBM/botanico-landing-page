@@ -266,9 +266,7 @@ const currentPath = Astro.url.pathname;
 </nav>
 
 <script>
-  // Función de inicialización del navbar - se ejecuta en cada carga de página
   function initNavbar() {
-    // Referencias a elementos (se obtienen fresh en cada navegación)
     const navbar = document.getElementById('navbar');
     const logoLight = document.getElementById('logo-light');
     const logoDark = document.getElementById('logo-dark');
@@ -280,14 +278,12 @@ const currentPath = Astro.url.pathname;
 
     let isMenuOpen = false;
 
-    // Actualizar clase active según la URL actual
     function updateActiveLink() {
       const currentPath = window.location.pathname;
 
-      // Actualizar links del menú desktop
       navLinks.forEach((link) => {
         const href = link.getAttribute('href');
-        // Comparar normalizando las rutas (con o sin trailing slash)
+
         const isActive =
           href === currentPath ||
           href === currentPath.replace(/\/$/, '') ||
@@ -300,7 +296,6 @@ const currentPath = Astro.url.pathname;
         }
       });
 
-      // Actualizar links del menú móvil
       mobileMenuItems.forEach((link) => {
         const href = link.getAttribute('href');
         const isActive =
@@ -316,12 +311,9 @@ const currentPath = Astro.url.pathname;
       });
     }
 
-    // Actualizar link activo inmediatamente
     updateActiveLink();
 
-    // Función para actualizar estilos del navbar según posición del scroll
     function updateNavbarStyles() {
-      // No cambiar estilos si el menú móvil está abierto
       if (isMenuOpen) return;
 
       if (window.scrollY > 50) {
@@ -335,14 +327,11 @@ const currentPath = Astro.url.pathname;
         );
         navbar?.classList.remove('bg-transparent');
 
-        // Cambiar logos
         logoLight?.classList.add('hidden');
         logoDark?.classList.remove('hidden');
 
-        // Cambiar color de links y botón de menú
         navLinks.forEach((link) => {
           if (link.classList.contains('nav-link-mito')) {
-            // Para MITO, cambiar el borde y fondo pero mantener el estilo especial
             link.classList.remove('text-white', 'border-white/30');
             link.classList.add('text-negro-suave', 'border-negro-suave/30');
           } else {
@@ -351,7 +340,6 @@ const currentPath = Astro.url.pathname;
           }
         });
 
-        // Cambiar color del icono hamburguesa
         mobileMenuButton?.classList.remove('text-white');
         mobileMenuButton?.classList.add('text-negro-suave');
       } else {
@@ -365,14 +353,11 @@ const currentPath = Astro.url.pathname;
         );
         navbar?.classList.add('bg-transparent');
 
-        // Cambiar logos
         logoLight?.classList.remove('hidden');
         logoDark?.classList.add('hidden');
 
-        // Cambiar color de links y botón de menú
         navLinks.forEach((link) => {
           if (link.classList.contains('nav-link-mito')) {
-            // Para MITO, restaurar el borde y color original
             link.classList.add('text-white', 'border-white/30');
             link.classList.remove('text-negro-suave', 'border-negro-suave/30');
           } else {
@@ -381,13 +366,11 @@ const currentPath = Astro.url.pathname;
           }
         });
 
-        // Cambiar color del icono hamburguesa
         mobileMenuButton?.classList.add('text-white');
         mobileMenuButton?.classList.remove('text-negro-suave');
       }
     }
 
-    // Mobile menu functions
     function openMenu() {
       isMenuOpen = true;
       mobileMenu?.classList.remove('invisible');
@@ -407,17 +390,14 @@ const currentPath = Astro.url.pathname;
       updateNavbarStyles();
     }
 
-    // Limpiar listeners anteriores usando un AbortController
     const controller = new AbortController();
     const { signal } = controller;
 
-    // Guardar referencia al controller para limpiar en la próxima navegación
     if ((window as any).__navbarController) {
       (window as any).__navbarController.abort();
     }
     (window as any).__navbarController = controller;
 
-    // Event listeners con signal para poder limpiarlos
     window.addEventListener('scroll', updateNavbarStyles, { signal });
 
     document.addEventListener(
@@ -457,12 +437,18 @@ const currentPath = Astro.url.pathname;
       );
     });
 
-    // Actualizar estilos inmediatamente
     updateNavbarStyles();
   }
 
-  // Ejecutar en cada carga de página (inicial y navegaciones con View Transitions)
   document.addEventListener('astro:page-load', initNavbar);
+
+  document.addEventListener('loading-complete', function () {
+    setTimeout(initNavbar, 50);
+  });
+
+  if (document.readyState !== 'loading') {
+    initNavbar();
+  }
 </script>
 
 <style>
