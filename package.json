@@ -29,8 +29,9 @@
     "astro": "^4.16.18",
     "framer-motion": "^12.23.25",
     "lightningcss": "^1.30.2",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "sharp": "^0.34.5",
     "tailwindcss": "^3.4.19"
   },
   "devDependencies": {

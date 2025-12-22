@@ -1,8 +1,12 @@
-import { defineConfig } from 'astro/config';
-import tailwind from '@astrojs/tailwind';
-import react from '@astrojs/react';
-import vercel from '@astrojs/vercel/serverless';
 import node from '@astrojs/node';
+import react from '@astrojs/react';
+import tailwind from '@astrojs/tailwind';
+import vercel from '@astrojs/vercel/serverless';
+import { defineConfig } from 'astro/config';
+import { dirname, resolve } from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const isPreview = process.env.ASTRO_PREVIEW === 'true';
 
@@ -20,10 +24,7 @@ export default defineConfig({
   compressHTML: true,
   image: {
     service: {
-      entrypoint: 'astro/assets/services/sharp',
-      config: {
-        limitInputPixels: false,
-      },
+      entrypoint: 'astro/assets/services/noop',
     },
     domains: [],
   },
@@ -47,14 +48,26 @@ export default defineConfig({
       },
     },
     ssr: {
-      noExternal: ['@heroui/system', '@heroui/date-picker'],
+      noExternal: ['@heroui/system', '@heroui/date-picker', '@react-aria/live-announcer'],
     },
     optimizeDeps: {
-      include: ['react', 'react-dom', '@heroui/system', '@heroui/date-picker'],
+      include: [
+        'react',
+        'react-dom',
+        '@heroui/system',
+        '@heroui/date-picker',
+        '@react-aria/live-announcer',
+      ],
       exclude: ['@astrojs/react'],
     },
     resolve: {
       dedupe: ['react', 'react-dom'],
+      alias: {
+        '@react-aria/live-announcer': resolve(
+          __dirname,
+          'node_modules/@react-aria/live-announcer/dist/module.js'
+        ),
+      },
     },
   },
 });
