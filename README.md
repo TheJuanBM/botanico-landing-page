@@ -136,8 +136,10 @@ Diseñado mobile-first con breakpoints:
 
 ## 📞 Contacto
 
-- **Email**: info@hotelbotanico.com
-- **Teléfono**: +57 XXX XXX XXXX
+- **Email**: recepcion@botanicohotelcaucasia.com
+- **Teléfono**: +57 312 209 4960
+- **Facebook**: https://www.facebook.com/profile.php?id=61561591002819
+- **Instagram**: https://www.instagram.com/botanicohotelcaucasia
 - **Ubicación**: Caucasia, Bajo Cauca, Antioquia, Colombia
 
 ---

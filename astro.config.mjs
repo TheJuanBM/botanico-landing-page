@@ -20,7 +20,7 @@ export default defineConfig({
       experimentalReactChildren: true,
     }),
   ],
-  site: 'https://botanico-landing-page.vercel.app',
+  site: 'https://www.hotelbotanicocaucasia.com',
   compressHTML: true,
   image: {
     service: {

@@ -7,72 +7,133 @@ interface Props {
   description: string;
   image?: string;
   keywords?: string;
+  noindex?: boolean;
 }
 
 const {
   title,
   description,
   image = '/og-image.jpg',
-  keywords = 'hotel en Caucasia, hotel 4 estrellas en Caucasia, hotel premium en el Bajo Cauca, alojamiento Caucasia, rooftop MITO Caucasia',
+  keywords = 'hotel botánico Caucasia, reservar hotel lujo, suites premium Bajo Cauca, confirmación inmediata hotel, alojamiento incluido desayuno, hotel 4 estrellas Antioquia',
+  noindex = false,
 } = Astro.props;
+
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const imageURL = new URL(image, Astro.site).toString();
+const siteName = 'Hotel Botánico';
+const baseUrl = Astro.site?.toString() || 'https://www.hotelbotanicocaucasia.com';
+
+// Generar breadcrumbs dinámicos
+const pathSegments = Astro.url.pathname.split('/').filter(Boolean);
+const breadcrumbNames: Record<string, string> = {
+  habitaciones: 'Habitaciones',
+  mito: 'MITO Rooftop',
+  galeria: 'Galería',
+  contacto: 'Contacto',
+  reservar: 'Reservar',
+};
+
+const breadcrumbs = [{ name: 'Hotel Botánico', url: baseUrl }];
+
+let currentPath = '';
+for (const segment of pathSegments) {
+  currentPath += `/${segment}`;
+  if (breadcrumbNames[segment]) {
+    breadcrumbs.push({
+      name: breadcrumbNames[segment],
+      url: `${baseUrl}${currentPath}`,
+    });
+  }
+}
 ---
 
 <!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Favicon y iconos -->
+    <!-- Preconnect para recursos críticos externos -->
+    <link rel="preconnect" href="https://www.google.com" />
+    <link rel="preconnect" href="https://www.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+    <link rel="dns-prefetch" href="https://hotels.cloudbeds.com" />
+
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <meta name="author" content="Hotel Botánico" />
+    <meta
+      name="robots"
+      content={noindex
+        ? 'noindex, nofollow'
+        : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'}
+    />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Hreflang Tags para SEO internacional -->
+    <link rel="alternate" hreflang="es" href={canonicalURL} />
+    <link rel="alternate" hreflang="es-CO" href={canonicalURL} />
+    <link rel="alternate" hreflang="x-default" href={canonicalURL} />
+
+    <!-- Geo Meta Tags -->
+    <meta name="geo.region" content="CO-ANT" />
+    <meta name="geo.placename" content="Caucasia, Antioquia" />
+    <meta name="geo.position" content="7.983281541950929;-75.20185427089075" />
+    <meta name="ICBM" content="7.983281541950929, -75.20185427089075" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_CO" />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={imageURL} />
+    <meta property="og:image:secure_url" content={imageURL} />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={`${title} - Hotel Botánico Caucasia`} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@hotelbotanico" />
+    <meta name="twitter:url" content={canonicalURL} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageURL} />
+    <meta name="twitter:image:alt" content={`${title} - Hotel Botánico Caucasia`} />
+
+    <!-- Favicon y iconos (orden importante para compatibilidad) -->
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/icons/favicon-48x48.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
+    <link rel="shortcut icon" href="/favicon.svg" />
 
     <!-- PWA Manifest -->
     <link rel="manifest" href="/manifest.webmanifest" />
 
-    <!-- PWA Meta Tags -->
-    <meta name="theme-color" content="#615A40" />
+    <!-- PWA & App Meta Tags -->
+    <meta name="theme-color" content="#615A40" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#2d2d2d" media="(prefers-color-scheme: dark)" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="Botánico" />
     <meta name="mobile-web-app-capable" content="yes" />
-    <meta name="application-name" content="Hotel Botánico" />
+    <meta name="application-name" content={siteName} />
     <meta name="msapplication-TileColor" content="#615A40" />
     <meta name="msapplication-TileImage" content="/icons/icon-144x144.png" />
+    <meta name="msapplication-config" content="/browserconfig.xml" />
 
-    <link rel="canonical" href={canonicalURL} />
+    <!-- Google Site Verification -->
+    <meta name="google-site-verification" content="zJ3e16Lx9ndgwSvIReGe5twsXRdYUqCKQRtx_VnUUsY" />
 
-    <!-- DNS Prefetch y Preconnect para recursos externos -->
-    <link rel="dns-prefetch" href="https://scontent-bog2-1.cdninstagram.com" />
-    <link rel="dns-prefetch" href="https://scontent-bog2-2.cdninstagram.com" />
-    <link rel="dns-prefetch" href="https://scontent.cdninstagram.com" />
-    <link rel="preconnect" href="https://h-img1.cloudbeds.com" crossorigin />
-    <link rel="preconnect" href="https://h-img2.cloudbeds.com" crossorigin />
-    <link rel="dns-prefetch" href="https://cloudbeds.com" />
-    <!-- TODO: Remove these DNS prefetches and preconnects once we have a CDN -->
-
-    <!-- Primary Meta Tags -->
-    <title>{title}</title>
-    <meta name="title" content={title} />
-    <meta name="description" content={description} />
-    <meta name="keywords" content={keywords} />
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={canonicalURL} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:image" content={new URL(image, Astro.site)} />
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={canonicalURL} />
-    <meta property="twitter:title" content={title} />
-    <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={new URL(image, Astro.site)} />
+    <meta name="generator" content={Astro.generator} />
 
     <!-- JSON-LD Schema for Hotel -->
     <script
@@ -81,33 +142,135 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       set:html={JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'Hotel',
+        '@id': 'https://www.hotelbotanicocaucasia.com/#hotel',
         name: 'Hotel Botánico',
-        description: 'Único hotel 4 estrellas en Caucasia, Bajo Cauca, Antioquia',
-        image: new URL(image, Astro.site).toString(),
+        alternateName: 'Botánico Hotel y Spa',
+        description:
+          'Único hotel 4 estrellas en Caucasia, Bajo Cauca, Antioquia. Ofrecemos habitaciones premium, MITO Rooftop bar, piscina, salones de eventos y servicios de primera clase.',
+        url: 'https://www.hotelbotanicocaucasia.com',
+        logo: 'https://www.hotelbotanicocaucasia.com/favicon.svg',
+        image: [imageURL, 'https://www.hotelbotanicocaucasia.com/og-image.jpg'],
         starRating: {
           '@type': 'Rating',
           ratingValue: '4',
+          bestRating: '5',
         },
         address: {
           '@type': 'PostalAddress',
+          streetAddress: 'Cra. 12 #19-42',
           addressLocality: 'Caucasia',
           addressRegion: 'Antioquia',
-          addressCountry: 'Colombia',
-        },
-        telephone: '+57 312 209 4960',
-        url: Astro.site?.toString(),
-        priceRange: '$$$$',
-        amenityFeature: [
-          {
-            '@type': 'LocationFeatureSpecification',
-            name: 'MITO Rooftop',
-            value: true,
+          postalCode: '053840',
+          addressCountry: {
+            '@type': 'Country',
+            name: 'Colombia',
           },
+        },
+        geo: {
+          '@type': 'GeoCoordinates',
+          latitude: 7.983281541950929,
+          longitude: -75.20185427089075,
+        },
+        telephone: '+573122094960',
+        email: 'recepcion@botanicohotelcaucasia.com',
+        sameAs: [
+          'https://www.facebook.com/profile.php?id=61561591002819',
+          'https://www.instagram.com/botanicohotelcaucasia',
+        ],
+        priceRange: '$$$',
+        currenciesAccepted: 'COP',
+        paymentAccepted: 'Efectivo, Tarjeta de Crédito, Tarjeta de Débito, Transferencia Bancaria',
+        openingHoursSpecification: {
+          '@type': 'OpeningHoursSpecification',
+          dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+          opens: '00:00',
+          closes: '23:59',
+        },
+        checkinTime: '15:00',
+        checkoutTime: '12:00',
+        numberOfRooms: 24,
+        petsAllowed: false,
+        amenityFeature: [
+          { '@type': 'LocationFeatureSpecification', name: 'WiFi Gratis', value: true },
+          { '@type': 'LocationFeatureSpecification', name: 'Piscina', value: true },
+          { '@type': 'LocationFeatureSpecification', name: 'Aire Acondicionado', value: true },
+          { '@type': 'LocationFeatureSpecification', name: 'Estacionamiento', value: true },
+          { '@type': 'LocationFeatureSpecification', name: 'Room Service 24h', value: true },
+          { '@type': 'LocationFeatureSpecification', name: 'Desayuno Buffet', value: true },
+          { '@type': 'LocationFeatureSpecification', name: 'MITO Rooftop Bar', value: true },
+          { '@type': 'LocationFeatureSpecification', name: 'Salones para Eventos', value: true },
+          { '@type': 'LocationFeatureSpecification', name: 'Ascensor', value: true },
+          { '@type': 'LocationFeatureSpecification', name: 'Recepción 24 horas', value: true },
+        ],
+        hasMap: 'https://www.google.com/maps/place/Botanico+Hotel+y+Spa/@7.9831562,-75.2028681,18z',
+        aggregateRating: {
+          '@type': 'AggregateRating',
+          ratingValue: '4.8',
+          reviewCount: '127',
+          bestRating: '5',
+          worstRating: '1',
+        },
+      })}
+    />
+
+    <!-- JSON-LD Schema for Organization -->
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Organization',
+        '@id': 'https://www.hotelbotanicocaucasia.com/#organization',
+        name: 'Hotel Botánico',
+        url: 'https://www.hotelbotanicocaucasia.com',
+        logo: 'https://www.hotelbotanicocaucasia.com/favicon.svg',
+        contactPoint: {
+          '@type': 'ContactPoint',
+          telephone: '+573122094960',
+          contactType: 'reservations',
+          availableLanguage: ['Spanish', 'English'],
+          areaServed: 'CO',
+        },
+        sameAs: [
+          'https://www.facebook.com/profile.php?id=61561591002819',
+          'https://www.instagram.com/botanicohotelcaucasia',
         ],
       })}
     />
 
-    <meta name="generator" content={Astro.generator} />
+    <!-- JSON-LD Schema for WebSite (Search Action) -->
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        '@id': 'https://www.hotelbotanicocaucasia.com/#website',
+        url: 'https://www.hotelbotanicocaucasia.com',
+        name: 'Hotel Botánico',
+        description: 'Único hotel 4 estrellas en Caucasia, Bajo Cauca, Antioquia, Colombia',
+        publisher: {
+          '@id': 'https://www.hotelbotanicocaucasia.com/#organization',
+        },
+        inLanguage: 'es-CO',
+      })}
+    />
+
+    <!-- JSON-LD Schema for BreadcrumbList -->
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: breadcrumbs.map((crumb, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          name: crumb.name,
+          item: crumb.url,
+        })),
+      })}
+    />
 
     <!-- Slot para contenido adicional del head (preloads, etc) -->
     <slot name="head" />
@@ -350,14 +513,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <script is:inline>
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-          navigator.serviceWorker
-            .register('/sw.js')
-            .then((registration) => {
-              console.log('SW registrado:', registration.scope);
-            })
-            .catch((error) => {
-              console.log('Error al registrar SW:', error);
-            });
+          navigator.serviceWorker.register('/sw.js').catch((error) => {
+            console.log('Error al registrar SW:', error);
+          });
         });
       }
     </script>

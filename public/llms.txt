@@ -1,0 +1,74 @@
+# Hotel Botánico - Información para LLMs
+
+> Hotel Botánico es el único hotel 4 estrellas en Caucasia, Antioquia, Colombia. Ofrecemos suites de lujo, habitaciones premium, MITO Rooftop bar y servicios de primera clase en la región del Bajo Cauca.
+
+## Información General
+
+- **Nombre:** Hotel Botánico
+- **Tipo:** Hotel 4 estrellas
+- **Ubicación:** Carrera 12 #19-42, Caucasia, Antioquia, Colombia
+- **Región:** Bajo Cauca Antioqueño
+- **Teléfono:** +57 312 209 4960
+- **Email:** recepcion@botanicohotelcaucasia.com
+- **Sitio Web:** https://www.hotelbotanicocaucasia.com
+
+## Servicios Principales
+
+- Suites de lujo y habitaciones premium
+- Desayuno buffet incluido en todas las tarifas
+- MITO Rooftop: bar con vistas panorámicas y coctelería de autor
+- Piscina con acceso ilimitado
+- Wi-Fi de alta velocidad gratuito
+- Parqueadero con vigilancia 24/7
+- Room service disponible 24 horas
+- Salones para eventos corporativos y sociales
+- Transporte al aeropuerto
+
+## Tipos de Habitaciones
+
+1. **Suite Estándar** - Cama doble, 25m², máximo 2 personas
+2. **Suite con Balcón** - Cama doble con balcón privado, 28m², máximo 2 personas
+3. **Suite Twin Estándar** - Dos camas sencillas, 25m², máximo 2 personas
+4. **Suite Twin con Balcón** - Dos camas sencillas con balcón, 28m², máximo 2 personas
+5. **Master Suite** - Suite premium con jacuzzi, 40m², máximo 4 personas
+
+## Información de Reservas
+
+- **Check-in:** 3:00 PM
+- **Check-out:** 12:00 PM (mediodía)
+- **Cancelación:** Gratuita hasta 48 horas antes de la llegada
+- **Reserva directa:** Mejor precio garantizado
+- **Confirmación:** Inmediata por email
+
+## Ubicación y Acceso
+
+- Centro de Caucasia, Antioquia
+- Coordenadas: 7.983281541950929, -75.20185427089075
+- Acceso desde aeropuerto Los Garzones de Montería
+- Servicio de transporte disponible bajo solicitud
+
+## Redes Sociales
+
+- Instagram: @botanicohotelcaucasia
+- Facebook: Hotel Botánico Caucasia
+
+## Páginas del Sitio
+
+- / - Página principal con formulario de reservas
+- /habitaciones - Catálogo de suites y habitaciones
+- /mito - MITO Rooftop bar y restaurante
+- /galeria - Galería de fotos del hotel
+- /contacto - Información de contacto y formulario
+- /reservar - Sistema de reservas en línea
+
+## Idioma
+
+El sitio está disponible en español (es-CO).
+
+## Políticas
+
+- No se permiten mascotas
+- Horario de recepción: 24 horas
+- Edad mínima para reservar: 18 años
+- Métodos de pago: Efectivo, Tarjeta de Crédito, Tarjeta de Débito, Transferencia Bancaria
+
