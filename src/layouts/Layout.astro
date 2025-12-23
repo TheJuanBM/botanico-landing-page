@@ -144,6 +144,17 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         -moz-osx-font-smoothing: grayscale;
       }
 
+      /* Asegurar que el navbar sea visible en PWA standalone */
+      #navbar {
+        top: env(safe-area-inset-top, 0);
+      }
+
+      /* Compensar el espacio del navbar fixed (80px = h-20) más safe-area */
+      #page-content {
+        padding-top: calc(80px + env(safe-area-inset-top, 0));
+        min-height: 100vh;
+      }
+
       /* Scrollbar moderna y elegante */
       ::-webkit-scrollbar {
         width: 10px;
