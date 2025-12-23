@@ -106,7 +106,7 @@ const currentPath = Astro.url.pathname;
     !logoOnly && (
       <div
         id="mobile-menu"
-        class="mobile-menu-container md:hidden fixed inset-0 h-[100svh] bg-negro-suave z-[60] opacity-0 invisible"
+        class="mobile-menu-container md:hidden fixed bg-negro-suave z-[60] opacity-0 invisible"
       >
         <div class="flex flex-col h-full">
           <div class="menu-header flex items-center justify-between px-4 sm:px-6 h-20 border-b border-white/10">
@@ -535,11 +535,15 @@ const currentPath = Astro.url.pathname;
   .mobile-menu-container {
     opacity: 0;
     transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    top: env(safe-area-inset-top, 0);
-    left: env(safe-area-inset-left, 0);
-    right: env(safe-area-inset-right, 0);
-    bottom: env(safe-area-inset-bottom, 0);
-    height: calc(100svh - env(safe-area-inset-top, 0) - env(safe-area-inset-bottom, 0));
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh; /* Dynamic viewport height para móviles */
+    min-height: -webkit-fill-available; /* iOS Safari */
   }
 
   .mobile-menu-container.menu-open {
