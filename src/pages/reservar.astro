@@ -9,34 +9,24 @@ import {
   type AvailabilityParams,
 } from '../services/rooms';
 
-// Obtener query params
 const url = Astro.url;
 
 const checkIn = url.searchParams.get('check_in') || '';
 const checkOut = url.searchParams.get('check_out') || '';
 const guests = parseInt(url.searchParams.get('guests') || '1', 10);
 
-// console.log('DEBUG SERVER - URL completa:', url.toString());
-// console.log('DEBUG SERVER - Parámetros:', { checkIn, checkOut, guests });
-
-// Validar que los parámetros existan
 const hasParams = checkIn && checkOut;
 
-// TODO: Validar que las fechas sean válidas (Largas estadías)
-
-// Validar que check-out sea posterior a check-in
 const checkInDate = new Date(checkIn);
 const checkOutDate = new Date(checkOut);
 const isValidDateRange = checkOutDate > checkInDate;
 
-// Validar que el número de huéspedes esté entre 1 y 10
 const isValidGuestsCount = guests >= 1 && guests <= 10;
 
 const hasValidParams = hasParams && isValidDateRange && isValidGuestsCount;
 const hasInvalidDates = hasParams && !isValidDateRange && isValidGuestsCount;
 const hasInvalidGuests = hasParams && !isValidGuestsCount;
 
-// Obtener habitaciones disponibles
 let availabilityData = null;
 let error = null;
 
@@ -51,7 +41,6 @@ if (hasValidParams) {
   }
 }
 
-// Formatear fechas para mostrar
 const checkInFormatted = formatDateDisplay(checkIn);
 const checkOutFormatted = formatDateDisplay(checkOut);
 const nightsText = availabilityData?.totalNights === 1 ? 'noche' : 'noches';
@@ -809,7 +798,6 @@ const guestsText = guests === 1 ? 'huésped' : 'huéspedes';
 </Layout>
 
 <script>
-  // Manejar selección de habitación
   document.addEventListener('astro:page-load', () => {
     const selectButtons = document.querySelectorAll('.select-room-btn');
 
@@ -823,7 +811,6 @@ const guestsText = guests === 1 ? 'huésped' : 'huéspedes';
         const checkOut = button.getAttribute('data-check-out');
         const guests = button.getAttribute('data-guests');
 
-        // Guardar datos de la reserva seleccionada
         const reservationData = {
           roomId,
           roomTitle,
@@ -835,10 +822,6 @@ const guestsText = guests === 1 ? 'huésped' : 'huéspedes';
           totalPrice: parseInt(roomPrice || '0', 10) * parseInt(totalNights || '0', 10),
         };
 
-        // console.log('Habitación seleccionada:', reservationData);
-
-        // TODO: Redirigir a la página de checkout/confirmación
-        // Por ahora mostrar un alert de confirmación
         alert(
           `Has seleccionado: ${roomTitle}\n\nTotal: $${reservationData.totalPrice.toLocaleString('es-CO')} COP\n\n(Próximamente: Página de checkout)`
         );

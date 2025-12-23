@@ -20,21 +20,12 @@ const STATIC_ASSETS = [
 const PAGES_TO_CACHE = ['/', '/habitaciones', '/mito', '/galeria', '/contacto', '/reservar'];
 
 self.addEventListener('install', (event) => {
-  console.log('[SW] Instalando Service Worker...');
-
-  event.waitUntil(
-    caches.open(STATIC_CACHE_NAME).then((cache) => {
-      console.log('[SW] Cacheando recursos estáticos');
-      return cache.addAll(STATIC_ASSETS);
-    })
-  );
+  event.waitUntil(caches.open(STATIC_CACHE_NAME).then((cache) => cache.addAll(STATIC_ASSETS)));
 
   self.skipWaiting();
 });
 
 self.addEventListener('activate', (event) => {
-  console.log('[SW] Activando Service Worker...');
-
   event.waitUntil(
     caches.keys().then((cacheNames) => {
       return Promise.all(
@@ -46,10 +37,7 @@ self.addEventListener('activate', (event) => {
               name !== DYNAMIC_CACHE_NAME
             );
           })
-          .map((name) => {
-            console.log('[SW] Eliminando cache antiguo:', name);
-            return caches.delete(name);
-          })
+          .map(caches.delete)
       );
     })
   );

@@ -284,6 +284,7 @@ for (const segment of pathSegments) {
     <a
       href="#main-content"
       class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-verde-oliva focus:text-white focus:rounded-lg focus:font-semibold focus:shadow-lg"
+      title="Saltar al contenido principal de la página"
     >
       Saltar al contenido principal
     </a>
@@ -515,7 +516,7 @@ for (const segment of pathSegments) {
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
           navigator.serviceWorker.register('/sw.js').catch((error) => {
-            console.log('Error al registrar SW:', error);
+            console.error('Error al registrar SW: ', error?.message || error);
           });
         });
       }

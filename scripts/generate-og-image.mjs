@@ -15,8 +15,6 @@ async function generateOgImage() {
   const outputPath = resolve(projectRoot, 'public/og-image.jpg');
 
   try {
-    console.log('📸 Generando og-image.jpg desde hero-3.avif...');
-
     await sharp(inputPath)
       .resize(OG_WIDTH, OG_HEIGHT, {
         fit: 'cover',
@@ -28,8 +26,6 @@ async function generateOgImage() {
         mozjpeg: true,
       })
       .toFile(outputPath);
-
-    console.log(`✅ og-image.jpg generado (${OG_WIDTH}x${OG_HEIGHT})`);
   } catch (error) {
     console.error('❌ Error al generar og-image:', error);
   }
@@ -41,11 +37,8 @@ async function generateFavicon() {
   const output48Path = resolve(projectRoot, 'public/icons/favicon-48x48.png');
 
   try {
-    console.log('🎨 Generando favicons...');
-
     // Generar favicon-48x48.png (mínimo requerido por Google)
     await sharp(icon96Path).resize(48, 48).png().toFile(output48Path);
-    console.log('   ✅ favicon-48x48.png generado');
 
     // Generar múltiples tamaños para ICO
     const sizes = [16, 32, 48];
@@ -56,7 +49,6 @@ async function generateFavicon() {
     // Crear ICO manualmente (formato simple)
     const icoBuffer = createIco(buffers, sizes);
     writeFileSync(outputIcoPath, icoBuffer);
-    console.log('   ✅ favicon.ico generado (16x16, 32x32, 48x48)');
   } catch (error) {
     console.error('❌ Error al generar favicons:', error);
   }

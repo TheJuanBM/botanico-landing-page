@@ -63,15 +63,11 @@ const sizes = [72, 96, 128, 144, 152, 192, 384, 512];
 const maskableSizes = [192, 512];
 
 async function generateIcons() {
-  console.log('🎨 Generando iconos PWA para Hotel Botánico...\n');
-
   for (const size of sizes) {
     const svgBuffer = Buffer.from(createSvg(size, 0.15));
     const outputPath = join(iconsDir, `icon-${size}x${size}.png`);
 
     await sharp(svgBuffer).resize(size, size).png().toFile(outputPath);
-
-    console.log(`✅ icon-${size}x${size}.png`);
   }
 
   for (const size of maskableSizes) {
@@ -79,23 +75,16 @@ async function generateIcons() {
     const outputPath = join(iconsDir, `icon-maskable-${size}x${size}.png`);
 
     await sharp(svgBuffer).resize(size, size).png().toFile(outputPath);
-
-    console.log(`✅ icon-maskable-${size}x${size}.png`);
   }
 
   const appleSvg = Buffer.from(createSvg(180, 0.1));
   await sharp(appleSvg).resize(180, 180).png().toFile(join(iconsDir, 'apple-touch-icon.png'));
-  console.log('✅ apple-touch-icon.png');
 
   const favicon32Svg = Buffer.from(createSvg(32, 0.05));
   await sharp(favicon32Svg).resize(32, 32).png().toFile(join(iconsDir, 'favicon-32x32.png'));
-  console.log('✅ favicon-32x32.png');
 
   const favicon16Svg = Buffer.from(createSvg(16, 0.05));
   await sharp(favicon16Svg).resize(16, 16).png().toFile(join(iconsDir, 'favicon-16x16.png'));
-  console.log('✅ favicon-16x16.png');
-
-  console.log('\n🎉 ¡Todos los iconos han sido generados exitosamente!');
 }
 
 generateIcons().catch(console.error);
