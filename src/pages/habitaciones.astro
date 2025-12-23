@@ -43,6 +43,7 @@ const optimizedHero = await getImage({ src: heroImg2, width: 1920, format: 'webp
     <!-- Rooms Grid -->
     <section class="py-16 bg-beige-premium">
       <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="sr-only">Nuestras habitaciones disponibles</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {rooms.map((room) => <RoomCard {...room} />)}
         </div>
