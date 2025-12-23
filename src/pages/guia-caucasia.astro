@@ -1,0 +1,1216 @@
+---
+import Footer from '../components/Footer.astro';
+import Navbar from '../components/Navbar.astro';
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Guía Completa de Caucasia 2025 | Qué Hacer, Clima y Cómo Llegar - Hotel Botánico"
+  description="Descubre Caucasia, Antioquia: la capital del Bajo Cauca colombiano. Guía turística completa con qué hacer, mejores restaurantes, clima, festividades, cómo llegar y dónde hospedarse."
+  keywords="Caucasia Antioquia, turismo Caucasia, qué hacer en Caucasia, Bajo Cauca Colombia, guía turística Caucasia, hoteles Caucasia, clima Caucasia, festividades Caucasia, río Cauca, gastronomía Bajo Cauca"
+>
+  <!-- Article Schema JSON-LD para mejor posicionamiento -->
+  <script slot="head" is:inline type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Guía Completa de Caucasia 2025: Qué Hacer, Clima y Cómo Llegar",
+      "description": "Descubre todo sobre Caucasia, la capital del Bajo Cauca antioqueño. Turismo, gastronomía, clima, festividades y los mejores lugares para visitar.",
+      "image": "https://www.hotelbotanicocaucasia.com/og-image.jpg",
+      "author": {
+        "@type": "Organization",
+        "name": "Hotel Botánico",
+        "url": "https://www.hotelbotanicocaucasia.com"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Hotel Botánico",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.hotelbotanicocaucasia.com/favicon.svg"
+        }
+      },
+      "datePublished": "2024-01-15",
+      "dateModified": "2025-01-01",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.hotelbotanicocaucasia.com/guia-caucasia"
+      }
+    }
+  </script>
+
+  <!-- TouristDestination Schema -->
+  <script slot="head" is:inline type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TouristDestination",
+      "name": "Caucasia",
+      "description": "Caucasia es la capital del Bajo Cauca antioqueño, conocida por su biodiversidad, el río Cauca y su rica cultura ganadera y minera.",
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 7.9833,
+        "longitude": -75.1983
+      },
+      "containedInPlace": {
+        "@type": "AdministrativeArea",
+        "name": "Antioquia, Colombia"
+      },
+      "touristType": ["Turismo de naturaleza", "Turismo de negocios", "Ecoturismo"]
+    }
+  </script>
+
+  <Navbar />
+
+  <main id="main-content">
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-negro-suave overflow-hidden">
+      <!-- Background pattern -->
+      <div class="absolute inset-0 opacity-10">
+        <div
+          class="absolute top-0 right-0 w-96 h-96 border border-cafe-claro rounded-full transform translate-x-1/2 -translate-y-1/2"
+        >
+        </div>
+        <div
+          class="absolute bottom-0 left-0 w-64 h-64 border border-verde-oliva rounded-full transform -translate-x-1/2 translate-y-1/2"
+        >
+        </div>
+      </div>
+
+      <div class="container mx-auto px-5 sm:px-6 lg:px-8 relative z-10">
+        <div class="max-w-4xl mx-auto text-center">
+          <!-- Breadcrumb -->
+          <nav class="flex justify-center mb-6" aria-label="Breadcrumb">
+            <ol class="flex items-center gap-2 text-white/60 text-sm">
+              <li><a href="/" class="hover:text-cafe-claro transition-colors">Inicio</a></li>
+              <li><span class="mx-2">/</span></li>
+              <li class="text-cafe-claro">Guía de Caucasia</li>
+            </ol>
+          </nav>
+
+          <span class="text-cafe-claro text-xs tracking-[0.3em] uppercase font-medium block mb-4"
+            >Guía Turística 2025</span
+          >
+          <h1
+            class="font-serif text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 leading-tight"
+          >
+            Descubre Caucasia
+          </h1>
+          <p class="text-white/80 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+            La capital del Bajo Cauca antioqueño te espera con su biodiversidad, gastronomía única y
+            la calidez de su gente
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tabla de Contenidos -->
+    <section class="py-10 bg-beige-premium border-b border-negro-suave/10">
+      <div class="container mx-auto px-5 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto">
+          <details class="group" open>
+            <summary
+              class="flex items-center justify-between cursor-pointer list-none font-semibold text-negro-suave"
+            >
+              <span class="flex items-center gap-2">
+                <svg
+                  class="w-5 h-5 text-verde-oliva"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 6h16M4 10h16M4 14h16M4 18h16"></path>
+                </svg>
+                Contenido de esta guía
+              </span>
+              <svg
+                class="w-5 h-5 text-verde-oliva transition-transform group-open:rotate-180"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </summary>
+            <nav class="mt-4 grid grid-cols-2 md:grid-cols-3 gap-3">
+              <a
+                href="#sobre-caucasia"
+                class="text-negro-suave/70 hover:text-verde-oliva transition-colors text-sm py-2"
+                >→ Sobre Caucasia</a
+              >
+              <a
+                href="#como-llegar"
+                class="text-negro-suave/70 hover:text-verde-oliva transition-colors text-sm py-2"
+                >→ Cómo llegar</a
+              >
+              <a
+                href="#clima"
+                class="text-negro-suave/70 hover:text-verde-oliva transition-colors text-sm py-2"
+                >→ Clima y mejor época</a
+              >
+              <a
+                href="#que-hacer"
+                class="text-negro-suave/70 hover:text-verde-oliva transition-colors text-sm py-2"
+                >→ Qué hacer</a
+              >
+              <a
+                href="#gastronomia"
+                class="text-negro-suave/70 hover:text-verde-oliva transition-colors text-sm py-2"
+                >→ Gastronomía</a
+              >
+              <a
+                href="#festividades"
+                class="text-negro-suave/70 hover:text-verde-oliva transition-colors text-sm py-2"
+                >→ Festividades</a
+              >
+              <a
+                href="#economia"
+                class="text-negro-suave/70 hover:text-verde-oliva transition-colors text-sm py-2"
+                >→ Economía</a
+              >
+              <a
+                href="#donde-hospedarse"
+                class="text-negro-suave/70 hover:text-verde-oliva transition-colors text-sm py-2"
+                >→ Dónde hospedarse</a
+              >
+              <a
+                href="#consejos"
+                class="text-negro-suave/70 hover:text-verde-oliva transition-colors text-sm py-2"
+                >→ Consejos de viaje</a
+              >
+            </nav>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sobre Caucasia -->
+    <section id="sobre-caucasia" class="py-16 md:py-20 bg-white scroll-mt-24">
+      <div class="container mx-auto px-5 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-12 h-12 bg-verde-oliva/10 rounded-xl flex items-center justify-center">
+              <svg
+                class="w-6 h-6 text-verde-oliva"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                ></path>
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+              </svg>
+            </div>
+            <h2 class="font-serif text-3xl md:text-4xl font-bold text-negro-suave">
+              Sobre Caucasia
+            </h2>
+          </div>
+
+          <div class="prose prose-lg max-w-none text-negro-suave/80 leading-relaxed space-y-6">
+            <p>
+              <strong class="text-negro-suave">Caucasia</strong> es un municipio colombiano ubicado en
+              la subregión del
+              <strong class="text-negro-suave">Bajo Cauca</strong> del departamento de Antioquia. Con
+              una población de aproximadamente <strong class="text-negro-suave"
+                >120,000 habitantes</strong
+              >, es considerada la capital de esta próspera región y uno de los centros económicos
+              más importantes del norte antioqueño.
+            </p>
+
+            <p>
+              Fundada oficialmente en 1886, Caucasia se ha convertido en un punto estratégico que
+              conecta la costa atlántica colombiana con el interior del país. Su ubicación
+              privilegiada a orillas del majestuoso
+              <strong class="text-negro-suave">río Cauca</strong> le otorga una riqueza natural incomparable
+              y la convierte en un destino fascinante para quienes buscan conocer la Colombia auténtica.
+            </p>
+
+            <div class="bg-beige-premium/50 rounded-2xl p-6 my-8 not-prose">
+              <h3 class="font-semibold text-negro-suave mb-4 flex items-center gap-2">
+                <svg
+                  class="w-5 h-5 text-verde-oliva"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                Datos rápidos de Caucasia
+              </h3>
+              <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div>
+                  <p class="text-xs text-negro-suave/60 uppercase tracking-wide">Altitud</p>
+                  <p class="font-semibold text-negro-suave">50 m.s.n.m.</p>
+                </div>
+                <div>
+                  <p class="text-xs text-negro-suave/60 uppercase tracking-wide">Temperatura</p>
+                  <p class="font-semibold text-negro-suave">28°C promedio</p>
+                </div>
+                <div>
+                  <p class="text-xs text-negro-suave/60 uppercase tracking-wide">Población</p>
+                  <p class="font-semibold text-negro-suave">~120,000 hab.</p>
+                </div>
+                <div>
+                  <p class="text-xs text-negro-suave/60 uppercase tracking-wide">Gentilicio</p>
+                  <p class="font-semibold text-negro-suave">Caucasiano/a</p>
+                </div>
+              </div>
+            </div>
+
+            <p>
+              La ciudad destaca por su vibrante actividad comercial, siendo un importante centro de
+              intercambio para productos ganaderos, agrícolas y mineros. Su cercanía a zonas de gran
+              biodiversidad la convierte en una puerta de entrada al ecoturismo en la región del
+              Bajo Cauca.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cómo Llegar -->
+    <section id="como-llegar" class="py-16 md:py-20 bg-beige-premium scroll-mt-24">
+      <div class="container mx-auto px-5 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-12 h-12 bg-verde-oliva/10 rounded-xl flex items-center justify-center">
+              <svg
+                class="w-6 h-6 text-verde-oliva"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"
+                ></path>
+              </svg>
+            </div>
+            <h2 class="font-serif text-3xl md:text-4xl font-bold text-negro-suave">
+              Cómo Llegar a Caucasia
+            </h2>
+          </div>
+
+          <div class="space-y-8">
+            <!-- Por Avión -->
+            <div class="bg-white rounded-2xl p-6 shadow-sm">
+              <h3 class="font-semibold text-negro-suave text-lg mb-4 flex items-center gap-2">
+                <svg
+                  class="w-5 h-5 text-cafe-claro"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 12h14M12 5l7 7-7 7"></path>
+                </svg>
+                Por Avión
+              </h3>
+              <p class="text-negro-suave/70 mb-4">
+                El aeropuerto más cercano es el <strong class="text-negro-suave"
+                  >Aeropuerto Los Garzones (MTR)</strong
+                >
+                en Montería, ubicado a aproximadamente <strong class="text-negro-suave"
+                  >90 km</strong
+                > de Caucasia (1.5 horas por carretera). Desde allí, puedes tomar transporte terrestre
+                hasta Caucasia.
+              </p>
+              <p class="text-negro-suave/70">
+                También puedes volar al <strong class="text-negro-suave"
+                  >Aeropuerto José María Córdova (MDE)</strong
+                >
+                en Medellín y continuar por tierra (aproximadamente 4-5 horas de viaje).
+              </p>
+            </div>
+
+            <!-- Por Carretera desde Medellín -->
+            <div class="bg-white rounded-2xl p-6 shadow-sm">
+              <h3 class="font-semibold text-negro-suave text-lg mb-4 flex items-center gap-2">
+                <svg
+                  class="w-5 h-5 text-cafe-claro"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+                </svg>
+                Desde Medellín (Terrestre)
+              </h3>
+              <ul class="text-negro-suave/70 space-y-2">
+                <li class="flex items-start gap-2">
+                  <span class="text-verde-oliva mt-1">•</span>
+                  <span
+                    ><strong class="text-negro-suave">Distancia:</strong> 280 km aproximadamente</span
+                  >
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-verde-oliva mt-1">•</span>
+                  <span
+                    ><strong class="text-negro-suave">Tiempo:</strong> 4-5 horas por la Troncal de la
+                    Costa</span
+                  >
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-verde-oliva mt-1">•</span>
+                  <span
+                    ><strong class="text-negro-suave">Ruta:</strong> Medellín → Don Matías → Yarumal →
+                    Tarazá → Caucasia</span
+                  >
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-verde-oliva mt-1">•</span>
+                  <span
+                    ><strong class="text-negro-suave">Empresas de buses:</strong> Cootracol, Rápido Ochoa,
+                    Sotraurabá</span
+                  >
+                </li>
+              </ul>
+            </div>
+
+            <!-- Desde la Costa -->
+            <div class="bg-white rounded-2xl p-6 shadow-sm">
+              <h3 class="font-semibold text-negro-suave text-lg mb-4 flex items-center gap-2">
+                <svg
+                  class="w-5 h-5 text-cafe-claro"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"
+                  ></path>
+                </svg>
+                Desde la Costa Atlántica
+              </h3>
+              <ul class="text-negro-suave/70 space-y-2">
+                <li class="flex items-start gap-2">
+                  <span class="text-verde-oliva mt-1">•</span>
+                  <span
+                    ><strong class="text-negro-suave">Desde Montería:</strong> 90 km, aproximadamente
+                    1.5 horas</span
+                  >
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-verde-oliva mt-1">•</span>
+                  <span
+                    ><strong class="text-negro-suave">Desde Cartagena:</strong> 350 km, aproximadamente
+                    5-6 horas</span
+                  >
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-verde-oliva mt-1">•</span>
+                  <span
+                    ><strong class="text-negro-suave">Desde Barranquilla:</strong> 400 km, aproximadamente
+                    6-7 horas</span
+                  >
+                </li>
+              </ul>
+            </div>
+
+            <!-- Nota sobre transporte -->
+            <div class="bg-verde-oliva/10 rounded-2xl p-6">
+              <p class="text-negro-suave/80 flex items-start gap-3">
+                <svg
+                  class="w-5 h-5 text-verde-oliva flex-shrink-0 mt-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <span>
+                  <strong class="text-negro-suave">Tip de viaje:</strong> Si te hospedas en
+                  <a href="/" class="text-verde-oliva hover:underline font-medium">Hotel Botánico</a
+                  >, podemos coordinar tu transporte desde el aeropuerto de Montería. Solo
+                  contáctanos con anticipación.
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Clima -->
+    <section id="clima" class="py-16 md:py-20 bg-white scroll-mt-24">
+      <div class="container mx-auto px-5 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-12 h-12 bg-verde-oliva/10 rounded-xl flex items-center justify-center">
+              <svg
+                class="w-6 h-6 text-verde-oliva"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"
+                ></path>
+              </svg>
+            </div>
+            <h2 class="font-serif text-3xl md:text-4xl font-bold text-negro-suave">
+              Clima y Mejor Época para Visitar
+            </h2>
+          </div>
+
+          <div class="prose prose-lg max-w-none text-negro-suave/80 leading-relaxed space-y-6">
+            <p>
+              Caucasia tiene un <strong class="text-negro-suave">clima tropical húmedo</strong>,
+              característico de las zonas bajas del Caribe colombiano. La temperatura se mantiene
+              cálida durante todo el año, con promedios entre <strong class="text-negro-suave"
+                >26°C y 32°C</strong
+              >.
+            </p>
+
+            <div class="grid md:grid-cols-2 gap-6 not-prose my-8">
+              <!-- Temporada Seca -->
+              <div
+                class="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-6 border border-amber-200/50"
+              >
+                <div class="flex items-center gap-3 mb-4">
+                  <svg
+                    class="w-8 h-8 text-amber-500"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+                    ></path>
+                  </svg>
+                  <h3 class="font-semibold text-negro-suave text-lg">Temporada Seca</h3>
+                </div>
+                <p class="text-negro-suave/70 text-sm mb-3">
+                  <strong class="text-negro-suave">Diciembre - Marzo</strong>
+                </p>
+                <p class="text-negro-suave/70">
+                  Ideal para visitar. Menos lluvias, cielos despejados y temperaturas agradables
+                  para explorar la región.
+                </p>
+              </div>
+
+              <!-- Temporada de Lluvias -->
+              <div
+                class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-6 border border-blue-200/50"
+              >
+                <div class="flex items-center gap-3 mb-4">
+                  <svg
+                    class="w-8 h-8 text-blue-500"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"
+                    ></path>
+                  </svg>
+                  <h3 class="font-semibold text-negro-suave text-lg">Temporada de Lluvias</h3>
+                </div>
+                <p class="text-negro-suave/70 text-sm mb-3">
+                  <strong class="text-negro-suave">Abril - Noviembre</strong>
+                </p>
+                <p class="text-negro-suave/70">
+                  Precipitaciones frecuentes, especialmente en las tardes. El paisaje se vuelve más
+                  verde y exuberante.
+                </p>
+              </div>
+            </div>
+
+            <div class="bg-cafe-claro/10 rounded-2xl p-6 not-prose">
+              <h3 class="font-semibold text-negro-suave mb-3">💡 Recomendaciones</h3>
+              <ul class="text-negro-suave/70 space-y-2 text-sm">
+                <li class="flex items-start gap-2">
+                  <span class="text-cafe-claro">✓</span>
+                  Lleva ropa ligera y fresca (algodón, lino)
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-cafe-claro">✓</span>
+                  Usa protector solar y sombrero
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-cafe-claro">✓</span>
+                  Mantente hidratado bebiendo agua constantemente
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-cafe-claro">✓</span>
+                  Lleva un paraguas o impermeable ligero por si llueve
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Qué Hacer -->
+    <section id="que-hacer" class="py-16 md:py-20 bg-beige-premium scroll-mt-24">
+      <div class="container mx-auto px-5 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-12 h-12 bg-verde-oliva/10 rounded-xl flex items-center justify-center">
+              <svg
+                class="w-6 h-6 text-verde-oliva"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"
+                ></path>
+              </svg>
+            </div>
+            <h2 class="font-serif text-3xl md:text-4xl font-bold text-negro-suave">
+              Qué Hacer en Caucasia
+            </h2>
+          </div>
+
+          <div class="space-y-6">
+            <!-- Actividad 1 -->
+            <div class="bg-white rounded-2xl p-6 shadow-sm">
+              <h3 class="font-semibold text-negro-suave text-xl mb-3">
+                🌊 Río Cauca y Actividades Acuáticas
+              </h3>
+              <p class="text-negro-suave/70 mb-4">
+                El majestuoso río Cauca atraviesa la región y ofrece oportunidades para paseos en
+                lancha, pesca deportiva y observación de fauna silvestre. Los atardeceres sobre el
+                río son espectaculares y un imperdible fotográfico.
+              </p>
+            </div>
+
+            <!-- Actividad 2 -->
+            <div class="bg-white rounded-2xl p-6 shadow-sm">
+              <h3 class="font-semibold text-negro-suave text-xl mb-3">
+                🦜 Ecoturismo y Avistamiento de Aves
+              </h3>
+              <p class="text-negro-suave/70 mb-4">
+                La biodiversidad del Bajo Cauca es impresionante. La región alberga cientos de
+                especies de aves, incluyendo garzas, martines pescadores y aves migratorias. Los
+                humedales y ciénagas cercanos son paraísos para los amantes de la naturaleza.
+              </p>
+            </div>
+
+            <!-- Actividad 3 -->
+            <div class="bg-white rounded-2xl p-6 shadow-sm">
+              <h3 class="font-semibold text-negro-suave text-xl mb-3">
+                🐄 Turismo Rural y Haciendas Ganaderas
+              </h3>
+              <p class="text-negro-suave/70 mb-4">
+                Caucasia es conocida como una región ganadera por excelencia. Visita haciendas
+                tradicionales, conoce el proceso de producción de leche y queso, y disfruta de la
+                vida campesina colombiana.
+              </p>
+            </div>
+
+            <!-- Actividad 4 -->
+            <div class="bg-white rounded-2xl p-6 shadow-sm">
+              <h3 class="font-semibold text-negro-suave text-xl mb-3">
+                🏛️ Centro Histórico y Parque Principal
+              </h3>
+              <p class="text-negro-suave/70 mb-4">
+                El parque principal de Caucasia es el corazón de la ciudad. Rodeado de comercio
+                local, restaurantes y la iglesia principal, es el lugar perfecto para sentir el
+                pulso de la vida caucasiana, especialmente en las tardes cuando baja el calor.
+              </p>
+            </div>
+
+            <!-- Actividad 5 -->
+            <div class="bg-white rounded-2xl p-6 shadow-sm">
+              <h3 class="font-semibold text-negro-suave text-xl mb-3">
+                🍹 MITO Rooftop - Experiencia Única
+              </h3>
+              <p class="text-negro-suave/70 mb-4">
+                Para una experiencia nocturna sofisticada, visita
+                <a href="/mito" class="text-verde-oliva hover:underline font-medium">MITO Rooftop</a
+                >
+                en Hotel Botánico. Disfruta de coctelería de autor, gastronomía gourmet y las mejores
+                vistas de la ciudad mientras el sol se pone sobre el Bajo Cauca.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gastronomía -->
+    <section id="gastronomia" class="py-16 md:py-20 bg-white scroll-mt-24">
+      <div class="container mx-auto px-5 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-12 h-12 bg-verde-oliva/10 rounded-xl flex items-center justify-center">
+              <svg
+                class="w-6 h-6 text-verde-oliva"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                ></path>
+              </svg>
+            </div>
+            <h2 class="font-serif text-3xl md:text-4xl font-bold text-negro-suave">
+              Gastronomía del Bajo Cauca
+            </h2>
+          </div>
+
+          <div class="prose prose-lg max-w-none text-negro-suave/80 leading-relaxed space-y-6">
+            <p>
+              La cocina caucasiana es una deliciosa fusión de tradiciones costeñas y antioqueñas,
+              con influencias de la cultura ganadera y pesquera de la región.
+            </p>
+
+            <div class="grid md:grid-cols-2 gap-6 not-prose my-8">
+              <div class="bg-beige-premium/50 rounded-2xl p-5">
+                <h3 class="font-semibold text-negro-suave mb-3">🍖 Platos Típicos</h3>
+                <ul class="text-negro-suave/70 space-y-2 text-sm">
+                  <li>
+                    <strong>Bocachico frito:</strong> Pescado del río Cauca, preparado frito con patacones
+                  </li>
+                  <li>
+                    <strong>Viuda de pescado:</strong> Guiso tradicional con pescado y verduras
+                  </li>
+                  <li><strong>Suero costeño:</strong> Acompañante cremoso típico de la región</li>
+                  <li><strong>Mote de queso:</strong> Sopa cremosa con ñame y queso costeño</li>
+                  <li>
+                    <strong>Carne asada:</strong> La tradición ganadera se refleja en cortes de primera
+                  </li>
+                </ul>
+              </div>
+
+              <div class="bg-beige-premium/50 rounded-2xl p-5">
+                <h3 class="font-semibold text-negro-suave mb-3">🥤 Bebidas y Postres</h3>
+                <ul class="text-negro-suave/70 space-y-2 text-sm">
+                  <li><strong>Jugo de corozo:</strong> Fruta tropical refrescante</li>
+                  <li><strong>Limonada de coco:</strong> Cremosa y perfecta para el calor</li>
+                  <li><strong>Enyucado:</strong> Postre de yuca con coco y anís</li>
+                  <li><strong>Cocadas:</strong> Dulces tradicionales de coco</li>
+                  <li><strong>Bollos de mazorca:</strong> Envueltos dulces de maíz tierno</li>
+                </ul>
+              </div>
+            </div>
+
+            <p>
+              Si buscas una experiencia gastronómica de alto nivel en Caucasia, el restaurante de
+              <a href="/" class="text-verde-oliva hover:underline font-medium">Hotel Botánico</a>
+              ofrece una carta que fusiona los sabores locales con técnicas contemporáneas.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Festividades -->
+    <section id="festividades" class="py-16 md:py-20 bg-beige-premium scroll-mt-24">
+      <div class="container mx-auto px-5 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-12 h-12 bg-verde-oliva/10 rounded-xl flex items-center justify-center">
+              <svg
+                class="w-6 h-6 text-verde-oliva"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"
+                ></path>
+              </svg>
+            </div>
+            <h2 class="font-serif text-3xl md:text-4xl font-bold text-negro-suave">
+              Festividades y Eventos
+            </h2>
+          </div>
+
+          <div class="space-y-6">
+            <div class="bg-white rounded-2xl p-6 shadow-sm">
+              <div class="flex items-start gap-4">
+                <div
+                  class="bg-verde-oliva text-white font-bold px-3 py-2 rounded-lg text-center min-w-[60px]"
+                >
+                  <span class="text-xs block">ENE</span>
+                  <span class="text-lg">20</span>
+                </div>
+                <div>
+                  <h3 class="font-semibold text-negro-suave text-lg">Fiestas del Río</h3>
+                  <p class="text-negro-suave/70 mt-1">
+                    Celebración anual que rinde homenaje al río Cauca con desfiles, actividades
+                    acuáticas, música en vivo y gastronomía local. Una de las fiestas más
+                    importantes de la región.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 shadow-sm">
+              <div class="flex items-start gap-4">
+                <div
+                  class="bg-verde-oliva text-white font-bold px-3 py-2 rounded-lg text-center min-w-[60px]"
+                >
+                  <span class="text-xs block">JUN</span>
+                  <span class="text-lg">24</span>
+                </div>
+                <div>
+                  <h3 class="font-semibold text-negro-suave text-lg">Feria Ganadera</h3>
+                  <p class="text-negro-suave/70 mt-1">
+                    Evento que destaca la tradición ganadera del Bajo Cauca con exposiciones de
+                    ganado, cabalgatas, competencias y actividades culturales.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 shadow-sm">
+              <div class="flex items-start gap-4">
+                <div
+                  class="bg-verde-oliva text-white font-bold px-3 py-2 rounded-lg text-center min-w-[60px]"
+                >
+                  <span class="text-xs block">DIC</span>
+                  <span class="text-lg">7-31</span>
+                </div>
+                <div>
+                  <h3 class="font-semibold text-negro-suave text-lg">Temporada Navideña</h3>
+                  <p class="text-negro-suave/70 mt-1">
+                    Caucasia se ilumina con decoraciones festivas. Las familias se reúnen, los
+                    comercios se activan y hay eventos especiales durante todo diciembre.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Economía -->
+    <section id="economia" class="py-16 md:py-20 bg-white scroll-mt-24">
+      <div class="container mx-auto px-5 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-12 h-12 bg-verde-oliva/10 rounded-xl flex items-center justify-center">
+              <svg
+                class="w-6 h-6 text-verde-oliva"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+              </svg>
+            </div>
+            <h2 class="font-serif text-3xl md:text-4xl font-bold text-negro-suave">
+              Economía y Negocios
+            </h2>
+          </div>
+
+          <div class="prose prose-lg max-w-none text-negro-suave/80 leading-relaxed space-y-6">
+            <p>
+              Caucasia es un importante centro económico del norte de Antioquia, con actividades
+              diversificadas que atraen a empresarios, comerciantes y profesionales de toda
+              Colombia.
+            </p>
+
+            <div class="grid md:grid-cols-3 gap-4 not-prose my-8">
+              <div class="bg-beige-premium/50 rounded-xl p-5 text-center">
+                <div
+                  class="w-12 h-12 bg-verde-oliva/10 rounded-full flex items-center justify-center mx-auto mb-3"
+                >
+                  <svg
+                    class="w-6 h-6 text-verde-oliva"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"
+                    ></path>
+                  </svg>
+                </div>
+                <h3 class="font-semibold text-negro-suave">Ganadería</h3>
+                <p class="text-negro-suave/60 text-sm mt-2">
+                  Principal actividad económica con miles de cabezas de ganado
+                </p>
+              </div>
+
+              <div class="bg-beige-premium/50 rounded-xl p-5 text-center">
+                <div
+                  class="w-12 h-12 bg-verde-oliva/10 rounded-full flex items-center justify-center mx-auto mb-3"
+                >
+                  <svg
+                    class="w-6 h-6 text-verde-oliva"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+                  </svg>
+                </div>
+                <h3 class="font-semibold text-negro-suave">Minería</h3>
+                <p class="text-negro-suave/60 text-sm mt-2">
+                  Extracción de oro y otros minerales en la región
+                </p>
+              </div>
+
+              <div class="bg-beige-premium/50 rounded-xl p-5 text-center">
+                <div
+                  class="w-12 h-12 bg-verde-oliva/10 rounded-full flex items-center justify-center mx-auto mb-3"
+                >
+                  <svg
+                    class="w-6 h-6 text-verde-oliva"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                  </svg>
+                </div>
+                <h3 class="font-semibold text-negro-suave">Comercio</h3>
+                <p class="text-negro-suave/60 text-sm mt-2">
+                  Centro comercial clave para todo el Bajo Cauca
+                </p>
+              </div>
+            </div>
+
+            <p>
+              Para viajeros de negocios, <a
+                href="/"
+                class="text-verde-oliva hover:underline font-medium">Hotel Botánico</a
+              >
+              ofrece <a href="/habitaciones" class="text-verde-oliva hover:underline font-medium"
+                >suites ejecutivas</a
+              >, salones de reuniones equipados y servicios empresariales completos para hacer de tu
+              estadía de trabajo una experiencia productiva y cómoda.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dónde Hospedarse -->
+    <section id="donde-hospedarse" class="py-16 md:py-20 bg-negro-suave text-white scroll-mt-24">
+      <div class="container mx-auto px-5 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center">
+              <svg
+                class="w-6 h-6 text-cafe-claro"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                ></path>
+              </svg>
+            </div>
+            <h2 class="font-serif text-3xl md:text-4xl font-bold">Dónde Hospedarse en Caucasia</h2>
+          </div>
+
+          <div class="prose prose-lg prose-invert max-w-none leading-relaxed space-y-6">
+            <p class="text-white/80">
+              Para una experiencia de hospedaje de primer nivel en Caucasia,
+              <strong class="text-white">Hotel Botánico</strong> es la opción líder. Como el único hotel
+              4 estrellas de la ciudad, ofrece:
+            </p>
+
+            <div class="grid md:grid-cols-2 gap-4 not-prose my-8">
+              <div class="bg-white/5 border border-white/10 rounded-xl p-4 flex items-center gap-3">
+                <svg
+                  class="w-5 h-5 text-cafe-claro flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-white/80">Suites y habitaciones premium</span>
+              </div>
+              <div class="bg-white/5 border border-white/10 rounded-xl p-4 flex items-center gap-3">
+                <svg
+                  class="w-5 h-5 text-cafe-claro flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-white/80">Desayuno buffet incluido</span>
+              </div>
+              <div class="bg-white/5 border border-white/10 rounded-xl p-4 flex items-center gap-3">
+                <svg
+                  class="w-5 h-5 text-cafe-claro flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-white/80">Piscina y áreas de descanso</span>
+              </div>
+              <div class="bg-white/5 border border-white/10 rounded-xl p-4 flex items-center gap-3">
+                <svg
+                  class="w-5 h-5 text-cafe-claro flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-white/80">MITO Rooftop bar exclusivo</span>
+              </div>
+              <div class="bg-white/5 border border-white/10 rounded-xl p-4 flex items-center gap-3">
+                <svg
+                  class="w-5 h-5 text-cafe-claro flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-white/80">Salones para eventos y reuniones</span>
+              </div>
+              <div class="bg-white/5 border border-white/10 rounded-xl p-4 flex items-center gap-3">
+                <svg
+                  class="w-5 h-5 text-cafe-claro flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-white/80">WiFi de alta velocidad gratis</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-col sm:flex-row gap-4 mt-8">
+            <a
+              href="/habitaciones"
+              class="inline-flex items-center justify-center gap-2 bg-cafe-claro text-negro-suave font-semibold px-8 py-4 rounded-xl hover:bg-white transition-all duration-300"
+            >
+              Ver Habitaciones
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+              </svg>
+            </a>
+            <a
+              href="/reservar"
+              class="inline-flex items-center justify-center gap-2 bg-transparent border-2 border-white/30 text-white font-semibold px-8 py-4 rounded-xl hover:bg-white/10 transition-all duration-300"
+            >
+              Reservar Ahora
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Consejos de Viaje -->
+    <section id="consejos" class="py-16 md:py-20 bg-white scroll-mt-24">
+      <div class="container mx-auto px-5 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-12 h-12 bg-verde-oliva/10 rounded-xl flex items-center justify-center">
+              <svg
+                class="w-6 h-6 text-verde-oliva"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+                ></path>
+              </svg>
+            </div>
+            <h2 class="font-serif text-3xl md:text-4xl font-bold text-negro-suave">
+              Consejos para tu Viaje
+            </h2>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-beige-premium/50 rounded-2xl p-6">
+              <h3 class="font-semibold text-negro-suave mb-4 flex items-center gap-2">
+                <span class="text-xl">💳</span> Dinero
+              </h3>
+              <ul class="text-negro-suave/70 space-y-2 text-sm">
+                <li>• Hay cajeros automáticos en el centro de la ciudad</li>
+                <li>• Muchos comercios aceptan Nequi y Daviplata</li>
+                <li>• Lleva efectivo para compras en el mercado local</li>
+              </ul>
+            </div>
+
+            <div class="bg-beige-premium/50 rounded-2xl p-6">
+              <h3 class="font-semibold text-negro-suave mb-4 flex items-center gap-2">
+                <span class="text-xl">📱</span> Conectividad
+              </h3>
+              <ul class="text-negro-suave/70 space-y-2 text-sm">
+                <li>• Buena cobertura de Claro, Movistar y Tigo</li>
+                <li>• WiFi disponible en hoteles y cafés</li>
+                <li>• Señal 4G en el área urbana</li>
+              </ul>
+            </div>
+
+            <div class="bg-beige-premium/50 rounded-2xl p-6">
+              <h3 class="font-semibold text-negro-suave mb-4 flex items-center gap-2">
+                <span class="text-xl">🏥</span> Salud
+              </h3>
+              <ul class="text-negro-suave/70 space-y-2 text-sm">
+                <li>• Hospital San Jerónimo disponible 24/7</li>
+                <li>• Farmacias en el centro y barrios principales</li>
+                <li>• Usa repelente de mosquitos, especialmente al atardecer</li>
+              </ul>
+            </div>
+
+            <div class="bg-beige-premium/50 rounded-2xl p-6">
+              <h3 class="font-semibold text-negro-suave mb-4 flex items-center gap-2">
+                <span class="text-xl">🚗</span> Movilidad
+              </h3>
+              <ul class="text-negro-suave/70 space-y-2 text-sm">
+                <li>• Taxis disponibles en toda la ciudad</li>
+                <li>• Mototaxis para trayectos cortos</li>
+                <li>• Apps de transporte limitadas, mejor llamar taxi</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Final -->
+    <section class="py-16 md:py-20 bg-verde-oliva text-white">
+      <div class="container mx-auto px-5 sm:px-6 lg:px-8 text-center">
+        <div class="max-w-3xl mx-auto">
+          <h2 class="font-serif text-3xl md:text-4xl font-bold mb-6">
+            ¿Listo para descubrir Caucasia?
+          </h2>
+          <p class="text-white/80 text-lg mb-8 max-w-2xl mx-auto">
+            Reserva tu estadía en Hotel Botánico y vive la mejor experiencia en el Bajo Cauca
+            antioqueño
+          </p>
+          <div class="flex flex-col sm:flex-row justify-center gap-4">
+            <a
+              href="/"
+              class="inline-flex items-center justify-center gap-2 bg-white text-negro-suave font-semibold px-8 py-4 rounded-xl hover:bg-beige-premium transition-all duration-300 shadow-lg"
+            >
+              Reservar Ahora
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+              </svg>
+            </a>
+            <a
+              href="/contacto"
+              class="inline-flex items-center justify-center gap-2 bg-transparent border-2 border-white/40 text-white font-semibold px-8 py-4 rounded-xl hover:bg-white hover:text-negro-suave transition-all duration-300"
+            >
+              Contactar
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

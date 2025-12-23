@@ -68,6 +68,13 @@ const currentPath = Astro.url.pathname;
                 Contacto
               </a>
               <a
+                href="/guia-caucasia"
+                class="nav-link text-white hover:text-beige-premium transition-colors"
+                class:list={[currentPath === '/guia-caucasia' && 'active']}
+              >
+                Guía Caucasia
+              </a>
+              <a
                 href="/mito"
                 class="nav-link-mito text-white text-center hover:text-beige-premium transition-all duration-300 px-4 py-2 rounded-lg border border-white/30 hover:border-beige-premium/50 hover:bg-white/10 backdrop-blur-sm"
                 class:list={[currentPath === '/mito' && 'active-mito']}
@@ -219,8 +226,30 @@ const currentPath = Astro.url.pathname;
                   </svg>
                 </a>
               </li>
+              <li class="menu-item" style="--item-index: 5;">
+                <a
+                  href="/guia-caucasia"
+                  class="group flex items-center justify-between px-4 py-4 text-white text-lg font-light tracking-wide border-b border-white/10 transition-all duration-300 hover:pl-6 hover:border-cafe-claro/40"
+                >
+                  <span>Guía Caucasia</span>
+                  <svg
+                    class="w-5 h-5 text-white/30 group-hover:text-cafe-claro transition-colors"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="1.5"
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </a>
+              </li>
 
-              <li class="menu-item menu-item-mito" style="--item-index: 5;">
+              <li class="menu-item menu-item-mito" style="--item-index: 6;">
                 <a
                   href="/mito"
                   class="group flex items-center justify-between px-4 py-4 text-white text-lg font-medium tracking-wide border border-white/30 rounded-lg mx-2 my-2 bg-white/5 backdrop-blur-sm transition-all duration-300 hover:bg-white/10 hover:border-cafe-claro/50 hover:scale-[1.02]"
@@ -248,7 +277,7 @@ const currentPath = Astro.url.pathname;
             <a
               href="https://wa.me/573122094960"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener noreferrer nofollow"
               class="flex items-center justify-center gap-3 bg-verde-oliva text-white font-medium px-6 py-4 rounded-xl transition-all duration-300 hover:bg-cafe-claro"
             >
               <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
