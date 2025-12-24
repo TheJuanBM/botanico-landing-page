@@ -18,16 +18,6 @@ Disallow: /_assets/
 
 # Sitemap
 Sitemap: ${sitemapUrl}
-
-# Crawl delay para bots agresivos
-User-agent: AhrefsBot
-Crawl-delay: 10
-
-User-agent: SemrushBot
-Crawl-delay: 10
-
-User-agent: MJ12bot
-Crawl-delay: 10
 `;
 
   return new Response(robotsTxt, {
