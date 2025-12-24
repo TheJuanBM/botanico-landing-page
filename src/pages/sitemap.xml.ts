@@ -8,6 +8,7 @@ const pages = [
   { url: 'mito', changefreq: 'weekly', priority: 0.8 },
   { url: 'galeria', changefreq: 'monthly', priority: 0.7 },
   { url: 'contacto', changefreq: 'monthly', priority: 0.8 },
+  { url: 'guia-caucasia', changefreq: 'monthly', priority: 0.6 },
 ];
 
 export const GET: APIRoute = async ({ site }) => {
