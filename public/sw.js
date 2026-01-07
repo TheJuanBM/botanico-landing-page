@@ -37,7 +37,7 @@ self.addEventListener('activate', (event) => {
               name !== DYNAMIC_CACHE_NAME
             );
           })
-          .map(caches.delete)
+          .map((name) => caches.delete(name))
       );
     })
   );
@@ -80,23 +80,87 @@ self.addEventListener('fetch', (event) => {
   ) {
     event.respondWith(
       (async () => {
-        const cachedResponse = await caches.match(request);
-        if (cachedResponse) {
-          return cachedResponse;
-        }
+        try {
+          const cachedResponse = await caches.match(request);
+          if (cachedResponse) {
+            return cachedResponse;
+          }
 
-        const response = await fetch(request);
-        if (response.ok) {
-          const cache = await caches.open(DYNAMIC_CACHE_NAME);
-          cache.put(request, response.clone());
+          const response = await fetch(request);
+          if (response.ok) {
+            const cache = await caches.open(DYNAMIC_CACHE_NAME);
+            cache.put(request, response.clone());
+          }
+          return response;
+        } catch {
+          const cachedResponse = await caches.match(request);
+          if (cachedResponse) {
+            return cachedResponse;
+          }
+
+          if (request.destination === 'image') {
+            return new Response(
+              new Uint8Array([
+                0x47, 0x49, 0x46, 0x38, 0x39, 0x61, 0x01, 0x00, 0x01, 0x00, 0x80, 0x00, 0x00, 0xff,
+                0xff, 0xff, 0x00, 0x00, 0x00, 0x21, 0xf9, 0x04, 0x01, 0x00, 0x00, 0x00, 0x00, 0x2c,
+                0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x01, 0x00, 0x00, 0x02, 0x02, 0x44, 0x01, 0x00,
+                0x3b,
+              ]),
+              {
+                status: 200,
+                headers: { 'Content-Type': 'image/gif' },
+              }
+            );
+          }
+
+          return new Response('', { status: 503, statusText: 'Service Unavailable' });
         }
-        return response;
       })()
     );
     return;
   }
 
-  event.respondWith(fetch(request));
+  if (url.pathname === '/manifest.webmanifest') {
+    event.respondWith(
+      (async () => {
+        try {
+          const cachedResponse = await caches.match(request);
+          if (cachedResponse) {
+            return cachedResponse;
+          }
+          const response = await fetch(request);
+          if (response.ok) {
+            const cache = await caches.open(STATIC_CACHE_NAME);
+            cache.put(request, response.clone());
+          }
+          return response;
+        } catch {
+          const cachedResponse = await caches.match(request);
+          return (
+            cachedResponse ||
+            new Response('{}', {
+              status: 200,
+              headers: { 'Content-Type': 'application/manifest+json' },
+            })
+          );
+        }
+      })()
+    );
+    return;
+  }
+
+  event.respondWith(
+    (async () => {
+      try {
+        return await fetch(request);
+      } catch {
+        const cachedResponse = await caches.match(request);
+        return (
+          cachedResponse || new Response('', { status: 503, statusText: 'Service Unavailable' })
+        );
+      }
+    })()
+  );
 });
 
 self.addEventListener('message', (event) => {
