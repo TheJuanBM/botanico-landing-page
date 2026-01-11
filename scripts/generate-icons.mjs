@@ -1,12 +1,13 @@
+import { existsSync, mkdirSync, writeFileSync } from 'fs';
+import { dirname, join } from 'path';
 import sharp from 'sharp';
 import { fileURLToPath } from 'url';
-import { dirname, join } from 'path';
-import { mkdirSync, existsSync } from 'fs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const rootDir = join(__dirname, '..');
 const iconsDir = join(rootDir, 'public', 'icons');
+const publicDir = join(rootDir, 'public');
 
 if (!existsSync(iconsDir)) {
   mkdirSync(iconsDir, { recursive: true });
@@ -62,12 +63,64 @@ const createMaskableSvg = (size) => {
 const sizes = [72, 96, 128, 144, 152, 192, 384, 512];
 const maskableSizes = [192, 512];
 
+function createIcoBuffer(pngBuffers) {
+  const numImages = pngBuffers.length;
+
+  const headerSize = 6;
+
+  const directorySize = 16 * numImages;
+
+  let currentOffset = headerSize + directorySize;
+  const offsets = [];
+  for (const png of pngBuffers) {
+    offsets.push(currentOffset);
+    currentOffset += png.data.length;
+  }
+
+  const totalSize = currentOffset;
+  const icoBuffer = Buffer.alloc(totalSize);
+
+  icoBuffer.writeUInt16LE(0, 0);
+  icoBuffer.writeUInt16LE(1, 2);
+  icoBuffer.writeUInt16LE(numImages, 4);
+
+  for (let i = 0; i < numImages; i++) {
+    const entry = pngBuffers[i];
+    const entryOffset = headerSize + i * 16;
+
+    icoBuffer.writeUInt8(entry.width >= 256 ? 0 : entry.width, entryOffset);
+
+    icoBuffer.writeUInt8(entry.height >= 256 ? 0 : entry.height, entryOffset + 1);
+
+    icoBuffer.writeUInt8(0, entryOffset + 2);
+
+    icoBuffer.writeUInt8(0, entryOffset + 3);
+
+    icoBuffer.writeUInt16LE(1, entryOffset + 4);
+
+    icoBuffer.writeUInt16LE(32, entryOffset + 6);
+
+    icoBuffer.writeUInt32LE(entry.data.length, entryOffset + 8);
+
+    icoBuffer.writeUInt32LE(offsets[i], entryOffset + 12);
+  }
+
+  for (let i = 0; i < numImages; i++) {
+    pngBuffers[i].data.copy(icoBuffer, offsets[i]);
+  }
+
+  return icoBuffer;
+}
+
 async function generateIcons() {
+  console.log('Generando iconos PWA...');
+
   for (const size of sizes) {
     const svgBuffer = Buffer.from(createSvg(size, 0.15));
     const outputPath = join(iconsDir, `icon-${size}x${size}.png`);
 
     await sharp(svgBuffer).resize(size, size).png().toFile(outputPath);
+    console.log(`  ✓ icon-${size}x${size}.png`);
   }
 
   for (const size of maskableSizes) {
@@ -75,16 +128,34 @@ async function generateIcons() {
     const outputPath = join(iconsDir, `icon-maskable-${size}x${size}.png`);
 
     await sharp(svgBuffer).resize(size, size).png().toFile(outputPath);
+    console.log(`  ✓ icon-maskable-${size}x${size}.png`);
   }
 
   const appleSvg = Buffer.from(createSvg(180, 0.1));
   await sharp(appleSvg).resize(180, 180).png().toFile(join(iconsDir, 'apple-touch-icon.png'));
+  console.log('  ✓ apple-touch-icon.png');
 
-  const favicon32Svg = Buffer.from(createSvg(32, 0.05));
-  await sharp(favicon32Svg).resize(32, 32).png().toFile(join(iconsDir, 'favicon-32x32.png'));
+  const faviconSizes = [16, 32, 48];
+  const pngBuffers = [];
 
-  const favicon16Svg = Buffer.from(createSvg(16, 0.05));
-  await sharp(favicon16Svg).resize(16, 16).png().toFile(join(iconsDir, 'favicon-16x16.png'));
+  for (const size of faviconSizes) {
+    const svgBuffer = Buffer.from(createSvg(size, 0.05));
+    const pngBuffer = await sharp(svgBuffer).resize(size, size).png().toBuffer();
+
+    await sharp(svgBuffer)
+      .resize(size, size)
+      .png()
+      .toFile(join(iconsDir, `favicon-${size}x${size}.png`));
+    console.log(`  ✓ favicon-${size}x${size}.png`);
+
+    pngBuffers.push({ width: size, height: size, data: pngBuffer });
+  }
+
+  const icoBuffer = createIcoBuffer(pngBuffers);
+  writeFileSync(join(publicDir, 'favicon.ico'), icoBuffer);
+  console.log('  ✓ favicon.ico (16x16, 32x32, 48x48)');
+
+  console.log('\n✅ Todos los iconos generados correctamente');
 }
 
 generateIcons().catch(console.error);
