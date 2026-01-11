@@ -20,7 +20,7 @@ export default defineConfig({
       experimentalReactChildren: true,
     }),
   ],
-  site: 'https://www.hotelbotanicocaucasia.com',
+  site: 'https://hotelbotanicocaucasia.com',
   compressHTML: true,
   image: {
     service: {

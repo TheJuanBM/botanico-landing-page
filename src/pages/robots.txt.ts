@@ -1,11 +1,11 @@
 import type { APIRoute } from 'astro';
 
 export const GET: APIRoute = ({ site }) => {
-  const baseUrl = site?.toString() || 'https://www.hotelbotanicocaucasia.com/';
+  const baseUrl = site?.toString() || 'https://hotelbotanicocaucasia.com/';
   const sitemapUrl = `${baseUrl}sitemap.xml`;
 
   const robotsTxt = `# Hotel Botánico - robots.txt
-# https://www.hotelbotanicocaucasia.com
+# https://hotelbotanicocaucasia.com
 
 User-agent: *
 Allow: /

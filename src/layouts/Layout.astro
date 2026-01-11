@@ -21,7 +21,7 @@ const {
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const imageURL = new URL(image, Astro.site).toString();
 const siteName = 'Hotel Botánico';
-const baseUrl = Astro.site?.toString() || 'https://www.hotelbotanicocaucasia.com';
+const baseUrl = Astro.site?.toString() || 'https://hotelbotanicocaucasia.com';
 
 // Generar breadcrumbs dinámicos
 const pathSegments = Astro.url.pathname.split('/').filter(Boolean);
@@ -106,7 +106,7 @@ for (const segment of pathSegments) {
     <meta name="twitter:image:alt" content={`${title} - Hotel Botánico Caucasia`} />
 
     <!-- Favicon y iconos (orden importante para compatibilidad) -->
-    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" sizes="48x48" href="/icons/favicon-48x48.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png" />
@@ -141,14 +141,14 @@ for (const segment of pathSegments) {
       set:html={JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'Hotel',
-        '@id': 'https://www.hotelbotanicocaucasia.com/#hotel',
+        '@id': 'https://hotelbotanicocaucasia.com/#hotel',
         name: 'Hotel Botánico',
         alternateName: 'Botánico Hotel y Spa',
         description:
           'Único hotel 4 estrellas en Caucasia, Bajo Cauca, Antioquia. Ofrecemos habitaciones premium, MITO Rooftop bar, piscina, salones de eventos y servicios de primera clase.',
-        url: 'https://www.hotelbotanicocaucasia.com',
-        logo: 'https://www.hotelbotanicocaucasia.com/favicon.svg',
-        image: [imageURL, 'https://www.hotelbotanicocaucasia.com/og-image.jpg'],
+        url: 'https://hotelbotanicocaucasia.com',
+        logo: 'https://hotelbotanicocaucasia.com/logo.png',
+        image: [imageURL, 'https://hotelbotanicocaucasia.com/og-image.jpg'],
         starRating: {
           '@type': 'Rating',
           ratingValue: '4',
@@ -219,10 +219,10 @@ for (const segment of pathSegments) {
       set:html={JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'Organization',
-        '@id': 'https://www.hotelbotanicocaucasia.com/#organization',
+        '@id': 'https://hotelbotanicocaucasia.com/#organization',
         name: 'Hotel Botánico',
-        url: 'https://www.hotelbotanicocaucasia.com',
-        logo: 'https://www.hotelbotanicocaucasia.com/favicon.svg',
+        url: 'https://hotelbotanicocaucasia.com',
+        logo: 'https://hotelbotanicocaucasia.com/logo.png',
         contactPoint: {
           '@type': 'ContactPoint',
           telephone: '+573122094960',
@@ -244,12 +244,12 @@ for (const segment of pathSegments) {
       set:html={JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'WebSite',
-        '@id': 'https://www.hotelbotanicocaucasia.com/#website',
-        url: 'https://www.hotelbotanicocaucasia.com',
+        '@id': 'https://hotelbotanicocaucasia.com/#website',
+        url: 'https://hotelbotanicocaucasia.com',
         name: 'Hotel Botánico',
         description: 'Único hotel 4 estrellas en Caucasia, Bajo Cauca, Antioquia, Colombia',
         publisher: {
-          '@id': 'https://www.hotelbotanicocaucasia.com/#organization',
+          '@id': 'https://hotelbotanicocaucasia.com/#organization',
         },
         inLanguage: 'es-CO',
       })}
